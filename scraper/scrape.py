@@ -14,7 +14,6 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-# country code, local language (used for data fetch), UI languages offered
 COUNTRIES = [
     {"code": "SE", "local_lang": "sv", "name": "Sverige", "languages": ["sv", "en"]},
     {"code": "DK", "local_lang": "da", "name": "Danmark", "languages": ["da", "en"]},
@@ -39,7 +38,6 @@ DATA_DIR = REPO_ROOT / "data"
 HTML_FILE = REPO_ROOT / "docs" / "index.html"
 
 
-# UI strings per language. First-pass translations; native speakers welcome to correct.
 STRINGS = {
     "sv": {
         "title": "EuroBonus Shopping",
@@ -70,6 +68,9 @@ STRINGS = {
         "unit_per_hundred": "/ 100 kr",
         "new_campaign_title": "Ny kampanj",
         "gone_since": "borta sedan",
+        "footer_unaffiliated": "Oberoende sida, inte ansluten till SAS eller EuroBonus.",
+        "footer_about": "Om sidan",
+        "footer_privacy": "Integritet",
     },
     "en": {
         "title": "EuroBonus Shopping",
@@ -100,6 +101,9 @@ STRINGS = {
         "unit_per_hundred": "/ 100",
         "new_campaign_title": "New campaign",
         "gone_since": "gone since",
+        "footer_unaffiliated": "Independent site, not affiliated with SAS or EuroBonus.",
+        "footer_about": "About",
+        "footer_privacy": "Privacy",
     },
     "da": {
         "title": "EuroBonus Shopping",
@@ -130,6 +134,9 @@ STRINGS = {
         "unit_per_hundred": "/ 100 kr",
         "new_campaign_title": "Ny kampagne",
         "gone_since": "væk siden",
+        "footer_unaffiliated": "Uafhængig side, ikke tilknyttet SAS eller EuroBonus.",
+        "footer_about": "Om",
+        "footer_privacy": "Privatliv",
     },
     "nb": {
         "title": "EuroBonus Shopping",
@@ -160,28 +167,23 @@ STRINGS = {
         "unit_per_hundred": "/ 100 kr",
         "new_campaign_title": "Ny kampanje",
         "gone_since": "borte siden",
+        "footer_unaffiliated": "Uavhengig side, ikke tilknyttet SAS eller EuroBonus.",
+        "footer_about": "Om",
+        "footer_privacy": "Personvern",
     },
 }
 
-# Translation of "campaign_ends" strings the API returns in the local language.
-# The API gives us things like "om 1 dag", "om 5 dagar", "om 1 vecka". We keep
-# the local-language string in the data and rely on the frontend to translate
-# to English on demand. Only the most common patterns are translated; rare
-# phrasings fall through unchanged.
 ENDS_TRANSLATIONS_EN = {
-    # Swedish
     r"^om (\d+) dag$": r"in \1 day",
     r"^om (\d+) dagar$": r"in \1 days",
     r"^om (\d+) vecka$": r"in \1 week",
     r"^om (\d+) veckor$": r"in \1 weeks",
     r"^om (\d+) timmar$": r"in \1 hours",
     r"^idag$": "today",
-    # Danish
     r"^om (\d+) dage$": r"in \1 days",
     r"^om (\d+) uge$": r"in \1 week",
     r"^om (\d+) uger$": r"in \1 weeks",
     r"^om (\d+) timer$": r"in \1 hours",
-    # Norwegian
     r"^om (\d+) uke$": r"in \1 week",
     r"^om (\d+) uker$": r"in \1 weeks",
 }
@@ -218,8 +220,6 @@ def today_iso():
 
 
 def translate_ends_en(text):
-    """Convert the local-language campaign-ends string to English if we
-    recognize it. Falls through if no pattern matches."""
     if not text:
         return text
     for pattern, replacement in ENDS_TRANSLATIONS_EN.items():
@@ -377,7 +377,6 @@ def points_display(shop):
 
 
 def prepare_country_dataset(shops_state, category_map):
-    """Serialize country state into the compact shape the frontend reads."""
     shops_out = []
     for uuid, s in shops_state.items():
         disp = points_display(s)
@@ -523,6 +522,11 @@ body {{
 .sas-hidden {{ display: none !important; }}
 .sas-empty {{ color: var(--text-faint); font-size: 14px; padding: 16px 0; }}
 
+.sas-footer {{ display: flex; justify-content: space-between; align-items: center; margin-top: 64px; padding-top: 24px; border-top: 0.5px solid var(--border); gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--text-faint); }}
+.sas-footer a {{ color: var(--text-muted); text-decoration: none; }}
+.sas-footer a:hover {{ color: var(--text); text-decoration: underline; }}
+.sas-footer-right {{ display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }}
+
 @media (max-width: 640px) {{
   body {{ padding: 20px 14px 48px; }}
   .sas-list-row {{ grid-template-columns: 28px 1fr auto; gap: 12px; }}
@@ -532,6 +536,7 @@ body {{
   .sas-points-main {{ font-size: 24px; }}
   .sas-category-wrap {{ margin-left: 0; width: 100%; }}
   .sas-category-select {{ width: 100%; }}
+  .sas-footer {{ flex-direction: column; align-items: flex-start; gap: 8px; }}
 }}
 </style>
 </head>
@@ -579,6 +584,19 @@ body {{
     <div class="sas-section-label" id="gone-label"></div>
     <div class="sas-list" id="gone-list"></div>
   </section>
+
+  <footer class="sas-footer">
+    <div class="sas-footer-left">
+      <span id="footer-unaffiliated"></span>
+    </div>
+    <div class="sas-footer-right">
+      <a href="about.html" id="footer-about">About</a>
+      ·
+      <a href="privacy.html" id="footer-privacy">Privacy</a>
+      ·
+      <span>© 2026 David Kifarkis</span>
+    </div>
+  </footer>
 </div>
 
 <script id="sas-data" type="application/json">{datasets_json}</script>
@@ -773,6 +791,9 @@ body {{
     document.getElementById('gone-label').textContent = t('gone_label');
     document.getElementById('sort-label').textContent = t('sort_label');
     document.getElementById('search-box').placeholder = t('search_placeholder');
+    document.getElementById('footer-unaffiliated').textContent = t('footer_unaffiliated');
+    document.getElementById('footer-about').textContent = t('footer_about');
+    document.getElementById('footer-privacy').textContent = t('footer_privacy');
 
     var sortSel = document.getElementById('sort-select');
     sortSel.innerHTML = '';
