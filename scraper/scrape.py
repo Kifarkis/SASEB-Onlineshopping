@@ -3,24 +3,23 @@
 SAS EuroBonus Shopping tracker — multi-country edition.
 
 Fetches current offers from loyaltykey.com for SE, DK, NO, FI in their
-local language (plus English for each), maintains persistent state per
-country, and renders a single-page tracker with client-side country and
-language switching.
+local language only. The frontend translates UI labels on the fly, so a
+single data snapshot per country covers all supported languages.
 """
 import html
 import json
+import re
 import sys
 from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-# (country_code, local_language_code, display_name)
-# language codes must match what the loyaltykey API expects
+# country code, local language (used for data fetch), UI languages offered
 COUNTRIES = [
     {"code": "SE", "local_lang": "sv", "name": "Sverige", "languages": ["sv", "en"]},
     {"code": "DK", "local_lang": "da", "name": "Danmark", "languages": ["da", "en"]},
     {"code": "NO", "local_lang": "nb", "name": "Norge",   "languages": ["nb", "en"]},
-    {"code": "FI", "local_lang": "en", "name": "Suomi",   "languages": ["en"]},  # Finnish UI not translated yet
+    {"code": "FI", "local_lang": "en", "name": "Suomi",   "languages": ["en"]},
 ]
 
 SHOPS_URL_TMPL = (
@@ -71,8 +70,6 @@ STRINGS = {
         "unit_per_hundred": "/ 100 kr",
         "new_campaign_title": "Ny kampanj",
         "gone_since": "borta sedan",
-        "country_label": "Land",
-        "language_label": "Språk",
     },
     "en": {
         "title": "EuroBonus Shopping",
@@ -103,8 +100,6 @@ STRINGS = {
         "unit_per_hundred": "/ 100",
         "new_campaign_title": "New campaign",
         "gone_since": "gone since",
-        "country_label": "Country",
-        "language_label": "Language",
     },
     "da": {
         "title": "EuroBonus Shopping",
@@ -135,8 +130,6 @@ STRINGS = {
         "unit_per_hundred": "/ 100 kr",
         "new_campaign_title": "Ny kampagne",
         "gone_since": "væk siden",
-        "country_label": "Land",
-        "language_label": "Sprog",
     },
     "nb": {
         "title": "EuroBonus Shopping",
@@ -167,9 +160,30 @@ STRINGS = {
         "unit_per_hundred": "/ 100 kr",
         "new_campaign_title": "Ny kampanje",
         "gone_since": "borte siden",
-        "country_label": "Land",
-        "language_label": "Språk",
     },
+}
+
+# Translation of "campaign_ends" strings the API returns in the local language.
+# The API gives us things like "om 1 dag", "om 5 dagar", "om 1 vecka". We keep
+# the local-language string in the data and rely on the frontend to translate
+# to English on demand. Only the most common patterns are translated; rare
+# phrasings fall through unchanged.
+ENDS_TRANSLATIONS_EN = {
+    # Swedish
+    r"^om (\d+) dag$": r"in \1 day",
+    r"^om (\d+) dagar$": r"in \1 days",
+    r"^om (\d+) vecka$": r"in \1 week",
+    r"^om (\d+) veckor$": r"in \1 weeks",
+    r"^om (\d+) timmar$": r"in \1 hours",
+    r"^idag$": "today",
+    # Danish
+    r"^om (\d+) dage$": r"in \1 days",
+    r"^om (\d+) uge$": r"in \1 week",
+    r"^om (\d+) uger$": r"in \1 weeks",
+    r"^om (\d+) timer$": r"in \1 hours",
+    # Norwegian
+    r"^om (\d+) uke$": r"in \1 week",
+    r"^om (\d+) uker$": r"in \1 weeks",
 }
 
 
@@ -201,6 +215,18 @@ def save_json(path, data):
 
 def today_iso():
     return date.today().isoformat()
+
+
+def translate_ends_en(text):
+    """Convert the local-language campaign-ends string to English if we
+    recognize it. Falls through if no pattern matches."""
+    if not text:
+        return text
+    for pattern, replacement in ENDS_TRANSLATIONS_EN.items():
+        m = re.match(pattern, text.strip(), re.IGNORECASE)
+        if m:
+            return re.sub(pattern, replacement, text.strip(), flags=re.IGNORECASE)
+    return text
 
 
 def update_state(api_shops, shops_state, history):
@@ -277,6 +303,7 @@ def update_state(api_shops, shops_state, history):
             "all_time_high_date": all_time_high_date,
             "active_campaign": active_campaign,
             "campaign_ends_human": s.get("campaign_ends") if has_campaign_now else None,
+            "campaign_ends_human_en": translate_ends_en(s.get("campaign_ends")) if has_campaign_now else None,
         }
         if is_new:
             counts["new_shops"] += 1
@@ -350,9 +377,7 @@ def points_display(shop):
 
 
 def prepare_country_dataset(shops_state, category_map):
-    """Serialize shop state and metadata for a single country into a compact
-    JSON-ready dict that the frontend can consume directly."""
-    today = today_iso()
+    """Serialize country state into the compact shape the frontend reads."""
     shops_out = []
     for uuid, s in shops_state.items():
         disp = points_display(s)
@@ -371,6 +396,7 @@ def prepare_country_dataset(shops_state, category_map):
             "unit_variable": disp["unit_variable"],
             "has_campaign": disp["show_campaign"],
             "campaign_ends_human": s.get("campaign_ends_human"),
+            "campaign_ends_human_en": s.get("campaign_ends_human_en"),
             "campaign_started": (s.get("active_campaign") or {}).get("started"),
             "first_seen": s.get("first_seen"),
             "gone_since": s.get("gone_since"),
@@ -394,7 +420,6 @@ def prepare_country_dataset(shops_state, category_map):
 
 
 def render_html(datasets):
-    """Render a single HTML page that embeds all country+language datasets."""
     datasets_json = json.dumps(datasets, ensure_ascii=False)
     strings_json = json.dumps(STRINGS, ensure_ascii=False)
     countries_json = json.dumps(COUNTRIES, ensure_ascii=False)
@@ -619,10 +644,16 @@ body {{
     return shop.unit_variable ? t('unit_per_hundred') : t('unit_per_purchase');
   }}
 
+  function endsText(shop) {{
+    if (lang === 'en' && shop.campaign_ends_human_en) return shop.campaign_ends_human_en;
+    return shop.campaign_ends_human || '';
+  }}
+
   function isUrgent(text) {{
     if (!text) return false;
     var l = text.toLowerCase();
     return l.indexOf('1 dag') !== -1 || l.indexOf('1 day') !== -1 ||
+           l.indexOf('1 dage') !== -1 ||
            l.indexOf('idag') !== -1 || l.indexOf('today') !== -1 ||
            l.indexOf('timmar') !== -1 || l.indexOf('hours') !== -1 ||
            l.indexOf('timer') !== -1;
@@ -638,12 +669,12 @@ body {{
     var campaignClass = shop.has_campaign ? ' campaign' : '';
     var newDot = discoveredToday ? '<div class="sas-new-dot" title="' + t('new_campaign_title') + '"></div>' : '';
     var bonusPill = shop.bonus > 0 ? '<span class="sas-pill">+' + shop.bonus + '</span>' : '';
-    var endsText = shop.campaign_ends_human || '';
+    var et = endsText(shop);
     var daysHTML = '';
     var urgent = false;
-    if (shop.has_campaign && endsText) {{
-      urgent = isUrgent(endsText);
-      daysHTML = '<span class="sas-days ' + (urgent ? 'urgent' : '') + '">' + endsText + '</span>';
+    if (shop.has_campaign && et) {{
+      urgent = isUrgent(et);
+      daysHTML = '<span class="sas-days ' + (urgent ? 'urgent' : '') + '">' + et + '</span>';
     }}
 
     var a = document.createElement('a');
@@ -710,12 +741,8 @@ body {{
   }}
 
   function render() {{
-    var dsKey = country + '_' + lang;
-    var ds = DATA[dsKey];
-    if (!ds) {{
-      // Fallback to local language if requested one is missing.
-      ds = DATA[country + '_' + countryDef.local_lang] || Object.values(DATA)[0];
-    }}
+    var ds = DATA[country];
+    if (!ds) ds = Object.values(DATA)[0];
 
     document.documentElement.lang = lang;
     document.getElementById('title-text').textContent = t('title');
@@ -894,7 +921,6 @@ body {{
     rows.forEach(function(r) {{ listEl.appendChild(r); }});
   }}
 
-  // Country + language selectors
   var countrySel = document.getElementById('country-select');
   COUNTRIES.forEach(function(c) {{
     var o = document.createElement('option');
@@ -968,94 +994,54 @@ def main():
 
     for country in COUNTRIES:
         country_code = country["code"]
+        local_lang = country["local_lang"]
         country_data_dir = DATA_DIR / country_code.lower()
 
-        # Fetch shops in the country's *local* language only (this is what gets
-        # persisted — the `campaign_ends` string will be localized per language,
-        # but the core data is the same).
-        for lang in country["languages"]:
-            print(f"\n=== {country_code} / {lang} ===")
-            shops_url = SHOPS_URL_TMPL.format(lang=lang, country=country_code)
-            cats_url = CATEGORIES_URL_TMPL.format(lang=lang)
+        print(f"\n=== {country_code} ({local_lang}) ===")
+        shops_url = SHOPS_URL_TMPL.format(lang=local_lang, country=country_code)
+        cats_url = CATEGORIES_URL_TMPL.format(lang=local_lang)
 
-            try:
-                shops_payload = fetch_json(shops_url)
-            except Exception as e:
-                print(f"  Shops fetch failed: {e}", file=sys.stderr)
-                all_succeeded = False
-                continue
+        try:
+            shops_payload = fetch_json(shops_url)
+        except Exception as e:
+            print(f"  Shops fetch failed: {e}", file=sys.stderr)
+            all_succeeded = False
+            continue
 
-            api_shops = shops_payload.get("data", [])
-            print(f"  Got {len(api_shops)} shops")
+        api_shops = shops_payload.get("data", [])
+        print(f"  Got {len(api_shops)} shops")
 
-            try:
-                cats_payload = fetch_json(cats_url)
-            except Exception as e:
-                print(f"  Categories fetch failed ({e}); using fallback", file=sys.stderr)
-                cats_payload = {"data": []}
+        try:
+            cats_payload = fetch_json(cats_url)
+        except Exception as e:
+            print(f"  Categories fetch failed ({e}); using fallback", file=sys.stderr)
+            cats_payload = {"data": []}
 
-            category_map = build_category_map(cats_payload)
+        category_map = build_category_map(cats_payload)
 
-            # State persistence only uses the local language's fetch to avoid
-            # duplicating campaign-history records across language variants.
-            if lang == country["local_lang"]:
-                shops_file = country_data_dir / "shops.json"
-                history_file = country_data_dir / "history.json"
-                categories_file = country_data_dir / f"categories-{lang}.json"
+        shops_file = country_data_dir / "shops.json"
+        history_file = country_data_dir / "history.json"
+        categories_file = country_data_dir / "categories.json"
 
-                shops_state = load_json(shops_file, {})
-                history = load_json(history_file, [])
-                shops_state, history, counts = update_state(api_shops, shops_state, history)
-                print(
-                    f"  Transitions: {counts['new_shops']} new shops, "
-                    f"{counts['new_campaigns']} new campaigns, "
-                    f"{counts['ended_campaigns']} ended, "
-                    f"{counts['gone_shops']} newly gone"
-                )
-                save_json(shops_file, shops_state)
-                save_json(history_file, history)
-                save_json(categories_file, cats_payload)
-                dataset_state = shops_state
-            else:
-                # For English variants, refresh the API data for the current
-                # snapshot but merge English descriptions on top of the
-                # local-language state so we don't lose first_seen etc.
-                base_shops = load_json(country_data_dir / "shops.json", {})
-                en_state = {}
-                api_uuids = {s["uuid"] for s in api_shops}
-                for s in api_shops:
-                    prev = base_shops.get(s["uuid"], {})
-                    en_state[s["uuid"]] = {
-                        **prev,
-                        "name": s.get("name"),
-                        "current_points": s.get("points") or 0,
-                        "current_points_channel": s.get("points_channel") or 0,
-                        "current_points_campaign": s.get("points_campaign") or 0,
-                        "commission_type": s.get("commission_type"),
-                        "category_id": s.get("categoryId"),
-                        "campaign_ends_human": s.get("campaign_ends") if s.get("has_campaign") == 1 else None,
-                        "active_campaign": (
-                            {
-                                **(prev.get("active_campaign") or {}),
-                                "points_campaign": s.get("points_campaign") or 0,
-                                "points_channel": s.get("points_channel") or 0,
-                                "ends_date": s.get("campaign_ends_date"),
-                            } if s.get("has_campaign") == 1 else None
-                        ),
-                        "status": "active",
-                    }
-                # Keep gone shops from base so the Gone list works in any language.
-                for uuid, shop in base_shops.items():
-                    if uuid not in api_uuids:
-                        en_state[uuid] = {**shop, "status": "gone"}
-                save_json(country_data_dir / f"categories-{lang}.json", cats_payload)
-                dataset_state = en_state
+        shops_state = load_json(shops_file, {})
+        history = load_json(history_file, [])
+        shops_state, history, counts = update_state(api_shops, shops_state, history)
+        print(
+            f"  Transitions: {counts['new_shops']} new shops, "
+            f"{counts['new_campaigns']} new campaigns, "
+            f"{counts['ended_campaigns']} ended, "
+            f"{counts['gone_shops']} newly gone"
+        )
 
-            datasets[f"{country_code}_{lang}"] = prepare_country_dataset(dataset_state, category_map)
+        save_json(shops_file, shops_state)
+        save_json(history_file, history)
+        save_json(categories_file, cats_payload)
+
+        datasets[country_code] = prepare_country_dataset(shops_state, category_map)
 
     HTML_FILE.parent.mkdir(parents=True, exist_ok=True)
     HTML_FILE.write_text(render_html(datasets), encoding="utf-8")
-    print(f"\nWrote {HTML_FILE} with {len(datasets)} country+language datasets")
+    print(f"\nWrote {HTML_FILE} with {len(datasets)} country datasets")
 
     if not all_succeeded:
         sys.exit(1)
