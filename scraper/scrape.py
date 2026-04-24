@@ -19,7 +19,7 @@ from urllib.request import Request, urlopen
 COUNTRIES = [
     {"code": "SE", "local_lang": "sv", "name": "Sverige", "languages": ["sv", "en"]},
     {"code": "DK", "local_lang": "da", "name": "Danmark", "languages": ["da", "en"]},
-    {"code": "NO", "local_lang": "no", "name": "Norge",   "languages": ["no", "en"]},
+    {"code": "NO", "local_lang": "nb", "name": "Norge",   "languages": ["nb", "en"]},
     {"code": "FI", "local_lang": "en", "name": "Suomi",   "languages": ["en"]},  # Finnish UI not translated yet
 ]
 
@@ -138,7 +138,7 @@ STRINGS = {
         "country_label": "Land",
         "language_label": "Sprog",
     },
-    "no": {
+    "nb": {
         "title": "EuroBonus Shopping",
         "active_campaigns_label": "Aktive kampanjer",
         "all_shops_label": "Alle butikker",
@@ -912,7 +912,7 @@ body {{
       o.textContent = l === 'en' ? 'English' :
                       l === 'sv' ? 'Svenska' :
                       l === 'da' ? 'Dansk' :
-                      l === 'no' ? 'Norsk' :
+                      l === 'nb' ? 'Norsk' :
                       l === 'fi' ? 'Suomi' : l;
       langSel.appendChild(o);
     }});
