@@ -34,13 +34,13 @@ body {
 .sas-toggle { background: none; border: 0.5px solid var(--border-strong); color: var(--text-muted); padding: 7px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; font-family: inherit; }
 .sas-toggle:hover { color: var(--text); }
 
-.sas-filter-row { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
-.sas-cat-row { display: flex; gap: 8px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }
-.sas-cat-row::-webkit-scrollbar { height: 4px; }
-.sas-cat-row::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
-.sas-chip, .sas-chip-cat { font-size: 14px; padding: 8px 16px; border: 0.5px solid var(--border); border-radius: 999px; background: transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; white-space: nowrap; }
-.sas-chip:hover, .sas-chip-cat:hover { color: var(--text); }
-.sas-chip.active, .sas-chip-cat.active { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+.sas-filter-row { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }
+.sas-chip { font-size: 14px; padding: 8px 16px; border: 0.5px solid var(--border); border-radius: 999px; background: transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; white-space: nowrap; }
+.sas-chip:hover { color: var(--text); }
+.sas-chip.active { background: var(--surface); color: var(--text); border-color: var(--border-strong); }
+.sas-category-wrap { margin-left: auto; }
+.sas-category-select { font-family: inherit; font-size: 14px; padding: 8px 14px; border: 0.5px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--text); cursor: pointer; }
+.sas-category-select:hover { border-color: var(--border-strong); }
 
 .sas-search { width: 100%; font-size: 16px; padding: 13px 18px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); font-family: inherit; margin-bottom: 28px; }
 .sas-search:focus { outline: none; border-color: var(--border-strong); }
@@ -99,6 +99,8 @@ body {
   .sas-list-points { min-width: 110px; font-size: 13px; }
   .sas-card { padding: 16px; min-height: 120px; }
   .sas-points-main { font-size: 24px; }
+  .sas-category-wrap { margin-left: 0; width: 100%; }
+  .sas-category-select { width: 100%; }
 }
 </style>
 </head>
@@ -107,19 +109,24 @@ body {
   <div class="sas-header">
     <div>
       <h1 class="sas-title">EuroBonus Shopping</h1>
-      <div class="sas-meta">48 aktiva kampanjer · 451 butiker · uppdaterad 2026-04-24 10:00 UTC</div>
+      <div class="sas-meta">48 aktiva kampanjer · 451 butiker · uppdaterad 2026-04-24 10:18 UTC</div>
     </div>
     <button class="sas-toggle" id="theme-toggle">Dark mode</button>
   </div>
 
-  <div class="sas-filter-row" id="view-filters">
-    <button class="sas-chip active" data-view="all">Alla</button>
-    <button class="sas-chip" data-view="campaigns">Kampanjer</button>
-    <button class="sas-chip" data-view="ending">Slutar snart</button>
-    <button class="sas-chip" data-view="gone">Borta (0)</button>
+  <div class="sas-filter-row">
+    <div id="view-filters" style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <button class="sas-chip active" data-view="all">Alla</button>
+      <button class="sas-chip" data-view="campaigns">Kampanjer</button>
+      <button class="sas-chip" data-view="ending">Slutar snart</button>
+      <button class="sas-chip" data-view="gone">Borta (0)</button>
+    </div>
+    <div class="sas-category-wrap">
+      <select id="category-select" class="sas-category-select" aria-label="Kategori">
+        <option value="all">Alla kategorier</option><option value="barn-och-baby">Barn och baby</option><option value="bocker-film-och-musik">Böcker, film och musik</option><option value="dator-och-elektronik">Dator och elektronik</option><option value="djurtillbehor">Djurtillbehör</option><option value="hus-och-hem">Hus och hem</option><option value="halsa-och-skonhet">Hälsa och skönhet</option><option value="kontorsmaterial">Kontorsmaterial</option><option value="mat-och-dryck">Mat och dryck</option><option value="mobil-och-bredband">Mobil och bredband</option><option value="mode-och-accessoarer">Mode och accessoarer</option><option value="populara-brands">Populära brands</option><option value="present-och-blommor">Present och blommor</option><option value="sport-och-fritid">Sport och fritid</option><option value="streaming">Streaming</option><option value="transport">Transport</option><option value="ovrigt">Övrigt</option>
+      </select>
+    </div>
   </div>
-
-  <div class="sas-cat-row" id="category-filters"><button class="sas-chip-cat active" data-cat="all">Alla kategorier</button><button class="sas-chip-cat" data-cat="barn-och-baby">Barn och baby</button><button class="sas-chip-cat" data-cat="bocker-film-och-musik">Böcker, film och musik</button><button class="sas-chip-cat" data-cat="dator-och-elektronik">Dator och elektronik</button><button class="sas-chip-cat" data-cat="djurtillbehor">Djurtillbehör</button><button class="sas-chip-cat" data-cat="hus-och-hem">Hus och hem</button><button class="sas-chip-cat" data-cat="halsa-och-skonhet">Hälsa och skönhet</button><button class="sas-chip-cat" data-cat="kontorsmaterial">Kontorsmaterial</button><button class="sas-chip-cat" data-cat="mat-och-dryck">Mat och dryck</button><button class="sas-chip-cat" data-cat="mobil-och-bredband">Mobil och bredband</button><button class="sas-chip-cat" data-cat="mode-och-accessoarer">Mode och accessoarer</button><button class="sas-chip-cat" data-cat="populara-brands">Populära brands</button><button class="sas-chip-cat" data-cat="present-och-blommor">Present och blommor</button><button class="sas-chip-cat" data-cat="sport-och-fritid">Sport och fritid</button><button class="sas-chip-cat" data-cat="streaming">Streaming</button><button class="sas-chip-cat" data-cat="transport">Transport</button><button class="sas-chip-cat" data-cat="ovrigt">Övrigt</button></div>
 
   <input class="sas-search" id="search-box" type="search" placeholder="Sök butik — t.ex. Lenovo, Amazon, Ellos…">
 
@@ -183,7 +190,7 @@ body {
   var allShopsSection = document.querySelector('[data-section="all-shops"]');
   var goneSection = document.querySelector('[data-section="gone"]');
   var viewChips = document.querySelectorAll('#view-filters .sas-chip');
-  var catChips = document.querySelectorAll('#category-filters .sas-chip-cat');
+  var categorySelect = document.getElementById('category-select');
   var searchBox = document.getElementById('search-box');
   var sortSelect = document.getElementById('sort-select');
   var jumperLetters = document.querySelectorAll('#jumper .sas-jumper-letter');
@@ -234,13 +241,9 @@ body {
       applyFilters();
     });
   });
-  catChips.forEach(function(c) {
-    c.addEventListener('click', function() {
-      catChips.forEach(function(x) { x.classList.remove('active'); });
-      c.classList.add('active');
-      state.category = c.dataset.cat;
-      applyFilters();
-    });
+  categorySelect.addEventListener('change', function() {
+    state.category = categorySelect.value;
+    applyFilters();
   });
   searchBox.addEventListener('input', function() {
     state.query = searchBox.value.trim().toLowerCase();
