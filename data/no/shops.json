@@ -4788,5 +4788,25 @@
     "slug": "husqvarna",
     "status": "active",
     "uuid": "019d713b-929f-7136-98ba-83fb547332ef"
+  },
+  "019dbf16-b3c9-7016-8fbf-a877d50c1123": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-04-24",
+    "all_time_high_points": 50,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 4,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 50,
+    "current_points_campaign": 0,
+    "current_points_channel": 10,
+    "first_seen": "2026-04-24",
+    "last_seen": "2026-04-24",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/LEDMkk697BYGUaKWbsRN6fjY4iZxec339c003a8i.png",
+    "name": "Nordhost",
+    "slug": "nordhost",
+    "status": "active",
+    "uuid": "019dbf16-b3c9-7016-8fbf-a877d50c1123"
   }
 }

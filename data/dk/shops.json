@@ -3060,17 +3060,22 @@
     "uuid": "0189630f-9e85-716d-a295-27d961296df7"
   },
   "0189630f-a5eb-73e6-9be7-41a7fb921f47": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "03.05.2026",
+      "points_campaign": 75,
+      "points_channel": 15,
+      "started": "2026-04-24"
+    },
     "all_time_high_date": "2026-04-24",
-    "all_time_high_points": 25,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "all_time_high_points": 75,
+    "campaign_ends_human": "om 1 uge",
+    "campaign_ends_human_en": "in 1 week",
     "category_id": 8,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 25,
-    "current_points_campaign": 0,
-    "current_points_channel": 5,
+    "current_points_campaign": 75,
+    "current_points_channel": 15,
     "first_seen": "2026-04-24",
     "last_seen": "2026-04-24",
     "logo": null,
@@ -5444,7 +5449,7 @@
     "first_seen": "2026-04-24",
     "last_seen": "2026-04-24",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/QQC7K30FAGXpsDsvUJYJGAHM2G3pMY3pejoamVYg.png",
-    "name": "Powerfuel",
+    "name": "Power Fuel",
     "slug": "powerfuel",
     "status": "active",
     "uuid": "019a0c33-cdd4-721d-aba5-3c89e8b38e1d"
