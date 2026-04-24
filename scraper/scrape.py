@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-SAS EuroBonus Shopping tracker.
+SAS EuroBonus Shopping tracker — multi-country edition.
 
-Fetches current offers from loyaltykey.com every few hours and maintains
-persistent state for history-based features (all-time highs, gone shops,
-campaign history). Renders a static HTML tracker to docs/index.html.
+Fetches current offers from loyaltykey.com for SE, DK, NO, FI in their
+local language (plus English for each), maintains persistent state per
+country, and renders a single-page tracker with client-side country and
+language switching.
 """
 import html
 import json
@@ -13,28 +14,168 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-API_SHOPS = (
+# (country_code, local_language_code, display_name)
+# language codes must match what the loyaltykey API expects
+COUNTRIES = [
+    {"code": "SE", "local_lang": "sv", "name": "Sverige", "languages": ["sv", "en"]},
+    {"code": "DK", "local_lang": "da", "name": "Danmark", "languages": ["da", "en"]},
+    {"code": "NO", "local_lang": "no", "name": "Norge",   "languages": ["no", "en"]},
+    {"code": "FI", "local_lang": "en", "name": "Suomi",   "languages": ["en"]},  # Finnish UI not translated yet
+]
+
+SHOPS_URL_TMPL = (
     "https://onlineshopping.loyaltykey.com/api/v1/shops"
     "?filter[channel]=SAS"
-    "&filter[language]=sv"
-    "&filter[country]=SE"
+    "&filter[language]={lang}"
+    "&filter[country]={country}"
     "&filter[amount]=5000"
 )
-API_CATEGORIES = (
+CATEGORIES_URL_TMPL = (
     "https://onlineshopping.loyaltykey.com/api/v1/shops/categories"
-    "?filter[language]=sv"
+    "?filter[language]={lang}"
 )
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-SHOPS_FILE = REPO_ROOT / "data" / "shops.json"
-HISTORY_FILE = REPO_ROOT / "data" / "history.json"
-CATEGORIES_FILE = REPO_ROOT / "data" / "categories.json"
+DATA_DIR = REPO_ROOT / "data"
 HTML_FILE = REPO_ROOT / "docs" / "index.html"
+
+
+# UI strings per language. First-pass translations; native speakers welcome to correct.
+STRINGS = {
+    "sv": {
+        "title": "EuroBonus Shopping",
+        "active_campaigns_label": "Aktiva kampanjer",
+        "all_shops_label": "Alla butiker",
+        "gone_label": "Butiker som försvunnit",
+        "filter_all": "Alla",
+        "filter_campaigns": "Kampanjer",
+        "filter_ending": "Slutar snart",
+        "filter_gone": "Borta",
+        "category_all": "Alla kategorier",
+        "sort_label": "Sortera",
+        "sort_az": "A–Ö",
+        "sort_za": "Ö–A",
+        "sort_points": "Mest EB-poäng",
+        "sort_level": "Mest nivåpoäng",
+        "sort_recent": "Senast tillagd",
+        "search_placeholder": "Sök butik — t.ex. Lenovo, Amazon, Ellos…",
+        "meta_template": "{campaigns} aktiva kampanjer · {shops} butiker · uppdaterad {ts}",
+        "dark_mode": "Dark mode",
+        "light_mode": "Light mode",
+        "no_campaigns": "Inga aktiva kampanjer just nu.",
+        "no_gone": "Inga försvunna butiker ännu.",
+        "level_label": "Nivå",
+        "level_short": "nivå",
+        "points_short": "p",
+        "unit_per_purchase": "/ köp",
+        "unit_per_hundred": "/ 100 kr",
+        "new_campaign_title": "Ny kampanj",
+        "gone_since": "borta sedan",
+        "country_label": "Land",
+        "language_label": "Språk",
+    },
+    "en": {
+        "title": "EuroBonus Shopping",
+        "active_campaigns_label": "Active campaigns",
+        "all_shops_label": "All shops",
+        "gone_label": "Shops that disappeared",
+        "filter_all": "All",
+        "filter_campaigns": "Campaigns",
+        "filter_ending": "Ending soon",
+        "filter_gone": "Gone",
+        "category_all": "All categories",
+        "sort_label": "Sort",
+        "sort_az": "A–Z",
+        "sort_za": "Z–A",
+        "sort_points": "Most EB points",
+        "sort_level": "Most level points",
+        "sort_recent": "Recently added",
+        "search_placeholder": "Search shops — e.g. Lenovo, Amazon, Ellos…",
+        "meta_template": "{campaigns} active campaigns · {shops} shops · updated {ts}",
+        "dark_mode": "Dark mode",
+        "light_mode": "Light mode",
+        "no_campaigns": "No active campaigns right now.",
+        "no_gone": "No disappeared shops yet.",
+        "level_label": "Level",
+        "level_short": "lvl",
+        "points_short": "p",
+        "unit_per_purchase": "/ purchase",
+        "unit_per_hundred": "/ 100",
+        "new_campaign_title": "New campaign",
+        "gone_since": "gone since",
+        "country_label": "Country",
+        "language_label": "Language",
+    },
+    "da": {
+        "title": "EuroBonus Shopping",
+        "active_campaigns_label": "Aktive kampagner",
+        "all_shops_label": "Alle butikker",
+        "gone_label": "Butikker der er forsvundet",
+        "filter_all": "Alle",
+        "filter_campaigns": "Kampagner",
+        "filter_ending": "Slutter snart",
+        "filter_gone": "Væk",
+        "category_all": "Alle kategorier",
+        "sort_label": "Sorter",
+        "sort_az": "A–Å",
+        "sort_za": "Å–A",
+        "sort_points": "Flest EB-point",
+        "sort_level": "Flest niveaupoint",
+        "sort_recent": "Senest tilføjet",
+        "search_placeholder": "Søg butik — fx Lenovo, Amazon, Ellos…",
+        "meta_template": "{campaigns} aktive kampagner · {shops} butikker · opdateret {ts}",
+        "dark_mode": "Dark mode",
+        "light_mode": "Light mode",
+        "no_campaigns": "Ingen aktive kampagner lige nu.",
+        "no_gone": "Ingen forsvundne butikker endnu.",
+        "level_label": "Niveau",
+        "level_short": "nvl",
+        "points_short": "p",
+        "unit_per_purchase": "/ køb",
+        "unit_per_hundred": "/ 100 kr",
+        "new_campaign_title": "Ny kampagne",
+        "gone_since": "væk siden",
+        "country_label": "Land",
+        "language_label": "Sprog",
+    },
+    "no": {
+        "title": "EuroBonus Shopping",
+        "active_campaigns_label": "Aktive kampanjer",
+        "all_shops_label": "Alle butikker",
+        "gone_label": "Butikker som har forsvunnet",
+        "filter_all": "Alle",
+        "filter_campaigns": "Kampanjer",
+        "filter_ending": "Slutter snart",
+        "filter_gone": "Borte",
+        "category_all": "Alle kategorier",
+        "sort_label": "Sorter",
+        "sort_az": "A–Å",
+        "sort_za": "Å–A",
+        "sort_points": "Flest EB-poeng",
+        "sort_level": "Flest nivåpoeng",
+        "sort_recent": "Sist lagt til",
+        "search_placeholder": "Søk butikk — f.eks. Lenovo, Amazon, Ellos…",
+        "meta_template": "{campaigns} aktive kampanjer · {shops} butikker · oppdatert {ts}",
+        "dark_mode": "Dark mode",
+        "light_mode": "Light mode",
+        "no_campaigns": "Ingen aktive kampanjer akkurat nå.",
+        "no_gone": "Ingen forsvunne butikker ennå.",
+        "level_label": "Nivå",
+        "level_short": "nvå",
+        "points_short": "p",
+        "unit_per_purchase": "/ kjøp",
+        "unit_per_hundred": "/ 100 kr",
+        "new_campaign_title": "Ny kampanje",
+        "gone_since": "borte siden",
+        "country_label": "Land",
+        "language_label": "Språk",
+    },
+}
 
 
 def fetch_json(url):
     req = Request(url, headers={
-        "User-Agent": "Mozilla/5.0 (compatible; sas-shopping-tracker/1.0)",
+        "User-Agent": "Mozilla/5.0 (compatible; sas-shopping-tracker/2.0)",
         "Accept": "application/json",
     })
     with urlopen(req, timeout=30) as response:
@@ -132,7 +273,6 @@ def update_state(api_shops, shops_state, history):
             "currency": s.get("currency"),
             "commission_type": s.get("commission_type"),
             "category_id": s.get("categoryId"),
-            "description": s.get("description"),
             "all_time_high_points": all_time_high_points,
             "all_time_high_date": all_time_high_date,
             "active_campaign": active_campaign,
@@ -163,222 +303,103 @@ def update_state(api_shops, shops_state, history):
     return shops_state, history, counts
 
 
-def points_display(shop):
-    commission_type = shop.get("commission_type")
-    unit = "/ 100 kr" if commission_type == "variable" else "/ köp"
-    if shop.get("active_campaign"):
-        camp = shop["active_campaign"]
-        main = camp.get("points_campaign") or 0
-        base = shop.get("current_points") or 0
-        bonus = max(main - base, 0)
-        return {
-            "main": main, "bonus": bonus, "unit": unit,
-            "level": camp.get("points_channel") or 0,
-            "show_campaign": True,
-            "commission_type": commission_type,
-        }
-    return {
-        "main": shop.get("current_points") or 0,
-        "bonus": 0, "unit": unit,
-        "level": shop.get("current_points_channel") or 0,
-        "show_campaign": False,
-        "commission_type": commission_type,
-    }
-
-
-def escape(s):
-    return html.escape(str(s or ""), quote=True)
-
-
-def initials_from_name(name):
-    parts = [p for p in (name or "?").split() if p]
-    if len(parts) >= 2:
-        return (parts[0][0] + parts[1][0]).upper()
-    return (name or "?")[:2].upper()
-
-
-def logo_html(shop, size_class=""):
-    logo_url = shop.get("logo")
-    if logo_url:
-        return (
-            f'<img src="{escape(logo_url)}" alt="" '
-            f'class="sas-logo-img {size_class}" loading="lazy">'
-        )
-    return f'<div class="sas-logo-fallback {size_class}">{escape(initials_from_name(shop.get("name")))}</div>'
-
-
-def card_html(shop, discovered_today, category_slug):
-    disp = points_display(shop)
-    name = escape(shop.get("name"))
-    uuid = escape(shop.get("uuid"))
-    shop_url = f"https://onlineshopping.flysas.com/sv-SE/butiker/about-you/{uuid}"
-    campaign_class = " campaign" if disp["show_campaign"] else ""
-    new_dot = '<div class="sas-new-dot" title="Ny kampanj"></div>' if discovered_today else ""
-    bonus_pill = f'<span class="sas-pill">+{disp["bonus"]}</span>' if disp["bonus"] > 0 else ""
-
-    ends_text = escape(shop.get("campaign_ends_human") or "")
-    days_remaining = ""
-    if disp["show_campaign"] and ends_text:
-        lower = ends_text.lower()
-        urgent = "urgent" if ("1 dag" in lower or "idag" in lower or "timmar" in lower) else ""
-        days_remaining = f'<span class="sas-days {urgent}">{ends_text}</span>'
-
-    search_key = escape((shop.get("name") or "").lower())
-    return (
-        f'<a class="sas-card{campaign_class}" href="{shop_url}" target="_blank" rel="noopener" '
-        f'data-name="{search_key}" data-cat="{escape(category_slug)}" '
-        f'data-campaign="{1 if disp["show_campaign"] else 0}" '
-        f'data-urgent="{1 if "urgent" in days_remaining else 0}">'
-        f'<div class="sas-card-top">'
-        f'  <div class="sas-card-identity">{logo_html(shop, "logo-lg")}<div class="sas-card-name">{name}</div></div>'
-        f'  {new_dot}'
-        f'</div>'
-        f'<div class="sas-points-block">'
-        f'  <div class="sas-points-row">'
-        f'    <span class="sas-points-main">{disp["main"]}</span>'
-        f'    <span class="sas-eb-tag">EB</span>'
-        f'    {bonus_pill}'
-        f'    <span class="sas-points-unit">{disp["unit"]}</span>'
-        f'  </div>'
-        f'  <div class="sas-status-row">'
-        f'    <span class="sas-status-label">Nivå</span>'
-        f'    <span class="sas-status-val">{disp["level"]} p</span>'
-        f'  </div>'
-        f'</div>'
-        f'<div class="sas-card-foot">{days_remaining}</div>'
-        f'</a>'
-    )
-
-
-def list_row_html(shop, category_slug, bar_percent):
-    disp = points_display(shop)
-    name = escape(shop.get("name"))
-    uuid = escape(shop.get("uuid"))
-    shop_url = f"https://onlineshopping.flysas.com/sv-SE/butiker/about-you/{uuid}"
-    search_key = escape((shop.get("name") or "").lower())
-    first_letter = (name[:1] or "#").upper()
-    return (
-        f'<a class="sas-list-row" href="{shop_url}" target="_blank" rel="noopener" '
-        f'data-name="{search_key}" data-cat="{escape(category_slug)}" '
-        f'data-letter="{escape(first_letter)}" '
-        f'data-points="{disp["main"]}" data-level="{disp["level"]}" '
-        f'data-first-seen="{escape(shop.get("first_seen") or "")}">'
-        f'  <div class="sas-list-logo-wrap">{logo_html(shop, "logo-md")}</div>'
-        f'  <div class="sas-list-name">{name}</div>'
-        f'  <div class="sas-list-bar"><div class="sas-list-bar-fill" style="width: {bar_percent}%;"></div></div>'
-        f'  <div class="sas-list-points">{disp["main"]} EB {disp["unit"]}</div>'
-        f'  <div class="sas-list-level">{disp["level"]} nivå</div>'
-        f'</a>'
-    )
-
-
-def gone_row_html(shop):
-    name = escape(shop.get("name"))
-    gone_since = escape(shop.get("gone_since") or "")
-    last_seen = escape(shop.get("last_seen") or "")
-    return (
-        f'<div class="sas-list-row sas-list-row-gone">'
-        f'  <div class="sas-list-logo-wrap">{logo_html(shop, "logo-md")}</div>'
-        f'  <div class="sas-list-name">{name}</div>'
-        f'  <div class="sas-list-bar"></div>'
-        f'  <div class="sas-list-points">borta sedan {gone_since or last_seen}</div>'
-        f'  <div class="sas-list-level"></div>'
-        f'</div>'
-    )
-
-
 def category_slug_from_name(name):
     if not name:
-        return "okategoriserad"
+        return "uncategorized"
     return (
         name.lower()
         .replace("å", "a").replace("ä", "a").replace("ö", "o")
-        .replace(" ", "-").replace("/", "-").replace("&", "och")
+        .replace("æ", "ae").replace("ø", "o")
+        .replace(" ", "-").replace("/", "-").replace("&", "and")
     )
 
 
 def build_category_map(categories_data):
-    """Map categoryId (int) -> {slug, name}."""
     mapping = {}
     items = categories_data.get("data", []) if isinstance(categories_data, dict) else []
     for cat in items:
         cid = cat.get("category_id") or cat.get("id")
-        name = cat.get("name") or f"Kategori {cid}"
+        name = cat.get("name") or f"Category {cid}"
         slug = cat.get("slug") or category_slug_from_name(name)
         if cid is not None:
             mapping[cid] = {"slug": slug, "name": name}
     return mapping
 
 
-def render_html(shops_state, category_map):
+def points_display(shop):
+    ct = shop.get("commission_type")
+    unit_variable = ct == "variable"
+    if shop.get("active_campaign"):
+        camp = shop["active_campaign"]
+        main = camp.get("points_campaign") or 0
+        base = shop.get("current_points") or 0
+        bonus = max(main - base, 0)
+        return {
+            "main": main, "bonus": bonus,
+            "level": camp.get("points_channel") or 0,
+            "show_campaign": True,
+            "unit_variable": unit_variable,
+        }
+    return {
+        "main": shop.get("current_points") or 0,
+        "bonus": 0,
+        "level": shop.get("current_points_channel") or 0,
+        "show_campaign": False,
+        "unit_variable": unit_variable,
+    }
+
+
+def prepare_country_dataset(shops_state, category_map):
+    """Serialize shop state and metadata for a single country into a compact
+    JSON-ready dict that the frontend can consume directly."""
     today = today_iso()
-    active = [s for s in shops_state.values() if s.get("status") == "active"]
-    gone = [s for s in shops_state.values() if s.get("status") == "gone"]
+    shops_out = []
+    for uuid, s in shops_state.items():
+        disp = points_display(s)
+        cid = s.get("category_id")
+        cat = category_map.get(cid, {"slug": "uncategorized", "name": "Uncategorized"})
+        shops_out.append({
+            "uuid": uuid,
+            "name": s.get("name"),
+            "logo": s.get("logo"),
+            "status": s.get("status"),
+            "category_slug": cat["slug"],
+            "category_name": cat["name"],
+            "main": disp["main"],
+            "bonus": disp["bonus"],
+            "level": disp["level"],
+            "unit_variable": disp["unit_variable"],
+            "has_campaign": disp["show_campaign"],
+            "campaign_ends_human": s.get("campaign_ends_human"),
+            "campaign_started": (s.get("active_campaign") or {}).get("started"),
+            "first_seen": s.get("first_seen"),
+            "gone_since": s.get("gone_since"),
+        })
 
-    def cat_info(shop):
-        cid = shop.get("category_id")
-        if cid in category_map:
-            return category_map[cid]
-        return {"slug": "okategoriserad", "name": "Okategoriserad"}
-
-    campaigns = [s for s in active if s.get("active_campaign")]
-    campaigns.sort(key=lambda s: (
-        0 if s.get("commission_type") == "fixed" else 1,
-        -(points_display(s)["main"]),
-        (s.get("name") or "").lower(),
-    ))
-
-    non_campaign = [s for s in active if not s.get("active_campaign")]
-    non_campaign.sort(key=lambda s: (s.get("name") or "").lower())
-
-    gone.sort(key=lambda s: s.get("gone_since") or "", reverse=True)
-
-    max_fixed = max((points_display(s)["main"] for s in non_campaign if s.get("commission_type") == "fixed"), default=1)
-    max_variable = max((points_display(s)["main"] for s in non_campaign if s.get("commission_type") == "variable"), default=1)
-
-    def bar_percent(shop):
-        disp = points_display(shop)
-        m = max_fixed if shop.get("commission_type") == "fixed" else max_variable
-        if not m:
-            return 0
-        return round(min(100, (disp["main"] / m) * 100))
-
-    used_category_ids = {s.get("category_id") for s in active if s.get("category_id") is not None}
-    categories_in_use = [
-        (category_map[cid]["slug"], category_map[cid]["name"])
-        for cid in used_category_ids if cid in category_map
+    categories_in_use = sorted(
+        {(shops_state.get(u, {}).get("category_id")) for u in shops_state
+         if shops_state[u].get("status") == "active"} - {None}
+    )
+    category_list = [
+        {"slug": category_map[cid]["slug"], "name": category_map[cid]["name"]}
+        for cid in categories_in_use if cid in category_map
     ]
-    categories_in_use.sort(key=lambda x: x[1].lower())
+    category_list.sort(key=lambda c: c["name"].lower())
 
-    campaign_cards = "".join(
-        card_html(
-            s,
-            discovered_today=(s["active_campaign"].get("started") == today),
-            category_slug=cat_info(s)["slug"],
-        )
-        for s in campaigns
-    )
-    all_rows = "".join(
-        list_row_html(s, cat_info(s)["slug"], bar_percent(s))
-        for s in non_campaign
-    )
-    gone_rows = "".join(gone_row_html(s) for s in gone)
+    return {
+        "shops": shops_out,
+        "categories": category_list,
+        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+    }
 
-    letters_present = sorted({(s.get("name") or "#")[:1].upper() for s in non_campaign})
-    jumper_html = "".join(
-        f'<span class="sas-jumper-letter" data-letter="{escape(ltr)}">{escape(ltr)}</span>'
-        for ltr in letters_present if ltr.isalpha() or ltr.isdigit()
-    )
 
-    category_options_html = '<option value="all">Alla kategorier</option>' + "".join(
-        f'<option value="{escape(slug)}">{escape(name)}</option>'
-        for slug, name in categories_in_use
-    )
-
-    updated_ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
-    total_active = len(active)
-    total_campaigns = len(campaigns)
-    total_gone = len(gone)
+def render_html(datasets):
+    """Render a single HTML page that embeds all country+language datasets."""
+    datasets_json = json.dumps(datasets, ensure_ascii=False)
+    strings_json = json.dumps(STRINGS, ensure_ascii=False)
+    countries_json = json.dumps(COUNTRIES, ensure_ascii=False)
+    default_country = "SE"
+    default_lang = "sv"
 
     return f"""<!DOCTYPE html>
 <html lang="sv">
@@ -386,7 +407,7 @@ def render_html(shops_state, category_map):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>EuroBonus Shopping — kampanjer</title>
+<title>EuroBonus Shopping</title>
 <style>
 :root {{
   --bg: #faf9f7; --surface: #ffffff;
@@ -413,6 +434,8 @@ body {{
 .sas-header {{ display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; gap: 24px; flex-wrap: wrap; }}
 .sas-title {{ font-size: 28px; font-weight: 500; letter-spacing: -0.02em; margin: 0 0 4px 0; }}
 .sas-meta {{ font-size: 14px; color: var(--text-muted); font-family: ui-monospace, "SF Mono", Menlo, monospace; }}
+.sas-header-controls {{ display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }}
+.sas-header-select {{ font-family: inherit; font-size: 13px; padding: 7px 12px; border: 0.5px solid var(--border-strong); border-radius: 999px; background: var(--surface); color: var(--text); cursor: pointer; }}
 .sas-toggle {{ background: none; border: 0.5px solid var(--border-strong); color: var(--text-muted); padding: 7px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; font-family: inherit; }}
 .sas-toggle:hover {{ color: var(--text); }}
 
@@ -427,7 +450,7 @@ body {{
 .sas-search {{ width: 100%; font-size: 16px; padding: 13px 18px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); font-family: inherit; margin-bottom: 28px; }}
 .sas-search:focus {{ outline: none; border-color: var(--border-strong); }}
 
-.sas-section-label {{ font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); margin: 32px 0 14px 0; }}
+.sas-section-label {{ font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); }}
 .sas-section-header {{ display: flex; justify-content: space-between; align-items: center; margin: 32px 0 14px 0; }}
 .sas-section-header .sas-section-label {{ margin: 0; }}
 .sas-grid {{ display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }}
@@ -454,7 +477,6 @@ body {{
 .sas-card-foot {{ font-size: 14px; color: var(--text-muted); font-family: ui-monospace, "SF Mono", Menlo, monospace; padding-top: 10px; border-top: 0.5px solid var(--border); margin-top: auto; min-height: 32px; display: flex; align-items: center; }}
 .sas-days.urgent {{ color: var(--warn); }}
 
-.sas-list-controls {{ display: flex; align-items: center; gap: 16px; margin-bottom: 4px; flex-wrap: wrap; }}
 .sas-list-sort {{ display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); }}
 .sas-list-sort select {{ font-family: inherit; font-size: 13px; padding: 6px 10px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); }}
 .sas-jumper {{ display: flex; gap: 2px; padding: 6px 0 14px 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--text-faint); flex-wrap: wrap; }}
@@ -492,59 +514,69 @@ body {{
 <div class="sas-container">
   <div class="sas-header">
     <div>
-      <h1 class="sas-title">EuroBonus Shopping</h1>
-      <div class="sas-meta">{total_campaigns} aktiva kampanjer · {total_active} butiker · uppdaterad {updated_ts}</div>
+      <h1 class="sas-title" id="title-text">EuroBonus Shopping</h1>
+      <div class="sas-meta" id="meta-text"></div>
     </div>
-    <button class="sas-toggle" id="theme-toggle">Dark mode</button>
+    <div class="sas-header-controls">
+      <select class="sas-header-select" id="country-select" aria-label="Country"></select>
+      <select class="sas-header-select" id="language-select" aria-label="Language"></select>
+      <button class="sas-toggle" id="theme-toggle">Dark mode</button>
+    </div>
   </div>
 
   <div class="sas-filter-row">
-    <div id="view-filters" style="display: flex; gap: 8px; flex-wrap: wrap;">
-      <button class="sas-chip active" data-view="all">Alla</button>
-      <button class="sas-chip" data-view="campaigns">Kampanjer</button>
-      <button class="sas-chip" data-view="ending">Slutar snart</button>
-      <button class="sas-chip" data-view="gone">Borta ({total_gone})</button>
-    </div>
+    <div id="view-filters" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
     <div class="sas-category-wrap">
-      <select id="category-select" class="sas-category-select" aria-label="Kategori">
-        {category_options_html}
-      </select>
+      <select id="category-select" class="sas-category-select" aria-label="Category"></select>
     </div>
   </div>
 
-  <input class="sas-search" id="search-box" type="search" placeholder="Sök butik — t.ex. Lenovo, Amazon, Ellos…">
+  <input class="sas-search" id="search-box" type="search">
 
   <section data-section="campaigns">
-    <div class="sas-section-label">Aktiva kampanjer</div>
-    <div class="sas-grid" id="campaign-grid">{campaign_cards or '<div class="sas-empty">Inga aktiva kampanjer just nu.</div>'}</div>
+    <div class="sas-section-label" id="campaigns-label"></div>
+    <div class="sas-grid" id="campaign-grid"></div>
   </section>
 
-<section data-section="all-shops">
+  <section data-section="all-shops">
     <div class="sas-section-header">
-      <div class="sas-section-label">Alla butiker</div>
+      <div class="sas-section-label" id="all-shops-label"></div>
       <div class="sas-list-sort">
-        <span>Sortera</span>
-        <select id="sort-select">
-          <option value="az">A–Ö</option>
-          <option value="za">Ö–A</option>
-          <option value="points-desc">Mest EB-poäng</option>
-          <option value="level-desc">Mest nivåpoäng</option>
-          <option value="recent">Senast tillagd</option>
-        </select>
+        <span id="sort-label"></span>
+        <select id="sort-select"></select>
       </div>
     </div>
-    <div class="sas-jumper" id="jumper">{jumper_html}</div>
-    <div class="sas-list" id="shop-list">{all_rows}</div>
+    <div class="sas-jumper" id="jumper"></div>
+    <div class="sas-list" id="shop-list"></div>
   </section>
 
   <section data-section="gone" class="sas-hidden">
-    <div class="sas-section-label">Butiker som försvunnit</div>
-    <div class="sas-list">{gone_rows or '<div class="sas-empty">Inga försvunna butiker ännu.</div>'}</div>
+    <div class="sas-section-label" id="gone-label"></div>
+    <div class="sas-list" id="gone-list"></div>
   </section>
 </div>
 
+<script id="sas-data" type="application/json">{datasets_json}</script>
+<script id="sas-strings" type="application/json">{strings_json}</script>
+<script id="sas-countries" type="application/json">{countries_json}</script>
+
 <script>
 (function() {{
+  var DATA = JSON.parse(document.getElementById('sas-data').textContent);
+  var STRINGS = JSON.parse(document.getElementById('sas-strings').textContent);
+  var COUNTRIES = JSON.parse(document.getElementById('sas-countries').textContent);
+
+  var DEFAULT_COUNTRY = '{default_country}';
+  var DEFAULT_LANG = '{default_lang}';
+
+  var params = new URLSearchParams(window.location.search);
+  var country = (params.get('c') || DEFAULT_COUNTRY).toUpperCase();
+  var lang = params.get('l') || DEFAULT_LANG;
+  var countryDef = COUNTRIES.find(function(c) {{ return c.code === country; }}) || COUNTRIES[0];
+  if (countryDef.languages.indexOf(lang) === -1) lang = countryDef.local_lang;
+
+  var state = {{ view: 'all', category: 'all', query: '', sort: 'az' }};
+
   var root = document.documentElement;
   var toggle = document.getElementById('theme-toggle');
   function prefersDark() {{ return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }}
@@ -554,11 +586,9 @@ body {{
     if (t === 'light') return false;
     return prefersDark();
   }}
-  function setToggleLabel() {{ toggle.textContent = isDark() ? 'Light mode' : 'Dark mode'; }}
   var stored = null;
   try {{ stored = localStorage.getItem('sas-theme'); }} catch (e) {{}}
   if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
-  setToggleLabel();
   toggle.addEventListener('click', function() {{
     var next = isDark() ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
@@ -566,32 +596,264 @@ body {{
     setToggleLabel();
   }});
 
-  var state = {{ view: 'all', category: 'all', query: '', sort: 'az' }};
-  var cards = Array.prototype.slice.call(document.querySelectorAll('#campaign-grid .sas-card'));
-  var listEl = document.getElementById('shop-list');
-  var rows = Array.prototype.slice.call(listEl.querySelectorAll('.sas-list-row'));
-  var campaignsSection = document.querySelector('[data-section="campaigns"]');
-  var allShopsSection = document.querySelector('[data-section="all-shops"]');
-  var goneSection = document.querySelector('[data-section="gone"]');
-  var viewChips = document.querySelectorAll('#view-filters .sas-chip');
-  var categorySelect = document.getElementById('category-select');
-  var searchBox = document.getElementById('search-box');
-  var sortSelect = document.getElementById('sort-select');
-  var jumperLetters = document.querySelectorAll('#jumper .sas-jumper-letter');
+  function t(key) {{ return (STRINGS[lang] || STRINGS.en)[key] || key; }}
 
-  function matchesQuery(el) {{
-    if (!state.query) return true;
-    return (el.dataset.name || '').indexOf(state.query) !== -1;
+  function setToggleLabel() {{
+    toggle.textContent = isDark() ? t('light_mode') : t('dark_mode');
   }}
-  function matchesCategory(el) {{
-    if (state.category === 'all') return true;
-    return el.dataset.cat === state.category;
+
+  function initialsFromName(name) {{
+    var parts = (name || '?').split(/\\s+/).filter(Boolean);
+    if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+    return (name || '?').substring(0, 2).toUpperCase();
+  }}
+
+  function logoHTML(shop, sizeClass) {{
+    if (shop.logo) {{
+      return '<img src="' + shop.logo + '" alt="" class="sas-logo-img ' + sizeClass + '" loading="lazy">';
+    }}
+    return '<div class="sas-logo-fallback ' + sizeClass + '">' + initialsFromName(shop.name) + '</div>';
+  }}
+
+  function unit(shop) {{
+    return shop.unit_variable ? t('unit_per_hundred') : t('unit_per_purchase');
+  }}
+
+  function isUrgent(text) {{
+    if (!text) return false;
+    var l = text.toLowerCase();
+    return l.indexOf('1 dag') !== -1 || l.indexOf('1 day') !== -1 ||
+           l.indexOf('idag') !== -1 || l.indexOf('today') !== -1 ||
+           l.indexOf('timmar') !== -1 || l.indexOf('hours') !== -1 ||
+           l.indexOf('timer') !== -1;
+  }}
+
+  function shopUrl(uuid) {{
+    return 'https://onlineshopping.flysas.com/sv-SE/butiker/about-you/' + encodeURIComponent(uuid);
+  }}
+
+  function cardHTML(shop, ds) {{
+    var today = ds.updated.split(' ')[0];
+    var discoveredToday = shop.campaign_started === today;
+    var campaignClass = shop.has_campaign ? ' campaign' : '';
+    var newDot = discoveredToday ? '<div class="sas-new-dot" title="' + t('new_campaign_title') + '"></div>' : '';
+    var bonusPill = shop.bonus > 0 ? '<span class="sas-pill">+' + shop.bonus + '</span>' : '';
+    var endsText = shop.campaign_ends_human || '';
+    var daysHTML = '';
+    var urgent = false;
+    if (shop.has_campaign && endsText) {{
+      urgent = isUrgent(endsText);
+      daysHTML = '<span class="sas-days ' + (urgent ? 'urgent' : '') + '">' + endsText + '</span>';
+    }}
+
+    var a = document.createElement('a');
+    a.className = 'sas-card' + campaignClass;
+    a.href = shopUrl(shop.uuid);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.dataset.name = (shop.name || '').toLowerCase();
+    a.dataset.cat = shop.category_slug || '';
+    a.dataset.campaign = shop.has_campaign ? '1' : '0';
+    a.dataset.urgent = urgent ? '1' : '0';
+    a.innerHTML =
+      '<div class="sas-card-top">' +
+      '  <div class="sas-card-identity">' + logoHTML(shop, 'logo-lg') + '<div class="sas-card-name">' + shop.name + '</div></div>' +
+      '  ' + newDot +
+      '</div>' +
+      '<div class="sas-points-block">' +
+      '  <div class="sas-points-row">' +
+      '    <span class="sas-points-main">' + shop.main + '</span>' +
+      '    <span class="sas-eb-tag">EB</span>' +
+      '    ' + bonusPill +
+      '    <span class="sas-points-unit">' + unit(shop) + '</span>' +
+      '  </div>' +
+      '  <div class="sas-status-row">' +
+      '    <span class="sas-status-label">' + t('level_label') + '</span>' +
+      '    <span class="sas-status-val">' + shop.level + ' ' + t('points_short') + '</span>' +
+      '  </div>' +
+      '</div>' +
+      '<div class="sas-card-foot">' + daysHTML + '</div>';
+    return a;
+  }}
+
+  function listRowHTML(shop, barPct) {{
+    var a = document.createElement('a');
+    a.className = 'sas-list-row';
+    a.href = shopUrl(shop.uuid);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.dataset.name = (shop.name || '').toLowerCase();
+    a.dataset.cat = shop.category_slug || '';
+    a.dataset.letter = (shop.name || '#').charAt(0).toUpperCase();
+    a.dataset.points = shop.main;
+    a.dataset.level = shop.level;
+    a.dataset.firstSeen = shop.first_seen || '';
+    a.innerHTML =
+      '<div class="sas-list-logo-wrap">' + logoHTML(shop, 'logo-md') + '</div>' +
+      '<div class="sas-list-name">' + shop.name + '</div>' +
+      '<div class="sas-list-bar"><div class="sas-list-bar-fill" style="width: ' + barPct + '%;"></div></div>' +
+      '<div class="sas-list-points">' + shop.main + ' EB ' + unit(shop) + '</div>' +
+      '<div class="sas-list-level">' + shop.level + ' ' + t('level_short') + '</div>';
+    return a;
+  }}
+
+  function goneRowHTML(shop) {{
+    var d = document.createElement('div');
+    d.className = 'sas-list-row sas-list-row-gone';
+    d.innerHTML =
+      '<div class="sas-list-logo-wrap">' + logoHTML(shop, 'logo-md') + '</div>' +
+      '<div class="sas-list-name">' + shop.name + '</div>' +
+      '<div class="sas-list-bar"></div>' +
+      '<div class="sas-list-points">' + t('gone_since') + ' ' + (shop.gone_since || '') + '</div>' +
+      '<div class="sas-list-level"></div>';
+    return d;
+  }}
+
+  function render() {{
+    var dsKey = country + '_' + lang;
+    var ds = DATA[dsKey];
+    if (!ds) {{
+      // Fallback to local language if requested one is missing.
+      ds = DATA[country + '_' + countryDef.local_lang] || Object.values(DATA)[0];
+    }}
+
+    document.documentElement.lang = lang;
+    document.getElementById('title-text').textContent = t('title');
+    setToggleLabel();
+
+    var active = ds.shops.filter(function(s) {{ return s.status === 'active'; }});
+    var gone = ds.shops.filter(function(s) {{ return s.status === 'gone'; }});
+    var campaigns = active.filter(function(s) {{ return s.has_campaign; }});
+    var nonCampaign = active.filter(function(s) {{ return !s.has_campaign; }});
+
+    campaigns.sort(function(a, b) {{
+      if (a.unit_variable !== b.unit_variable) return a.unit_variable ? 1 : -1;
+      if (b.main !== a.main) return b.main - a.main;
+      return (a.name || '').localeCompare(b.name || '', lang);
+    }});
+    nonCampaign.sort(function(a, b) {{ return (a.name || '').localeCompare(b.name || '', lang); }});
+    gone.sort(function(a, b) {{ return (b.gone_since || '').localeCompare(a.gone_since || ''); }});
+
+    var maxFixed = Math.max.apply(null, nonCampaign.filter(function(s) {{ return !s.unit_variable; }}).map(function(s) {{ return s.main; }}).concat([1]));
+    var maxVariable = Math.max.apply(null, nonCampaign.filter(function(s) {{ return s.unit_variable; }}).map(function(s) {{ return s.main; }}).concat([1]));
+
+    document.getElementById('meta-text').textContent = t('meta_template')
+      .replace('{{campaigns}}', campaigns.length)
+      .replace('{{shops}}', active.length)
+      .replace('{{ts}}', ds.updated);
+    document.getElementById('campaigns-label').textContent = t('active_campaigns_label');
+    document.getElementById('all-shops-label').textContent = t('all_shops_label');
+    document.getElementById('gone-label').textContent = t('gone_label');
+    document.getElementById('sort-label').textContent = t('sort_label');
+    document.getElementById('search-box').placeholder = t('search_placeholder');
+
+    var sortSel = document.getElementById('sort-select');
+    sortSel.innerHTML = '';
+    [
+      ['az', t('sort_az')], ['za', t('sort_za')],
+      ['points-desc', t('sort_points')], ['level-desc', t('sort_level')],
+      ['recent', t('sort_recent')],
+    ].forEach(function(pair) {{
+      var o = document.createElement('option');
+      o.value = pair[0]; o.textContent = pair[1];
+      sortSel.appendChild(o);
+    }});
+    sortSel.value = state.sort;
+
+    var viewFilters = document.getElementById('view-filters');
+    viewFilters.innerHTML = '';
+    [
+      ['all', t('filter_all')], ['campaigns', t('filter_campaigns')],
+      ['ending', t('filter_ending')], ['gone', t('filter_gone') + ' (' + gone.length + ')'],
+    ].forEach(function(pair) {{
+      var b = document.createElement('button');
+      b.className = 'sas-chip' + (state.view === pair[0] ? ' active' : '');
+      b.dataset.view = pair[0];
+      b.textContent = pair[1];
+      b.addEventListener('click', function() {{
+        state.view = pair[0];
+        applyFilters();
+      }});
+      viewFilters.appendChild(b);
+    }});
+
+    var catSel = document.getElementById('category-select');
+    catSel.innerHTML = '<option value="all">' + t('category_all') + '</option>';
+    ds.categories.forEach(function(c) {{
+      var o = document.createElement('option');
+      o.value = c.slug; o.textContent = c.name;
+      catSel.appendChild(o);
+    }});
+    catSel.value = state.category;
+    catSel.onchange = function() {{ state.category = catSel.value; applyFilters(); }};
+
+    var grid = document.getElementById('campaign-grid');
+    grid.innerHTML = '';
+    if (campaigns.length === 0) {{
+      grid.innerHTML = '<div class="sas-empty">' + t('no_campaigns') + '</div>';
+    }} else {{
+      campaigns.forEach(function(s) {{ grid.appendChild(cardHTML(s, ds)); }});
+    }}
+
+    var listEl = document.getElementById('shop-list');
+    listEl.innerHTML = '';
+    nonCampaign.forEach(function(s) {{
+      var m = s.unit_variable ? maxVariable : maxFixed;
+      var pct = m ? Math.round(Math.min(100, (s.main / m) * 100)) : 0;
+      listEl.appendChild(listRowHTML(s, pct));
+    }});
+
+    var goneEl = document.getElementById('gone-list');
+    goneEl.innerHTML = '';
+    if (gone.length === 0) {{
+      goneEl.innerHTML = '<div class="sas-empty">' + t('no_gone') + '</div>';
+    }} else {{
+      gone.forEach(function(s) {{ goneEl.appendChild(goneRowHTML(s)); }});
+    }}
+
+    var lettersSet = {{}};
+    nonCampaign.forEach(function(s) {{
+      var ltr = (s.name || '#').charAt(0).toUpperCase();
+      if (/[A-ZÅÄÖ]/.test(ltr)) lettersSet[ltr] = true;
+    }});
+    var letters = Object.keys(lettersSet).sort();
+    var jumper = document.getElementById('jumper');
+    jumper.innerHTML = '';
+    letters.forEach(function(ltr) {{
+      var s = document.createElement('span');
+      s.className = 'sas-jumper-letter';
+      s.dataset.letter = ltr;
+      s.textContent = ltr;
+      s.addEventListener('click', function() {{
+        document.querySelectorAll('#jumper .sas-jumper-letter').forEach(function(x) {{ x.classList.remove('active'); }});
+        s.classList.add('active');
+        var rows = document.querySelectorAll('#shop-list .sas-list-row');
+        for (var i = 0; i < rows.length; i++) {{
+          if (rows[i].style.display === 'none') continue;
+          if ((rows[i].dataset.name || '').charAt(0).toUpperCase() === ltr) {{
+            rows[i].scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+            break;
+          }}
+        }}
+      }});
+      jumper.appendChild(s);
+    }});
+
+    applyFilters();
+    sortRows();
   }}
 
   function applyFilters() {{
+    var campaignsSection = document.querySelector('[data-section="campaigns"]');
+    var allShopsSection = document.querySelector('[data-section="all-shops"]');
+    var goneSection = document.querySelector('[data-section="gone"]');
     campaignsSection.classList.remove('sas-hidden');
     allShopsSection.classList.remove('sas-hidden');
     goneSection.classList.add('sas-hidden');
+
+    document.querySelectorAll('#view-filters .sas-chip').forEach(function(c) {{
+      c.classList.toggle('active', c.dataset.view === state.view);
+    }});
 
     if (state.view === 'gone') {{
       campaignsSection.classList.add('sas-hidden');
@@ -599,70 +861,100 @@ body {{
       goneSection.classList.remove('sas-hidden');
       return;
     }}
-    if (state.view === 'campaigns') {{
+    if (state.view === 'campaigns' || state.view === 'ending') {{
       allShopsSection.classList.add('sas-hidden');
     }}
 
-    cards.forEach(function(c) {{
-      var show = matchesQuery(c) && matchesCategory(c);
+    var matchQ = function(el) {{
+      if (!state.query) return true;
+      return (el.dataset.name || '').indexOf(state.query) !== -1;
+    }};
+    var matchC = function(el) {{
+      if (state.category === 'all') return true;
+      return el.dataset.cat === state.category;
+    }};
+    document.querySelectorAll('#campaign-grid .sas-card').forEach(function(c) {{
+      var show = matchQ(c) && matchC(c);
       if (state.view === 'ending') show = show && c.dataset.urgent === '1';
       c.style.display = show ? '' : 'none';
     }});
-    rows.forEach(function(r) {{
-      var show = matchesQuery(r) && matchesCategory(r);
-      r.style.display = show ? '' : 'none';
+    document.querySelectorAll('#shop-list .sas-list-row').forEach(function(r) {{
+      r.style.display = matchQ(r) && matchC(r) ? '' : 'none';
     }});
-    if (state.view === 'ending') {{
-      allShopsSection.classList.add('sas-hidden');
-    }}
   }}
-
-  viewChips.forEach(function(c) {{
-    c.addEventListener('click', function() {{
-      viewChips.forEach(function(x) {{ x.classList.remove('active'); }});
-      c.classList.add('active');
-      state.view = c.dataset.view;
-      applyFilters();
-    }});
-  }});
-  categorySelect.addEventListener('change', function() {{
-    state.category = categorySelect.value;
-    applyFilters();
-  }});
-  searchBox.addEventListener('input', function() {{
-    state.query = searchBox.value.trim().toLowerCase();
-    applyFilters();
-  }});
 
   function sortRows() {{
-    var sorted = rows.slice();
-    if (state.sort === 'az') sorted.sort(function(a, b) {{ return a.dataset.name.localeCompare(b.dataset.name, 'sv'); }});
-    else if (state.sort === 'za') sorted.sort(function(a, b) {{ return b.dataset.name.localeCompare(a.dataset.name, 'sv'); }});
-    else if (state.sort === 'points-desc') sorted.sort(function(a, b) {{ return Number(b.dataset.points) - Number(a.dataset.points); }});
-    else if (state.sort === 'level-desc') sorted.sort(function(a, b) {{ return Number(b.dataset.level) - Number(a.dataset.level); }});
-    else if (state.sort === 'recent') sorted.sort(function(a, b) {{ return (b.dataset.firstSeen || '').localeCompare(a.dataset.firstSeen || ''); }});
-    sorted.forEach(function(r) {{ listEl.appendChild(r); }});
+    var listEl = document.getElementById('shop-list');
+    var rows = Array.prototype.slice.call(listEl.querySelectorAll('.sas-list-row'));
+    if (state.sort === 'az') rows.sort(function(a, b) {{ return a.dataset.name.localeCompare(b.dataset.name, lang); }});
+    else if (state.sort === 'za') rows.sort(function(a, b) {{ return b.dataset.name.localeCompare(a.dataset.name, lang); }});
+    else if (state.sort === 'points-desc') rows.sort(function(a, b) {{ return Number(b.dataset.points) - Number(a.dataset.points); }});
+    else if (state.sort === 'level-desc') rows.sort(function(a, b) {{ return Number(b.dataset.level) - Number(a.dataset.level); }});
+    else if (state.sort === 'recent') rows.sort(function(a, b) {{ return (b.dataset.firstSeen || '').localeCompare(a.dataset.firstSeen || ''); }});
+    rows.forEach(function(r) {{ listEl.appendChild(r); }});
   }}
-  sortSelect.addEventListener('change', function() {{
-    state.sort = sortSelect.value;
+
+  // Country + language selectors
+  var countrySel = document.getElementById('country-select');
+  COUNTRIES.forEach(function(c) {{
+    var o = document.createElement('option');
+    o.value = c.code; o.textContent = c.name;
+    countrySel.appendChild(o);
+  }});
+  countrySel.value = country;
+
+  var langSel = document.getElementById('language-select');
+  function rebuildLangSelector() {{
+    langSel.innerHTML = '';
+    countryDef.languages.forEach(function(l) {{
+      var o = document.createElement('option');
+      o.value = l;
+      o.textContent = l === 'en' ? 'English' :
+                      l === 'sv' ? 'Svenska' :
+                      l === 'da' ? 'Dansk' :
+                      l === 'no' ? 'Norsk' :
+                      l === 'fi' ? 'Suomi' : l;
+      langSel.appendChild(o);
+    }});
+    langSel.value = lang;
+  }}
+  rebuildLangSelector();
+
+  function updateUrl() {{
+    var url = new URL(window.location);
+    url.searchParams.set('c', country);
+    url.searchParams.set('l', lang);
+    window.history.replaceState({{}}, '', url);
+  }}
+
+  countrySel.addEventListener('change', function() {{
+    country = countrySel.value;
+    countryDef = COUNTRIES.find(function(c) {{ return c.code === country; }});
+    if (countryDef.languages.indexOf(lang) === -1) lang = countryDef.local_lang;
+    rebuildLangSelector();
+    state.category = 'all';
+    state.query = '';
+    document.getElementById('search-box').value = '';
+    updateUrl();
+    render();
+  }});
+  langSel.addEventListener('change', function() {{
+    lang = langSel.value;
+    updateUrl();
+    render();
+  }});
+
+  document.getElementById('search-box').addEventListener('input', function(e) {{
+    state.query = e.target.value.trim().toLowerCase();
+    applyFilters();
+  }});
+  document.getElementById('sort-select').addEventListener('change', function(e) {{
+    state.sort = e.target.value;
     sortRows();
   }});
 
-  jumperLetters.forEach(function(l) {{
-    l.addEventListener('click', function() {{
-      var letter = l.dataset.letter;
-      jumperLetters.forEach(function(x) {{ x.classList.remove('active'); }});
-      l.classList.add('active');
-      for (var i = 0; i < rows.length; i++) {{
-        var r = rows[i];
-        if (r.style.display === 'none') continue;
-        if ((r.dataset.name || '').charAt(0).toUpperCase() === letter) {{
-          r.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
-          break;
-        }}
-      }}
-    }});
-  }});
+  updateUrl();
+  render();
 }})();
 </script>
 </body>
@@ -671,39 +963,102 @@ body {{
 
 
 def main():
-    print(f"Fetching {API_SHOPS}")
-    try:
-        shops_payload = fetch_json(API_SHOPS)
-    except Exception as e:
-        print(f"Shops fetch failed: {e}", file=sys.stderr)
-        sys.exit(1)
-    api_shops = shops_payload.get("data", [])
-    print(f"Got {len(api_shops)} shops from API")
-    if len(api_shops) < 50:
-        print(f"WARNING: only {len(api_shops)} shops — pagination may have kicked in", file=sys.stderr)
+    datasets = {}
+    all_succeeded = True
 
-    try:
-        cats_payload = fetch_json(API_CATEGORIES)
-        save_json(CATEGORIES_FILE, cats_payload)
-    except Exception as e:
-        print(f"Categories fetch failed ({e}); using cached.", file=sys.stderr)
-        cats_payload = load_json(CATEGORIES_FILE, {"data": []})
-    category_map = build_category_map(cats_payload)
-    print(f"Loaded {len(category_map)} categories")
+    for country in COUNTRIES:
+        country_code = country["code"]
+        country_data_dir = DATA_DIR / country_code.lower()
 
-    shops_state = load_json(SHOPS_FILE, {})
-    history = load_json(HISTORY_FILE, [])
-    shops_state, history, counts = update_state(api_shops, shops_state, history)
-    print(
-        f"Transitions: {counts['new_shops']} new shops, {counts['new_campaigns']} new campaigns, "
-        f"{counts['ended_campaigns']} ended, {counts['gone_shops']} newly gone"
-    )
+        # Fetch shops in the country's *local* language only (this is what gets
+        # persisted — the `campaign_ends` string will be localized per language,
+        # but the core data is the same).
+        for lang in country["languages"]:
+            print(f"\n=== {country_code} / {lang} ===")
+            shops_url = SHOPS_URL_TMPL.format(lang=lang, country=country_code)
+            cats_url = CATEGORIES_URL_TMPL.format(lang=lang)
 
-    save_json(SHOPS_FILE, shops_state)
-    save_json(HISTORY_FILE, history)
+            try:
+                shops_payload = fetch_json(shops_url)
+            except Exception as e:
+                print(f"  Shops fetch failed: {e}", file=sys.stderr)
+                all_succeeded = False
+                continue
+
+            api_shops = shops_payload.get("data", [])
+            print(f"  Got {len(api_shops)} shops")
+
+            try:
+                cats_payload = fetch_json(cats_url)
+            except Exception as e:
+                print(f"  Categories fetch failed ({e}); using fallback", file=sys.stderr)
+                cats_payload = {"data": []}
+
+            category_map = build_category_map(cats_payload)
+
+            # State persistence only uses the local language's fetch to avoid
+            # duplicating campaign-history records across language variants.
+            if lang == country["local_lang"]:
+                shops_file = country_data_dir / "shops.json"
+                history_file = country_data_dir / "history.json"
+                categories_file = country_data_dir / f"categories-{lang}.json"
+
+                shops_state = load_json(shops_file, {})
+                history = load_json(history_file, [])
+                shops_state, history, counts = update_state(api_shops, shops_state, history)
+                print(
+                    f"  Transitions: {counts['new_shops']} new shops, "
+                    f"{counts['new_campaigns']} new campaigns, "
+                    f"{counts['ended_campaigns']} ended, "
+                    f"{counts['gone_shops']} newly gone"
+                )
+                save_json(shops_file, shops_state)
+                save_json(history_file, history)
+                save_json(categories_file, cats_payload)
+                dataset_state = shops_state
+            else:
+                # For English variants, refresh the API data for the current
+                # snapshot but merge English descriptions on top of the
+                # local-language state so we don't lose first_seen etc.
+                base_shops = load_json(country_data_dir / "shops.json", {})
+                en_state = {}
+                api_uuids = {s["uuid"] for s in api_shops}
+                for s in api_shops:
+                    prev = base_shops.get(s["uuid"], {})
+                    en_state[s["uuid"]] = {
+                        **prev,
+                        "name": s.get("name"),
+                        "current_points": s.get("points") or 0,
+                        "current_points_channel": s.get("points_channel") or 0,
+                        "current_points_campaign": s.get("points_campaign") or 0,
+                        "commission_type": s.get("commission_type"),
+                        "category_id": s.get("categoryId"),
+                        "campaign_ends_human": s.get("campaign_ends") if s.get("has_campaign") == 1 else None,
+                        "active_campaign": (
+                            {
+                                **(prev.get("active_campaign") or {}),
+                                "points_campaign": s.get("points_campaign") or 0,
+                                "points_channel": s.get("points_channel") or 0,
+                                "ends_date": s.get("campaign_ends_date"),
+                            } if s.get("has_campaign") == 1 else None
+                        ),
+                        "status": "active",
+                    }
+                # Keep gone shops from base so the Gone list works in any language.
+                for uuid, shop in base_shops.items():
+                    if uuid not in api_uuids:
+                        en_state[uuid] = {**shop, "status": "gone"}
+                save_json(country_data_dir / f"categories-{lang}.json", cats_payload)
+                dataset_state = en_state
+
+            datasets[f"{country_code}_{lang}"] = prepare_country_dataset(dataset_state, category_map)
+
     HTML_FILE.parent.mkdir(parents=True, exist_ok=True)
-    HTML_FILE.write_text(render_html(shops_state, category_map), encoding="utf-8")
-    print(f"Wrote {SHOPS_FILE}, {HISTORY_FILE}, {CATEGORIES_FILE}, and {HTML_FILE}")
+    HTML_FILE.write_text(render_html(datasets), encoding="utf-8")
+    print(f"\nWrote {HTML_FILE} with {len(datasets)} country+language datasets")
+
+    if not all_succeeded:
+        sys.exit(1)
 
 
 if __name__ == "__main__":
