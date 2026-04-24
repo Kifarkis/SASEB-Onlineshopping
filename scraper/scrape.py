@@ -235,6 +235,11 @@ def today_iso():
     return date.today().isoformat()
 
 
+def best_logo(shop):
+    """Prefer image_url (the branded production image), fall back to logo, then None."""
+    return shop.get("image_url") or shop.get("logo")
+
+
 def translate_ends_en(text):
     if not text:
         return text
@@ -249,18 +254,15 @@ def sanitize_description(raw_html):
     """Light-weight sanitization: strip scripts/iframes/on-handlers, preserve basic formatting."""
     if not raw_html:
         return ""
-    # Remove dangerous tags entirely
     cleaned = re.sub(
         r"<(script|iframe|object|embed|style|form|input|button|link|meta)\b[^>]*>.*?</\1>",
         "", raw_html, flags=re.IGNORECASE | re.DOTALL)
     cleaned = re.sub(
         r"<(script|iframe|object|embed|style|form|input|button|link|meta)\b[^>]*/?>",
         "", cleaned, flags=re.IGNORECASE)
-    # Remove on* event handlers
     cleaned = re.sub(r"\son\w+\s*=\s*\"[^\"]*\"", "", cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r"\son\w+\s*=\s*'[^']*'", "", cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r"\son\w+\s*=\s*[^\s>]+", "", cleaned, flags=re.IGNORECASE)
-    # Remove javascript: URLs
     cleaned = re.sub(r"href\s*=\s*\"javascript:[^\"]*\"", "", cleaned, flags=re.IGNORECASE)
     cleaned = re.sub(r"href\s*=\s*'javascript:[^']*'", "", cleaned, flags=re.IGNORECASE)
     return cleaned
@@ -326,7 +328,7 @@ def update_state(api_shops, shops_state, history):
             "uuid": uuid,
             "name": s.get("name"),
             "slug": s.get("slug"),
-            "logo": s.get("logo"),
+            "logo": best_logo(s),
             "description": s.get("description"),
             "first_seen": prev.get("first_seen") or today,
             "last_seen": today,
@@ -825,7 +827,6 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
     if (e.key === 'Escape') closeModal();
   }});
 
-  // Store shops by uuid for modal lookup
   var shopsByUuid = {{}};
 
   function cardHTML(shop, ds) {{
@@ -1048,7 +1049,6 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
     sortRows();
   }}
 
-  // Delegated click for cards + rows → open modal. External button → SAS directly.
   document.addEventListener('click', function(e) {{
     var ext = e.target.closest('[data-external-uuid]');
     if (ext) {{
