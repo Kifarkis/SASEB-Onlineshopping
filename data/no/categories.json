@@ -1,0 +1,74 @@
+{
+  "data": [
+    {
+      "category_id": 15,
+      "name": "Andre",
+      "slug": "andre"
+    },
+    {
+      "category_id": 3,
+      "name": "Barn og baby",
+      "slug": "barn-og-baby"
+    },
+    {
+      "category_id": 2,
+      "name": "Bøker, filmer og musikk",
+      "slug": "boker-filmer-og-musikk"
+    },
+    {
+      "category_id": 4,
+      "name": "Datamaskin og elektronikk",
+      "slug": "datamaskin-og-elektronikk"
+    },
+    {
+      "category_id": 13,
+      "name": "Dyretilbehør",
+      "slug": "dyretilbehor"
+    },
+    {
+      "category_id": 5,
+      "name": "Gaver og blomster",
+      "slug": "gaver-og-blomster"
+    },
+    {
+      "category_id": 8,
+      "name": "Helse og skjønhet",
+      "slug": "helse-og-skjonhet"
+    },
+    {
+      "category_id": 6,
+      "name": "Hus og hjem",
+      "slug": "hus-og-hjem"
+    },
+    {
+      "category_id": 7,
+      "name": "Kontormateriale",
+      "slug": "kontormateriale"
+    },
+    {
+      "category_id": 11,
+      "name": "Mat og drikke",
+      "slug": "mat-og-drikke"
+    },
+    {
+      "category_id": 12,
+      "name": "Mobil og bredbånd",
+      "slug": "mobil-og-bredband"
+    },
+    {
+      "category_id": 1,
+      "name": "Mote og tilbehør",
+      "slug": "mote-og-tilbehor"
+    },
+    {
+      "category_id": 9,
+      "name": "Sport og fritid",
+      "slug": "sport-og-fritid"
+    },
+    {
+      "category_id": 14,
+      "name": "Transport",
+      "slug": "transport"
+    }
+  ]
+}

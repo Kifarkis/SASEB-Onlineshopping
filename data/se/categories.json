@@ -1,0 +1,89 @@
+{
+  "data": [
+    {
+      "category_id": 3,
+      "name": "Barn och baby",
+      "slug": "barn-och-baby"
+    },
+    {
+      "category_id": 2,
+      "name": "Böcker, film och musik",
+      "slug": "bocker-film-och-musik"
+    },
+    {
+      "category_id": 4,
+      "name": "Dator och elektronik",
+      "slug": "dator-och-elektronik"
+    },
+    {
+      "category_id": 13,
+      "name": "Djurtillbehör",
+      "slug": "djurtillbehor"
+    },
+    {
+      "category_id": 6,
+      "name": "Hus och hem",
+      "slug": "hus-och-hem"
+    },
+    {
+      "category_id": 8,
+      "name": "Hälsa och skönhet",
+      "slug": "halsa-och-skonhet"
+    },
+    {
+      "category_id": 7,
+      "name": "Kontorsmaterial",
+      "slug": "kontorsmaterial"
+    },
+    {
+      "category_id": 11,
+      "name": "Mat och dryck",
+      "slug": "mat-och-dryck"
+    },
+    {
+      "category_id": 12,
+      "name": "Mobil och bredband",
+      "slug": "mobil-och-bredband"
+    },
+    {
+      "category_id": 1,
+      "name": "Mode och accessoarer",
+      "slug": "mode-och-accessoarer"
+    },
+    {
+      "category_id": 51,
+      "name": "Populära brands",
+      "slug": "populara-brands"
+    },
+    {
+      "category_id": 5,
+      "name": "Present och blommor",
+      "slug": "present-och-blommor"
+    },
+    {
+      "category_id": 9,
+      "name": "Sport och fritid",
+      "slug": "sport-och-fritid"
+    },
+    {
+      "category_id": 50,
+      "name": "Streaming",
+      "slug": "streaming"
+    },
+    {
+      "category_id": 24,
+      "name": "Topp 20",
+      "slug": "top-25"
+    },
+    {
+      "category_id": 14,
+      "name": "Transport",
+      "slug": "transport"
+    },
+    {
+      "category_id": 15,
+      "name": "Övrigt",
+      "slug": "ovrigt"
+    }
+  ]
+}
