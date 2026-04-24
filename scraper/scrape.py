@@ -370,8 +370,8 @@ def render_html(shops_state, category_map):
         for ltr in letters_present if ltr.isalpha() or ltr.isdigit()
     )
 
-    category_chip_html = '<button class="sas-chip-cat active" data-cat="all">Alla kategorier</button>' + "".join(
-        f'<button class="sas-chip-cat" data-cat="{escape(slug)}">{escape(name)}</button>'
+category_options_html = '<option value="all">Alla kategorier</option>' + "".join(
+        f'<option value="{escape(slug)}">{escape(name)}</option>'
         for slug, name in categories_in_use
     )
 
@@ -416,13 +416,13 @@ body {{
 .sas-toggle {{ background: none; border: 0.5px solid var(--border-strong); color: var(--text-muted); padding: 7px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; font-family: inherit; }}
 .sas-toggle:hover {{ color: var(--text); }}
 
-.sas-filter-row {{ display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }}
-.sas-cat-row {{ display: flex; gap: 8px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: thin; }}
-.sas-cat-row::-webkit-scrollbar {{ height: 4px; }}
-.sas-cat-row::-webkit-scrollbar-thumb {{ background: var(--border-strong); border-radius: 2px; }}
-.sas-chip, .sas-chip-cat {{ font-size: 14px; padding: 8px 16px; border: 0.5px solid var(--border); border-radius: 999px; background: transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; white-space: nowrap; }}
-.sas-chip:hover, .sas-chip-cat:hover {{ color: var(--text); }}
-.sas-chip.active, .sas-chip-cat.active {{ background: var(--surface); color: var(--text); border-color: var(--border-strong); }}
+.sas-filter-row {{ display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; align-items: center; }}
+.sas-chip {{ font-size: 14px; padding: 8px 16px; border: 0.5px solid var(--border); border-radius: 999px; background: transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; white-space: nowrap; }}
+.sas-chip:hover {{ color: var(--text); }}
+.sas-chip.active {{ background: var(--surface); color: var(--text); border-color: var(--border-strong); }}
+.sas-category-wrap {{ margin-left: auto; }}
+.sas-category-select {{ font-family: inherit; font-size: 14px; padding: 8px 14px; border: 0.5px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--text); cursor: pointer; }}
+.sas-category-select:hover {{ border-color: var(--border-strong); }}
 
 .sas-search {{ width: 100%; font-size: 16px; padding: 13px 18px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); font-family: inherit; margin-bottom: 28px; }}
 .sas-search:focus {{ outline: none; border-color: var(--border-strong); }}
@@ -494,14 +494,19 @@ body {{
     <button class="sas-toggle" id="theme-toggle">Dark mode</button>
   </div>
 
-  <div class="sas-filter-row" id="view-filters">
-    <button class="sas-chip active" data-view="all">Alla</button>
-    <button class="sas-chip" data-view="campaigns">Kampanjer</button>
-    <button class="sas-chip" data-view="ending">Slutar snart</button>
-    <button class="sas-chip" data-view="gone">Borta ({total_gone})</button>
+<div class="sas-filter-row">
+    <div id="view-filters" style="display: flex; gap: 8px; flex-wrap: wrap;">
+      <button class="sas-chip active" data-view="all">Alla</button>
+      <button class="sas-chip" data-view="campaigns">Kampanjer</button>
+      <button class="sas-chip" data-view="ending">Slutar snart</button>
+      <button class="sas-chip" data-view="gone">Borta ({total_gone})</button>
+    </div>
+    <div class="sas-category-wrap">
+      <select id="category-select" class="sas-category-select" aria-label="Kategori">
+        {category_options_html}
+      </select>
+    </div>
   </div>
-
-  <div class="sas-cat-row" id="category-filters">{category_chip_html}</div>
 
   <input class="sas-search" id="search-box" type="search" placeholder="Sök butik — t.ex. Lenovo, Amazon, Ellos…">
 
@@ -565,7 +570,7 @@ body {{
   var allShopsSection = document.querySelector('[data-section="all-shops"]');
   var goneSection = document.querySelector('[data-section="gone"]');
   var viewChips = document.querySelectorAll('#view-filters .sas-chip');
-  var catChips = document.querySelectorAll('#category-filters .sas-chip-cat');
+  var categorySelect = document.getElementById('category-select');
   var searchBox = document.getElementById('search-box');
   var sortSelect = document.getElementById('sort-select');
   var jumperLetters = document.querySelectorAll('#jumper .sas-jumper-letter');
@@ -616,13 +621,9 @@ body {{
       applyFilters();
     }});
   }});
-  catChips.forEach(function(c) {{
-    c.addEventListener('click', function() {{
-      catChips.forEach(function(x) {{ x.classList.remove('active'); }});
-      c.classList.add('active');
-      state.category = c.dataset.cat;
-      applyFilters();
-    }});
+  categorySelect.addEventListener('change', function() {{
+    state.category = categorySelect.value;
+    applyFilters();
   }});
   searchBox.addEventListener('input', function() {{
     state.query = searchBox.value.trim().toLowerCase();
