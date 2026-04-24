@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 """
 SAS EuroBonus Shopping tracker — multi-country edition.
-
-Fetches current offers from loyaltykey.com for SE, DK, NO, FI in their
-local language only. The frontend translates UI labels on the fly, so a
-single data snapshot per country covers all supported languages.
 """
 import html
 import json
@@ -56,7 +52,7 @@ STRINGS = {
         "sort_level": "Mest nivåpoäng",
         "sort_recent": "Senast tillagd",
         "search_placeholder": "Sök butik — t.ex. Lenovo, Amazon, Ellos…",
-        "meta_template": "{campaigns} aktiva kampanjer · {shops} butiker · uppdaterad {ts}",
+        "meta_template": "{campaigns} aktiva kampanjer · {new} nya denna vecka · {shops} butiker · uppdaterad {ts}",
         "dark_mode": "Dark mode",
         "light_mode": "Light mode",
         "no_campaigns": "Inga aktiva kampanjer just nu.",
@@ -89,7 +85,7 @@ STRINGS = {
         "sort_level": "Most level points",
         "sort_recent": "Recently added",
         "search_placeholder": "Search shops — e.g. Lenovo, Amazon, Ellos…",
-        "meta_template": "{campaigns} active campaigns · {shops} shops · updated {ts}",
+        "meta_template": "{campaigns} active campaigns · {new} new this week · {shops} shops · updated {ts}",
         "dark_mode": "Dark mode",
         "light_mode": "Light mode",
         "no_campaigns": "No active campaigns right now.",
@@ -122,7 +118,7 @@ STRINGS = {
         "sort_level": "Flest niveaupoint",
         "sort_recent": "Senest tilføjet",
         "search_placeholder": "Søg butik — fx Lenovo, Amazon, Ellos…",
-        "meta_template": "{campaigns} aktive kampagner · {shops} butikker · opdateret {ts}",
+        "meta_template": "{campaigns} aktive kampagner · {new} nye denne uge · {shops} butikker · opdateret {ts}",
         "dark_mode": "Dark mode",
         "light_mode": "Light mode",
         "no_campaigns": "Ingen aktive kampagner lige nu.",
@@ -155,7 +151,7 @@ STRINGS = {
         "sort_level": "Flest nivåpoeng",
         "sort_recent": "Sist lagt til",
         "search_placeholder": "Søk butikk — f.eks. Lenovo, Amazon, Ellos…",
-        "meta_template": "{campaigns} aktive kampanjer · {shops} butikker · oppdatert {ts}",
+        "meta_template": "{campaigns} aktive kampanjer · {new} nye denne uken · {shops} butikker · oppdatert {ts}",
         "dark_mode": "Dark mode",
         "light_mode": "Light mode",
         "no_campaigns": "Ingen aktive kampanjer akkurat nå.",
@@ -483,10 +479,15 @@ body {{
 .sas-card.campaign {{ border-color: var(--accent); }}
 .sas-card-top {{ display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }}
 .sas-card-identity {{ display: flex; align-items: center; gap: 12px; min-width: 0; }}
-.sas-logo-img.logo-lg, .sas-logo-fallback.logo-lg {{ width: 32px; height: 32px; border-radius: 6px; }}
-.sas-logo-img.logo-md, .sas-logo-fallback.logo-md {{ width: 28px; height: 28px; border-radius: 5px; }}
-.sas-logo-img {{ object-fit: contain; background: var(--bg); }}
-.sas-logo-fallback {{ background: var(--bg); color: var(--text-muted); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; letter-spacing: -0.02em; }}
+
+.sas-logo-wrap-lg, .sas-logo-wrap-md {{ display: flex; align-items: center; justify-content: center; background: #e5e7eb; flex-shrink: 0; overflow: hidden; }}
+.sas-logo-wrap-lg {{ width: 48px; height: 48px; border-radius: 10px; padding: 5px; }}
+.sas-logo-wrap-md {{ width: 40px; height: 40px; border-radius: 8px; padding: 4px; }}
+.sas-logo-img {{ max-width: 100%; max-height: 100%; object-fit: contain; }}
+.sas-logo-fallback {{ width: 100%; height: 100%; color: #555; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; letter-spacing: -0.02em; }}
+html[data-theme="dark"] .sas-logo-wrap-lg,
+html[data-theme="dark"] .sas-logo-wrap-md {{ background: #d1d5db; }}
+
 .sas-card-name {{ font-size: 17px; font-weight: 500; line-height: 1.25; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }}
 .sas-new-dot {{ width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 11px; }}
 .sas-points-block {{ display: flex; flex-direction: column; gap: 8px; }}
@@ -509,10 +510,10 @@ body {{
 .sas-jumper-letter.active {{ color: var(--text); background: var(--surface); }}
 
 .sas-list {{ display: flex; flex-direction: column; }}
-.sas-list-row {{ display: grid; grid-template-columns: 32px 1fr 80px auto auto; gap: 16px; align-items: center; padding: 14px 4px; border-bottom: 0.5px solid var(--border); text-decoration: none; color: inherit; scroll-margin-top: 20px; }}
+.sas-list-row {{ display: grid; grid-template-columns: 40px 1fr 80px auto auto; gap: 16px; align-items: center; padding: 14px 4px; border-bottom: 0.5px solid var(--border); text-decoration: none; color: inherit; scroll-margin-top: 20px; }}
 .sas-list-row:hover .sas-list-name {{ color: var(--accent); }}
 .sas-list-row-gone {{ opacity: 0.55; }}
-.sas-list-logo-wrap {{ width: 28px; height: 28px; }}
+.sas-list-logo-wrap {{ width: 40px; height: 40px; }}
 .sas-list-name {{ font-size: 16px; }}
 .sas-list-bar {{ height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; width: 80px; }}
 .sas-list-bar-fill {{ height: 100%; background: var(--text-muted); border-radius: 2px; opacity: 0.45; }}
@@ -529,8 +530,9 @@ body {{
 
 @media (max-width: 640px) {{
   body {{ padding: 20px 14px 48px; }}
-  .sas-list-row {{ grid-template-columns: 28px 1fr auto; gap: 12px; }}
+  .sas-list-row {{ grid-template-columns: 36px 1fr auto; gap: 12px; }}
   .sas-list-level, .sas-list-bar {{ display: none; }}
+  .sas-list-logo-wrap {{ width: 36px; height: 36px; }}
   .sas-list-points {{ min-width: 110px; font-size: 13px; }}
   .sas-card {{ padding: 16px; min-height: 120px; }}
   .sas-points-main {{ font-size: 24px; }}
@@ -652,10 +654,11 @@ body {{
   }}
 
   function logoHTML(shop, sizeClass) {{
+    var wrapperClass = sizeClass === 'logo-lg' ? 'sas-logo-wrap-lg' : 'sas-logo-wrap-md';
     if (shop.logo) {{
-      return '<img src="' + shop.logo + '" alt="" class="sas-logo-img ' + sizeClass + '" loading="lazy">';
+      return '<div class="' + wrapperClass + '"><img src="' + shop.logo + '" alt="" class="sas-logo-img" loading="lazy"></div>';
     }}
-    return '<div class="sas-logo-fallback ' + sizeClass + '">' + initialsFromName(shop.name) + '</div>';
+    return '<div class="' + wrapperClass + '"><div class="sas-logo-fallback">' + initialsFromName(shop.name) + '</div></div>';
   }}
 
   function unit(shop) {{
@@ -682,10 +685,12 @@ body {{
   }}
 
   function cardHTML(shop, ds) {{
-    var today = ds.updated.split(' ')[0];
-    var discoveredToday = shop.campaign_started === today;
+    var today = new Date(ds.updated.split(' ')[0]);
+    var started = shop.campaign_started ? new Date(shop.campaign_started) : null;
+    var daysAgo = started ? Math.floor((today - started) / 86400000) : null;
+    var discoveredRecently = daysAgo !== null && daysAgo <= 2;
     var campaignClass = shop.has_campaign ? ' campaign' : '';
-    var newDot = discoveredToday ? '<div class="sas-new-dot" title="' + t('new_campaign_title') + '"></div>' : '';
+    var newDot = discoveredRecently ? '<div class="sas-new-dot" title="' + t('new_campaign_title') + '"></div>' : '';
     var bonusPill = shop.bonus > 0 ? '<span class="sas-pill">+' + shop.bonus + '</span>' : '';
     var et = endsText(shop);
     var daysHTML = '';
@@ -782,8 +787,14 @@ body {{
     var maxFixed = Math.max.apply(null, nonCampaign.filter(function(s) {{ return !s.unit_variable; }}).map(function(s) {{ return s.main; }}).concat([1]));
     var maxVariable = Math.max.apply(null, nonCampaign.filter(function(s) {{ return s.unit_variable; }}).map(function(s) {{ return s.main; }}).concat([1]));
 
+    var newThisWeek = campaigns.filter(function(s) {{
+      if (!s.campaign_started) return false;
+      var days = Math.floor((new Date(ds.updated.split(' ')[0]) - new Date(s.campaign_started)) / 86400000);
+      return days >= 0 && days <= 7;
+    }}).length;
     document.getElementById('meta-text').textContent = t('meta_template')
       .replace('{{campaigns}}', campaigns.length)
+      .replace('{{new}}', newThisWeek)
       .replace('{{shops}}', active.length)
       .replace('{{ts}}', ds.updated);
     document.getElementById('campaigns-label').textContent = t('active_campaigns_label');
