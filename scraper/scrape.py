@@ -815,8 +815,7 @@ return /\b(1 dag|1 day|1 dage|idag|today|timme|timmar|hour|hours|timer|time)\b/.
   // --- Render pipeline ---
   function getDataset() {{ return DATA[country] || Object.values(DATA)[0]; }}
 
-   function buildShopList(ds) {{
-    function buildShopList(ds) {{
+  function buildShopList(ds) {{
     if (state.view === 'gone') {{
       return ds.shops.filter(function(s) {{ return s.status === 'gone'; }})
         .sort(function(a, b) {{ return (b.gone_since || '').localeCompare(a.gone_since || ''); }});
@@ -825,11 +824,7 @@ return /\b(1 dag|1 day|1 dage|idag|today|timme|timmar|hour|hours|timer|time)\b/.
     var shops = ds.shops.filter(function(s) {{ return s.status === 'active'; }});
 
     if (state.view === 'campaigns') shops = shops.filter(function(s) {{ return s.has_campaign; }});
-    else if (state.view === 'ending') shops = shops.filter(function(s) {{
-      if (!s.has_campaign) return false;
-      var et = (s.campaign_ends_human || '').toLowerCase();
-      return /(1 dag|1 day|1 dage|idag|today|timme|timmar|hour|hours|timer|time)/.test(et);
-    }});
+    else if (state.view === 'ending') shops = shops.filter(function(s) {{ return s.has_campaign && isUrgent(endsText(s)); }});
 
     if (isVariableSort(state.sort)) shops = shops.filter(function(s) {{ return s.unit_variable; }});
     else if (isFixedSort(state.sort)) shops = shops.filter(function(s) {{ return !s.unit_variable; }});
@@ -845,35 +840,6 @@ return /\b(1 dag|1 day|1 dage|idag|today|timme|timmar|hour|hours|timer|time)\b/.
 
     return shops;
   }}
- 
-    // Sort-type filter (only applies for fixed/variable sorts, and not on 'ending' view)
-    if (state.view !== 'ending') {{
-      if (isVariableSort(state.sort)) {{
-        shops = shops.filter(function(s) {{ return s.unit_variable; }});
-      }} else if (isFixedSort(state.sort)) {{
-        shops = shops.filter(function(s) {{ return !s.unit_variable; }});
-      }}
-    }}
-
-    // Category filter
-    if (state.category !== 'all') {{
-      shops = shops.filter(function(s) {{ return s.category_slug === state.category; }});
-    }}
-
-    // Search
-    if (state.query) {{
-      shops = shops.filter(function(s) {{ return (s.name || '').toLowerCase().indexOf(state.query) !== -1; }});
-    }}
-
-    // Sort
-    if (state.sort === 'az') shops.sort(function(a, b) {{ return (a.name || '').localeCompare(b.name || '', lang); }});
-    else if (state.sort === 'za') shops.sort(function(a, b) {{ return (b.name || '').localeCompare(a.name || '', lang); }});
-    else if (state.sort === 'recent') shops.sort(function(a, b) {{ return (b.first_seen || '').localeCompare(a.first_seen || ''); }});
-    else if (state.sort === 'best_eb_fixed' || state.sort === 'best_eb_variable') shops.sort(function(a, b) {{ return b.main - a.main; }});
-    else if (state.sort === 'best_level_fixed' || state.sort === 'best_level_variable') shops.sort(function(a, b) {{ return b.level - a.level; }});
-
-    return shops;
-  }}  
 
   function renderJumper(shops) {{
     var jumper = document.getElementById('jumper');
