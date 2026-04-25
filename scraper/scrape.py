@@ -45,18 +45,21 @@ STRINGS = {
         "filter_ending": "Slutar snart",
         "filter_gone": "Borta",
         "category_all": "Alla kategorier",
+        "category_label": "Kategori",
         "sort_label": "Sortera",
         "sort_az": "A–Ö",
         "sort_za": "Ö–A",
-        "sort_points": "Mest EB-poäng",
-        "sort_level": "Mest nivåpoäng",
         "sort_recent": "Senast tillagd",
+        "sort_best_fixed": "Bäst fast intjäning",
+        "sort_best_variable": "Bäst rörlig intjäning",
+        "sort_best_fixed_level": "Bäst fast nivåpoäng",
         "search_placeholder": "Sök butik — t.ex. Lenovo, Amazon, Ellos…",
         "meta_template": "{campaigns} aktiva kampanjer · {new} nya denna vecka · {shops} butiker · uppdaterad {ts}",
         "dark_mode": "Dark mode",
         "light_mode": "Light mode",
         "no_campaigns": "Inga aktiva kampanjer just nu.",
         "no_gone": "Inga försvunna butiker ännu.",
+        "no_results": "Inga butiker matchar.",
         "level_label": "Nivå",
         "level_short": "nivå",
         "points_short": "p",
@@ -83,18 +86,21 @@ STRINGS = {
         "filter_ending": "Ending soon",
         "filter_gone": "Gone",
         "category_all": "All categories",
+        "category_label": "Category",
         "sort_label": "Sort",
         "sort_az": "A–Z",
         "sort_za": "Z–A",
-        "sort_points": "Most EB points",
-        "sort_level": "Most level points",
         "sort_recent": "Recently added",
+        "sort_best_fixed": "Best per-purchase points",
+        "sort_best_variable": "Best per-100 kr rate",
+        "sort_best_fixed_level": "Best fixed bonus level",
         "search_placeholder": "Search shops — e.g. Lenovo, Amazon, Ellos…",
         "meta_template": "{campaigns} active campaigns · {new} new this week · {shops} shops · updated {ts}",
         "dark_mode": "Dark mode",
         "light_mode": "Light mode",
         "no_campaigns": "No active campaigns right now.",
         "no_gone": "No disappeared shops yet.",
+        "no_results": "No shops match.",
         "level_label": "Level",
         "level_short": "lvl",
         "points_short": "p",
@@ -121,18 +127,21 @@ STRINGS = {
         "filter_ending": "Slutter snart",
         "filter_gone": "Væk",
         "category_all": "Alle kategorier",
+        "category_label": "Kategori",
         "sort_label": "Sorter",
         "sort_az": "A–Å",
         "sort_za": "Å–A",
-        "sort_points": "Flest EB-point",
-        "sort_level": "Flest niveaupoint",
         "sort_recent": "Senest tilføjet",
+        "sort_best_fixed": "Bedst fast indtjening",
+        "sort_best_variable": "Bedst variabel indtjening",
+        "sort_best_fixed_level": "Bedst faste niveaupoint",
         "search_placeholder": "Søg butik — fx Lenovo, Amazon, Ellos…",
         "meta_template": "{campaigns} aktive kampagner · {new} nye denne uge · {shops} butikker · opdateret {ts}",
         "dark_mode": "Dark mode",
         "light_mode": "Light mode",
         "no_campaigns": "Ingen aktive kampagner lige nu.",
         "no_gone": "Ingen forsvundne butikker endnu.",
+        "no_results": "Ingen butikker matcher.",
         "level_label": "Niveau",
         "level_short": "nvl",
         "points_short": "p",
@@ -159,18 +168,21 @@ STRINGS = {
         "filter_ending": "Slutter snart",
         "filter_gone": "Borte",
         "category_all": "Alle kategorier",
+        "category_label": "Kategori",
         "sort_label": "Sorter",
         "sort_az": "A–Å",
         "sort_za": "Å–A",
-        "sort_points": "Flest EB-poeng",
-        "sort_level": "Flest nivåpoeng",
         "sort_recent": "Sist lagt til",
+        "sort_best_fixed": "Best fast inntjening",
+        "sort_best_variable": "Best variabel inntjening",
+        "sort_best_fixed_level": "Best faste nivåpoeng",
         "search_placeholder": "Søk butikk — f.eks. Lenovo, Amazon, Ellos…",
         "meta_template": "{campaigns} aktive kampanjer · {new} nye denne uken · {shops} butikker · oppdatert {ts}",
         "dark_mode": "Dark mode",
         "light_mode": "Light mode",
         "no_campaigns": "Ingen aktive kampanjer akkurat nå.",
         "no_gone": "Ingen forsvunne butikker ennå.",
+        "no_results": "Ingen butikker matcher.",
         "level_label": "Nivå",
         "level_short": "nvå",
         "points_short": "p",
@@ -499,7 +511,6 @@ body {{
 }}
 .sas-container {{ max-width: 1500px; margin: 0 auto; padding: 0 24px; }}
 
-/* Sticky controls cluster */
 .sas-sticky-wrap {{ background: var(--bg); transition: box-shadow 0.2s ease, border-color 0.2s ease; padding-top: 32px; }}
 .sas-sticky-wrap.is-stuck {{ box-shadow: var(--shadow-sticky); border-bottom: 0.5px solid var(--border); padding-top: 16px; padding-bottom: 8px; }}
 @media (min-width: 641px) {{
@@ -521,9 +532,10 @@ body {{
 .sas-chip {{ font-size: 14px; padding: 8px 16px; border: 0.5px solid var(--border); border-radius: 999px; background: transparent; color: var(--text-muted); cursor: pointer; font-family: inherit; white-space: nowrap; }}
 .sas-chip:hover {{ color: var(--text); }}
 .sas-chip.active {{ background: var(--surface); color: var(--text); border-color: var(--border-strong); }}
-.sas-category-wrap {{ margin-left: auto; }}
-.sas-category-select {{ font-family: inherit; font-size: 14px; padding: 8px 14px; border: 0.5px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--text); cursor: pointer; }}
-.sas-category-select:hover {{ border-color: var(--border-strong); }}
+.sas-controls-right {{ margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }}
+.sas-list-control {{ font-family: inherit; font-size: 14px; padding: 8px 14px; border: 0.5px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--text); cursor: pointer; }}
+.sas-list-control:hover {{ border-color: var(--border-strong); }}
+.sas-list-control:disabled {{ opacity: 0.4; cursor: not-allowed; }}
 
 .sas-search {{ width: 100%; font-size: 16px; padding: 13px 18px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); font-family: inherit; margin-bottom: 28px; }}
 .sas-sticky-wrap.is-stuck .sas-search {{ margin-bottom: 0; padding: 10px 14px; font-size: 14px; }}
@@ -564,8 +576,6 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
 .sas-card-foot {{ font-size: 14px; color: var(--text-muted); font-family: ui-monospace, "SF Mono", Menlo, monospace; padding-top: 10px; border-top: 0.5px solid var(--border); margin-top: auto; min-height: 32px; display: flex; align-items: center; }}
 .sas-days.urgent {{ color: var(--warn); }}
 
-.sas-list-sort {{ display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-muted); }}
-.sas-list-sort select {{ font-family: inherit; font-size: 13px; padding: 6px 10px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--text); }}
 .sas-jumper {{ display: flex; gap: 2px; padding: 6px 0 14px 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--text-faint); flex-wrap: wrap; }}
 .sas-jumper-letter {{ padding: 4px 8px; cursor: pointer; border-radius: 4px; user-select: none; }}
 .sas-jumper-letter:hover {{ color: var(--text); }}
@@ -626,8 +636,8 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
   .sas-list-points {{ min-width: 110px; font-size: 13px; }}
   .sas-card {{ padding: 16px; min-height: 120px; }}
   .sas-points-main {{ font-size: 24px; }}
-  .sas-category-wrap {{ margin-left: 0; width: 100%; }}
-  .sas-category-select {{ width: 100%; }}
+  .sas-controls-right {{ margin-left: 0; width: 100%; }}
+  .sas-list-control {{ flex: 1; }}
   .sas-footer {{ flex-direction: column; align-items: flex-start; gap: 8px; }}
   .sas-modal {{ max-height: 90vh; }}
 }}
@@ -650,8 +660,9 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
 
     <div class="sas-filter-row">
       <div id="view-filters" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
-      <div class="sas-category-wrap">
-        <select id="category-select" class="sas-category-select" aria-label="Category"></select>
+      <div class="sas-controls-right">
+        <select id="category-select" class="sas-list-control" aria-label="Category"></select>
+        <select id="sort-select" class="sas-list-control" aria-label="Sort"></select>
       </div>
     </div>
 
@@ -668,10 +679,6 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
   <section data-section="all-shops">
     <div class="sas-section-header">
       <div class="sas-section-label" id="all-shops-label"></div>
-      <div class="sas-list-sort">
-        <span id="sort-label"></span>
-        <select id="sort-select"></select>
-      </div>
     </div>
     <div class="sas-jumper" id="jumper"></div>
     <div class="sas-list" id="shop-list"></div>
@@ -901,6 +908,7 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
     div.dataset.letter = (shop.name || '#').charAt(0).toUpperCase();
     div.dataset.points = shop.main;
     div.dataset.level = shop.level;
+    div.dataset.unitVariable = shop.unit_variable ? '1' : '0';
     div.dataset.firstSeen = shop.first_seen || '';
     div.innerHTML =
       '<div class="sas-list-logo-wrap">' + logoHTML(shop, 'logo-md') + '</div>' +
@@ -921,6 +929,13 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
       '<div class="sas-list-points">' + t('gone_since') + ' ' + (shop.gone_since || '') + '</div>' +
       '<div class="sas-list-level"></div>';
     return d;
+  }}
+
+  function isVariableSort(sortKey) {{
+    return sortKey === 'best_variable';
+  }}
+  function isFixedSort(sortKey) {{
+    return sortKey === 'best_fixed' || sortKey === 'best_fixed_level';
   }}
 
   function render() {{
@@ -963,7 +978,6 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
     document.getElementById('campaigns-label').textContent = t('active_campaigns_label');
     document.getElementById('all-shops-label').textContent = t('all_shops_label');
     document.getElementById('gone-label').textContent = t('gone_label');
-    document.getElementById('sort-label').textContent = t('sort_label');
     document.getElementById('search-box').placeholder = t('search_placeholder');
     document.getElementById('footer-unaffiliated').textContent = t('footer_unaffiliated');
     document.getElementById('footer-about').textContent = t('footer_about');
@@ -972,9 +986,12 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
     var sortSel = document.getElementById('sort-select');
     sortSel.innerHTML = '';
     [
-      ['az', t('sort_az')], ['za', t('sort_za')],
-      ['points-desc', t('sort_points')], ['level-desc', t('sort_level')],
+      ['az', t('sort_az')],
+      ['za', t('sort_za')],
       ['recent', t('sort_recent')],
+      ['best_fixed', t('sort_best_fixed')],
+      ['best_variable', t('sort_best_variable')],
+      ['best_fixed_level', t('sort_best_fixed_level')],
     ].forEach(function(pair) {{
       var o = document.createElement('option');
       o.value = pair[0]; o.textContent = pair[1];
@@ -1084,6 +1101,8 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
     var campaignsSection = document.querySelector('[data-section="campaigns"]');
     var allShopsSection = document.querySelector('[data-section="all-shops"]');
     var goneSection = document.querySelector('[data-section="gone"]');
+    var sortSel = document.getElementById('sort-select');
+
     campaignsSection.classList.remove('sas-hidden');
     allShopsSection.classList.remove('sas-hidden');
     goneSection.classList.add('sas-hidden');
@@ -1091,6 +1110,9 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
     document.querySelectorAll('#view-filters .sas-chip').forEach(function(c) {{
       c.classList.toggle('active', c.dataset.view === state.view);
     }});
+
+    var sortApplies = state.view === 'all';
+    sortSel.disabled = !sortApplies;
 
     if (state.view === 'gone') {{
       campaignsSection.classList.add('sas-hidden');
@@ -1110,13 +1132,23 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
       if (state.category === 'all') return true;
       return el.dataset.cat === state.category;
     }};
+    var matchSortType = function(el) {{
+      if (isVariableSort(state.sort)) return el.dataset.unitVariable === '1';
+      if (isFixedSort(state.sort)) return el.dataset.unitVariable === '0';
+      return true;
+    }};
+
     document.querySelectorAll('#campaign-grid .sas-card').forEach(function(c) {{
       var show = matchQ(c) && matchC(c);
       if (state.view === 'ending') show = show && c.dataset.urgent === '1';
       c.style.display = show ? '' : 'none';
     }});
+
+    var visibleRowCount = 0;
     document.querySelectorAll('#shop-list .sas-list-row').forEach(function(r) {{
-      r.style.display = matchQ(r) && matchC(r) ? '' : 'none';
+      var show = matchQ(r) && matchC(r) && matchSortType(r);
+      r.style.display = show ? '' : 'none';
+      if (show) visibleRowCount++;
     }});
   }}
 
@@ -1125,9 +1157,10 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
     var rows = Array.prototype.slice.call(listEl.querySelectorAll('.sas-list-row'));
     if (state.sort === 'az') rows.sort(function(a, b) {{ return a.dataset.name.localeCompare(b.dataset.name, lang); }});
     else if (state.sort === 'za') rows.sort(function(a, b) {{ return b.dataset.name.localeCompare(a.dataset.name, lang); }});
-    else if (state.sort === 'points-desc') rows.sort(function(a, b) {{ return Number(b.dataset.points) - Number(a.dataset.points); }});
-    else if (state.sort === 'level-desc') rows.sort(function(a, b) {{ return Number(b.dataset.level) - Number(a.dataset.level); }});
     else if (state.sort === 'recent') rows.sort(function(a, b) {{ return (b.dataset.firstSeen || '').localeCompare(a.dataset.firstSeen || ''); }});
+    else if (state.sort === 'best_fixed') rows.sort(function(a, b) {{ return Number(b.dataset.points) - Number(a.dataset.points); }});
+    else if (state.sort === 'best_variable') rows.sort(function(a, b) {{ return Number(b.dataset.points) - Number(a.dataset.points); }});
+    else if (state.sort === 'best_fixed_level') rows.sort(function(a, b) {{ return Number(b.dataset.level) - Number(a.dataset.level); }});
     rows.forEach(function(r) {{ listEl.appendChild(r); }});
   }}
 
@@ -1186,10 +1219,10 @@ html[data-theme="dark"] .sas-logo-wrap-md {{ background: #9ca3af; }}
   }});
   document.getElementById('sort-select').addEventListener('change', function(e) {{
     state.sort = e.target.value;
+    applyFilters();
     sortRows();
   }});
 
-  // Sticky scroll detection
   var stickyWrap = document.getElementById('sticky-wrap');
   var ticking = false;
   function updateSticky() {{
