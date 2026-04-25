@@ -701,7 +701,7 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
   function isUrgent(text) {{
     if (!text) return false;
     var l = text.toLowerCase();
-    return /\\b(1 dag|1 day|1 dage|idag|today|timmar|hours|timer)\\b/.test(l);
+return /\b(1 dag|1 day|1 dage|idag|today|timme|timmar|hour|hours|timer|time)\b/.test(l);
   }}
 
   function shopUrl(uuid) {{
