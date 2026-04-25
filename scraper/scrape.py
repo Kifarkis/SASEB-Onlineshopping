@@ -7,8 +7,6 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.request import Request, urlopen
 
-# --- Configuration ---
-
 COUNTRIES = [
     {"code": "SE", "local_lang": "sv", "name": "Sverige", "languages": ["sv", "en"]},
     {"code": "DK", "local_lang": "da", "name": "Danmark", "languages": ["da", "en"]},
@@ -25,8 +23,6 @@ DATA_DIR = REPO_ROOT / "data"
 HTML_FILE = REPO_ROOT / "docs" / "index.html"
 
 CLOUDFLARE_TOKEN = "c0d97a34f9524bd18f638693155d6704"
-
-# --- Translations ---
 
 STRINGS = {
     "sv": {
@@ -127,8 +123,6 @@ STRINGS = {
     },
 }
 
-# Pattern→replacement for the API's localized "campaign_ends" string → English.
-# Covers the most common Swedish, Danish, Norwegian variants.
 ENDS_PATTERNS_EN = [
     (r"^om (\d+) dag$", r"in \1 day"),
     (r"^om (\d+) dagar$", r"in \1 days"),
@@ -150,8 +144,6 @@ ENDS_PATTERNS_EN = [
     (r"^idag$", "today"),
 ]
 
-# --- Utilities ---
-
 def fetch_json(url):
     req = Request(url, headers={
         "User-Agent": "Mozilla/5.0 (compatible; sas-shopping-tracker/2.0)",
@@ -159,7 +151,6 @@ def fetch_json(url):
     })
     with urlopen(req, timeout=30) as response:
         return json.load(response)
-
 
 def load_json(path, default):
     if not path.exists():
@@ -169,7 +160,6 @@ def load_json(path, default):
     except json.JSONDecodeError:
         return default
 
-
 def save_json(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(
@@ -177,15 +167,12 @@ def save_json(path, data):
         encoding="utf-8",
     )
 
-
 def today_iso():
     return date.today().isoformat()
-
 
 def best_logo(shop):
     """Prefer the production branded image_url, fall back to logo, then None."""
     return shop.get("image_url") or shop.get("logo")
-
 
 def translate_ends_en(text):
     if not text:
@@ -196,14 +183,11 @@ def translate_ends_en(text):
             return re.sub(pattern, replacement, stripped, flags=re.IGNORECASE)
     return text
 
-
-# Tags stripped entirely from API descriptions before rendering in the modal.
 _DESC_DANGER_TAGS = "(?:script|iframe|object|embed|style|form|input|button|link|meta)"
 _DESC_DANGER_BLOCK = re.compile(rf"<{_DESC_DANGER_TAGS}\b[^>]*>.*?</[^>]+>", re.IGNORECASE | re.DOTALL)
 _DESC_DANGER_VOID = re.compile(rf"<{_DESC_DANGER_TAGS}\b[^>]*/?>", re.IGNORECASE)
 _DESC_ON_HANDLER = re.compile(r'\son\w+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)', re.IGNORECASE)
 _DESC_JS_HREF = re.compile(r'href\s*=\s*("javascript:[^"]*"|\'javascript:[^\']*\')', re.IGNORECASE)
-
 
 def sanitize_description(raw_html):
     """Strip dangerous HTML; preserve formatting tags like <strong>, <p>, <ul>."""
@@ -214,9 +198,6 @@ def sanitize_description(raw_html):
     cleaned = _DESC_ON_HANDLER.sub("", cleaned)
     cleaned = _DESC_JS_HREF.sub("", cleaned)
     return cleaned
-
-
-# --- State management ---
 
 def update_state(api_shops, shops_state, history):
     """Merge the latest API snapshot into the persistent shop state.
@@ -236,7 +217,6 @@ def update_state(api_shops, shops_state, history):
         points_campaign = s.get("points_campaign") or 0
         points_channel = s.get("points_channel") or 0
 
-        # Track all-time-high points for future trend features.
         effective_max = max(current_points, points_campaign)
         prev_high = prev.get("all_time_high_points") or 0
         if effective_max > prev_high:
@@ -246,7 +226,6 @@ def update_state(api_shops, shops_state, history):
             all_time_high_points = prev_high
             all_time_high_date = prev.get("all_time_high_date") or today
 
-        # Update or close the active campaign record.
         active_campaign = prev.get("active_campaign")
         if has_campaign_now:
             ends_date = s.get("campaign_ends_date")
@@ -302,7 +281,6 @@ def update_state(api_shops, shops_state, history):
         if is_new:
             counts["new_shops"] += 1
 
-    # Mark shops absent from the latest API as gone.
     for uuid, shop in shops_state.items():
         if uuid in api_uuids or shop.get("status") == "gone":
             continue
@@ -323,9 +301,6 @@ def update_state(api_shops, shops_state, history):
 
     return shops_state, history, counts
 
-
-# --- Categories ---
-
 def category_slug_from_name(name):
     if not name:
         return "uncategorized"
@@ -335,7 +310,6 @@ def category_slug_from_name(name):
         .replace("æ", "ae").replace("ø", "o")
         .replace(" ", "-").replace("/", "-").replace("&", "and")
     )
-
 
 def build_category_map(categories_data):
     """Return {category_id: {slug, name}} from the API response."""
@@ -351,9 +325,6 @@ def build_category_map(categories_data):
             "name": name,
         }
     return mapping
-
-
-# --- Display helpers ---
 
 def points_display(shop):
     """Compute the points/level/bonus to display for a shop, taking active campaigns into account."""
@@ -376,7 +347,6 @@ def points_display(shop):
         "show_campaign": False,
         "unit_variable": is_variable,
     }
-
 
 def prepare_country_dataset(shops_state, category_map):
     """Serialize shop state into the compact JSON shape consumed by the frontend."""
@@ -409,7 +379,6 @@ def prepare_country_dataset(shops_state, category_map):
             "gone_since": s.get("gone_since"),
         })
 
-    # Only show categories that actually have at least one active shop.
     used_cat_ids = {
         s.get("category_id") for s in shops_state.values()
         if s.get("status") == "active" and s.get("category_id") is not None
@@ -426,9 +395,6 @@ def prepare_country_dataset(shops_state, category_map):
         "updated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
     }
 
-
-# --- HTML rendering ---
-
 def render_html(datasets):
     """Generate the full single-page HTML with embedded data and client-side rendering."""
     payload = {
@@ -442,8 +408,10 @@ def render_html(datasets):
 
     return _HTML_TEMPLATE.format(**payload)
 
-
-_HTML_TEMPLATE = """<!DOCTYPE html>
+# Raw string: regex escapes (\b, \d, \w, \s) ship to the JS untouched.
+# Do not remove the leading r — without it, Python turns \b into ASCII backspace
+# (0x08), which silently breaks every regex word boundary in the embedded JS.
+_HTML_TEMPLATE = r"""<!DOCTYPE html>
 <html lang="sv">
 <head>
 <meta charset="utf-8">
@@ -661,7 +629,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
   var state = {{ view: 'all', category: 'all', query: '', sort: 'az' }};
   var shopsByUuid = {{}};
 
-  // --- Theme ---
   var root = document.documentElement;
   var toggle = document.getElementById('theme-toggle');
   function prefersDark() {{ return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }}
@@ -680,12 +647,11 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
     setToggleLabel();
   }});
 
-  // --- Helpers ---
   function t(key) {{ return (STRINGS[lang] || STRINGS.en)[key] || key; }}
   function setToggleLabel() {{ toggle.textContent = isDark() ? t('light_mode') : t('dark_mode'); }}
 
   function initials(name) {{
-    var parts = (name || '?').split(/\\s+/).filter(Boolean);
+    var parts = (name || '?').split(/\s+/).filter(Boolean);
     if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
     return (name || '?').substring(0, 2).toUpperCase();
   }}
@@ -707,12 +673,7 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
   function isUrgent(text) {{
     if (!text) return false;
     var l = text.toLowerCase();
-    // Note: \\b, \\d, \\w are double-escaped because this template is a plain
-    // Python triple-quoted string (not raw, not f-string). Python interprets
-    // a single \\b as ASCII backspace (0x08), which silently breaks the regex.
-    // minut\\w* covers Swedish (minut/minuter), Danish/Norwegian (minutt/minutter),
-    // and English (minute/minutes) — all minute-scale strings are urgent.
-    return /\\b(\\d+ time|\\d+ timer|timme|timmar|hour|hours|minut\\w*|1 dag|1 day|1 dage|idag|today)\\b/.test(l);
+    return /\b(\d+ time|\d+ timer|timme|timmar|hour|hours|minut\w*|1 dag|1 day|1 dage|idag|today)\b/.test(l);
   }}
 
   function shopUrl(uuid) {{
@@ -722,7 +683,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
   function isVariableSort(s) {{ return s === 'best_eb_variable' || s === 'best_level_variable'; }}
   function isFixedSort(s) {{ return s === 'best_eb_fixed' || s === 'best_level_fixed'; }}
 
-  // --- Modal ---
   var backdrop = document.getElementById('modal-backdrop');
   var modalBody = document.getElementById('modal-body');
   var modalShopBtn = document.getElementById('modal-shop-btn');
@@ -766,7 +726,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
   modalClose.addEventListener('click', closeModal);
   document.addEventListener('keydown', function(e) {{ if (e.key === 'Escape') closeModal(); }});
 
-  // --- Cards ---
   function cardHTML(shop, ds) {{
     var today = new Date(ds.updated.split(' ')[0]);
     var started = shop.campaign_started ? new Date(shop.campaign_started) : null;
@@ -823,7 +782,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
     return div;
   }}
 
-  // --- Render pipeline ---
   function getDataset() {{ return DATA[country] || Object.values(DATA)[0]; }}
 
   function buildShopList(ds) {{
@@ -940,7 +898,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
     document.getElementById('footer-about').textContent = t('footer_about');
     document.getElementById('footer-privacy').textContent = t('footer_privacy');
 
-    // Sort options
     var sortSel = document.getElementById('sort-select');
     sortSel.innerHTML = '';
     [
@@ -956,7 +913,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
     }});
     sortSel.value = state.sort;
 
-    // View filter chips
     var viewFilters = document.getElementById('view-filters');
     viewFilters.innerHTML = '';
     [
@@ -973,7 +929,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
       viewFilters.appendChild(b);
     }});
 
-    // Categories
     var catSel = document.getElementById('category-select');
     catSel.innerHTML = '<option value="all">' + t('category_all') + '</option>';
     ds.categories.forEach(function(c) {{
@@ -987,7 +942,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
     renderGrid();
   }}
 
-  // --- Event delegation for cards ---
   document.addEventListener('click', function(e) {{
     var ext = e.target.closest('[data-external-uuid]');
     if (ext) {{
@@ -1003,7 +957,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
     }}
   }});
 
-  // --- Country and language selectors ---
   var countrySel = document.getElementById('country-select');
   COUNTRIES.forEach(function(c) {{
     var o = document.createElement('option');
@@ -1058,7 +1011,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
     renderGrid();
   }});
 
-  // --- Sticky scroll ---
   var stickyWrap = document.getElementById('sticky-wrap');
   var ticking = false;
   window.addEventListener('scroll', function() {{
@@ -1083,9 +1035,6 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
 </body>
 </html>
 """
-
-
-# --- Main ---
 
 def main():
     datasets = {}
@@ -1138,7 +1087,6 @@ def main():
 
     if not all_succeeded:
         sys.exit(1)
-
 
 if __name__ == "__main__":
     main()
