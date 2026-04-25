@@ -46,6 +46,13 @@ strong { color: var(--text); font-weight: 500; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 .footer-note { margin-top: 64px; padding-top: 24px; border-top: 0.5px solid var(--border); font-size: 12px; color: var(--text-faint); }
+.sas-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 24px; border-top: 0.5px solid var(--border); gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--text-faint); }
+.sas-footer a { color: var(--text-muted); text-decoration: none; }
+.sas-footer a:hover { color: var(--text); text-decoration: underline; }
+.sas-footer-right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+@media (max-width: 640px) {
+  .sas-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+}
 </style>
 </head>
 <body>
@@ -102,17 +109,39 @@ a:hover { text-decoration: underline; }
       <p>© 2026. Nothing on this site is financial advice. Point values can change without notice — always verify directly with SAS before making a big purchase.</p>
     </div>
   </article>
+
+  <footer class="sas-footer">
+    <div>
+      <span id="footer-unaffiliated-sv">Oberoende sida, inte ansluten till SAS eller EuroBonus.</span>
+      <span id="footer-unaffiliated-en" style="display: none;">Independent site, not affiliated with SAS or EuroBonus.</span>
+    </div>
+    <div class="sas-footer-right">
+      <a href="/">Hem</a>
+      ·
+      <a href="privacy.html"><span id="footer-privacy-sv">Integritet</span><span id="footer-privacy-en" style="display: none;">Privacy</span></a>
+      ·
+      <span>© 2026 David Kifarkis</span>
+    </div>
+  </footer>
 </div>
 
 <script>
   (function() {
     var sv = document.getElementById('sv');
     var en = document.getElementById('en');
+    var fSv = document.getElementById('footer-unaffiliated-sv');
+    var fEn = document.getElementById('footer-unaffiliated-en');
+    var pSv = document.getElementById('footer-privacy-sv');
+    var pEn = document.getElementById('footer-privacy-en');
     var toggle = document.getElementById('lang-toggle');
     var current = 'sv';
     function apply() {
       sv.style.display = current === 'sv' ? '' : 'none';
       en.style.display = current === 'en' ? '' : 'none';
+      fSv.style.display = current === 'sv' ? '' : 'none';
+      fEn.style.display = current === 'en' ? '' : 'none';
+      pSv.style.display = current === 'sv' ? '' : 'none';
+      pEn.style.display = current === 'en' ? '' : 'none';
       toggle.textContent = current === 'sv' ? 'English' : 'Svenska';
       document.documentElement.lang = current;
     }
