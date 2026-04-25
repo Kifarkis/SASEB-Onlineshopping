@@ -78,4 +78,107 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; 
     <p>Cloudflare är personuppgiftsbiträde och hanterar datan enligt sin <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">integritetspolicy</a>.</p>
 
     <h2>Serverloggar</h2>
-    <p>Sidan ligger på GitHub Pages, som loggar besökares IP-adresser av säkerhetsskäl. Jag har inte tillgång till dessa loggar. Se <a href="https://docs.github.com/en/site-policy/privacy-policies/github-gener
+    <p>Sidan ligger på GitHub Pages, som loggar besökares IP-adresser av säkerhetsskäl. Jag har inte tillgång till dessa loggar. Se <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHubs integritetspolicy</a>.</p>
+
+    <h2>E-post</h2>
+    <p>Om du mejlar <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a> hanteras din e-post bara för att svara dig. Den säljs inte, delas inte och används inte till något annat.</p>
+
+    <h2>Extern data</h2>
+    <p>Själva butiksdatan hämtas från <code>onlineshopping.loyaltykey.com</code>. Klickar du på en butik skickas du vidare till SAS EuroBonus webbsida, som har sin egen integritetspolicy.</p>
+
+    <h2>Ändringar</h2>
+    <p>Om policyn ändras uppdateras den här sidan.</p>
+
+    <div class="footer-note">
+      <p>Senast uppdaterad: april 2026. Kontakt: <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a></p>
+    </div>
+  </article>
+
+  <article id="en" style="display: none;">
+    <h1>Privacy</h1>
+
+    <p>Short version: no personal information is collected.</p>
+
+    <h2>What's stored in your browser?</h2>
+    <p>One thing: your chosen theme (dark or light). Saved locally with <code>localStorage</code>. Nothing else is stored.</p>
+
+    <h2>Cookies</h2>
+    <p>None.</p>
+
+    <h2>Analytics</h2>
+    <p>The site uses Cloudflare Web Analytics to see approximate visit statistics — visit counts, where traffic comes from (e.g. search engines or Facebook), country, and which pages are viewed. The service uses no cookies, fingerprinting, or tracking of individual visitors. IP addresses are anonymized before I see them.</p>
+
+    <p>Cloudflare acts as data processor and handles the data according to its <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">privacy policy</a>.</p>
+
+    <h2>Server logs</h2>
+    <p>The site is hosted on GitHub Pages, which logs visitor IP addresses for security purposes. I don't have access to those logs. See <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">GitHub's privacy policy</a>.</p>
+
+    <h2>Email</h2>
+    <p>If you email <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a>, your email is used only to reply to you. Not sold, not shared, not used for anything else.</p>
+
+    <h2>External data</h2>
+    <p>The shop data itself is fetched from <code>onlineshopping.loyaltykey.com</code>. Clicking a shop sends you to SAS EuroBonus's website, which has its own privacy policy.</p>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, this page gets updated.</p>
+
+    <div class="footer-note">
+      <p>Last updated: April 2026. Contact: <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a></p>
+    </div>
+  </article>
+
+  <footer class="sas-footer">
+    <div>
+      <span id="footer-unaffiliated-sv">Oberoende sida, inte ansluten till SAS eller EuroBonus.</span>
+      <span id="footer-unaffiliated-en" style="display: none;">Independent site, not affiliated with SAS or EuroBonus.</span>
+    </div>
+    <div class="sas-footer-right">
+      <a href="/">Hem</a>
+      ·
+      <a href="about.html"><span id="footer-about-sv">Om sidan</span><span id="footer-about-en" style="display: none;">About</span></a>
+      ·
+      <span>© 2026 David Kifarkis</span>
+    </div>
+  </footer>
+</div>
+
+<script>
+  (function() {
+    var sv = document.getElementById('sv');
+    var en = document.getElementById('en');
+    var fSv = document.getElementById('footer-unaffiliated-sv');
+    var fEn = document.getElementById('footer-unaffiliated-en');
+    var aSv = document.getElementById('footer-about-sv');
+    var aEn = document.getElementById('footer-about-en');
+    var toggle = document.getElementById('lang-toggle');
+    var current = 'sv';
+    function apply() {
+      sv.style.display = current === 'sv' ? '' : 'none';
+      en.style.display = current === 'en' ? '' : 'none';
+      fSv.style.display = current === 'sv' ? '' : 'none';
+      fEn.style.display = current === 'en' ? '' : 'none';
+      aSv.style.display = current === 'sv' ? '' : 'none';
+      aEn.style.display = current === 'en' ? '' : 'none';
+      toggle.textContent = current === 'sv' ? 'English' : 'Svenska';
+      document.documentElement.lang = current;
+    }
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      current = current === 'sv' ? 'en' : 'sv';
+      apply();
+    });
+    try {
+      var stored = localStorage.getItem('sas-theme');
+      if (stored === 'dark' || stored === 'light') {
+        document.documentElement.setAttribute('data-theme', stored);
+      }
+    } catch (e) {}
+  })();
+</script>
+
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c0d97a34f9524bd18f638693155d6704"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+</body>
+</html>
