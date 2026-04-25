@@ -998,7 +998,6 @@ html[data-theme="dark"] .sas-logo-wrap-lg {{ background: #9ca3af; }}
     }} else {{
       shops = ds.shops.filter(function(s) {{ return s.status === 'active'; }});
 
-      // Apply view filter
       if (state.view === 'campaigns') {{
         shops = shops.filter(function(s) {{ return s.has_campaign; }});
       }} else if (state.view === 'ending') {{
@@ -1007,26 +1006,22 @@ html[data-theme="dark"] .sas-logo-wrap-lg {{ background: #9ca3af; }}
         }});
       }}
 
-      // Apply sort-type filter (variable/fixed)
       if (isVariableSort(state.sort)) {{
         shops = shops.filter(function(s) {{ return s.unit_variable; }});
       }} else if (isFixedSort(state.sort)) {{
         shops = shops.filter(function(s) {{ return !s.unit_variable; }});
       }}
 
-      // Apply category filter
       if (state.category !== 'all') {{
         shops = shops.filter(function(s) {{ return s.category_slug === state.category; }});
       }}
 
-      // Apply search
       if (state.query) {{
         shops = shops.filter(function(s) {{
           return (s.name || '').toLowerCase().indexOf(state.query) !== -1;
         }});
       }}
 
-      // Sort
       if (state.sort === 'az') shops.sort(function(a, b) {{ return (a.name || '').localeCompare(b.name || '', lang); }});
       else if (state.sort === 'za') shops.sort(function(a, b) {{ return (b.name || '').localeCompare(a.name || '', lang); }});
       else if (state.sort === 'recent') shops.sort(function(a, b) {{ return (b.first_seen || '').localeCompare(a.first_seen || ''); }});
@@ -1036,7 +1031,6 @@ html[data-theme="dark"] .sas-logo-wrap-lg {{ background: #9ca3af; }}
       shops.forEach(function(s) {{ grid.appendChild(cardHTML(s, ds)); }});
     }}
 
-    // Empty state
     if (grid.children.length === 0) {{
       emptyState.classList.remove('sas-hidden');
       emptyState.textContent = state.view === 'gone' ? t('no_gone') : t('no_shops');
@@ -1239,3 +1233,7 @@ def main():
 
     if not all_succeeded:
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
