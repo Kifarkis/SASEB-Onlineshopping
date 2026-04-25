@@ -1,3 +1,74 @@
 {
-  "data": []
+  "data": [
+    {
+      "category_id": 2,
+      "name": "Books, movies and music",
+      "slug": "books-movies-and-music"
+    },
+    {
+      "category_id": 3,
+      "name": "Children and baby",
+      "slug": "children-and-baby"
+    },
+    {
+      "category_id": 4,
+      "name": "Computers and electronics",
+      "slug": "computers-and-electronics"
+    },
+    {
+      "category_id": 1,
+      "name": "Fashion & Accessories",
+      "slug": "fashion-accessories"
+    },
+    {
+      "category_id": 11,
+      "name": "Food and drinks",
+      "slug": "food-and-drinks"
+    },
+    {
+      "category_id": 8,
+      "name": "Health and beauty",
+      "slug": "health-and-beauty"
+    },
+    {
+      "category_id": 6,
+      "name": "House and home",
+      "slug": "house-and-home"
+    },
+    {
+      "category_id": 12,
+      "name": "Mobile and broadband",
+      "slug": "mobile-and-broadband"
+    },
+    {
+      "category_id": 7,
+      "name": "Office supplies",
+      "slug": "office-supplies"
+    },
+    {
+      "category_id": 15,
+      "name": "Other",
+      "slug": "other"
+    },
+    {
+      "category_id": 13,
+      "name": "Pet accessories",
+      "slug": "pet-accessories"
+    },
+    {
+      "category_id": 5,
+      "name": "Presents and flowers",
+      "slug": "presents-and-flowers"
+    },
+    {
+      "category_id": 9,
+      "name": "Sports and Leisure",
+      "slug": "sports-and-leisure"
+    },
+    {
+      "category_id": 14,
+      "name": "Transport",
+      "slug": "transport"
+    }
+  ]
 }
