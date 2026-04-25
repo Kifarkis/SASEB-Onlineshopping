@@ -30,36 +30,56 @@ html[data-theme="dark"] {
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   background: var(--bg); color: var(--text);
-  margin: 0; padding: 48px 24px 64px;
+  margin: 0; padding: 0 0 64px;
   font-size: 15px; line-height: 1.65;
 }
-.container { max-width: 640px; margin: 0 auto; }
-.back { display: inline-block; color: var(--text-muted); text-decoration: none; font-size: 13px; margin-bottom: 32px; }
-.back:hover { color: var(--text); }
-.lang-switch { float: right; font-size: 13px; color: var(--text-muted); }
-.lang-switch a { color: var(--text-muted); text-decoration: none; }
-.lang-switch a:hover { color: var(--text); text-decoration: underline; }
+.sas-container { max-width: 1500px; margin: 0 auto; padding: 0 24px; }
+.article-container { max-width: 640px; margin: 0 auto; padding: 32px 24px 0; }
+
+.sas-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px; gap: 24px; flex-wrap: wrap; padding-top: 32px; }
+.sas-title { font-size: 28px; font-weight: 500; letter-spacing: -0.02em; margin: 0; color: var(--text); text-decoration: none; }
+.sas-title:hover { color: var(--accent); }
+.sas-header-controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.sas-header-select { font-family: inherit; font-size: 13px; padding: 7px 12px; border: 0.5px solid var(--border-strong); border-radius: 999px; background: var(--surface); color: var(--text); cursor: pointer; }
+.sas-toggle { background: none; border: 0.5px solid var(--border-strong); color: var(--text-muted); padding: 7px 14px; border-radius: 999px; font-size: 13px; cursor: pointer; font-family: inherit; }
+.sas-toggle:hover { color: var(--text); }
+
 h1 { font-size: 28px; font-weight: 500; letter-spacing: -0.02em; margin: 0 0 32px 0; }
 h2 { font-size: 18px; font-weight: 500; letter-spacing: -0.01em; margin: 32px 0 8px 0; }
 p { margin: 0 0 16px 0; color: var(--text-muted); }
 strong { color: var(--text); font-weight: 500; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
-.footer-note { margin-top: 64px; padding-top: 24px; border-top: 0.5px solid var(--border); font-size: 12px; color: var(--text-faint); }
-.sas-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 48px; padding-top: 24px; border-top: 0.5px solid var(--border); gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--text-faint); }
+.footer-note { margin-top: 48px; padding-top: 24px; border-top: 0.5px solid var(--border); font-size: 12px; color: var(--text-faint); }
+
+.sas-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 64px; padding-top: 24px; border-top: 0.5px solid var(--border); gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--text-faint); }
 .sas-footer a { color: var(--text-muted); text-decoration: none; }
 .sas-footer a:hover { color: var(--text); text-decoration: underline; }
 .sas-footer-right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
 @media (max-width: 640px) {
+  body { padding: 0 0 48px; }
+  .sas-container { padding: 0 14px; }
+  .article-container { padding: 24px 14px 0; }
+  .sas-header { padding-top: 20px; }
   .sas-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 </style>
 </head>
 <body>
-<div class="container">
-  <a class="back" href="/">← Tillbaka</a>
-  <span class="lang-switch"><a href="#" id="lang-toggle">English</a></span>
 
+<div class="sas-container">
+  <div class="sas-header">
+    <a class="sas-title" href="/">EuroBonus Shopping</a>
+    <div class="sas-header-controls">
+      <select class="sas-header-select" id="country-select" aria-label="Country"></select>
+      <select class="sas-header-select" id="language-select" aria-label="Language"></select>
+      <button class="sas-toggle" id="theme-toggle">Dark mode</button>
+    </div>
+  </div>
+</div>
+
+<div class="article-container">
   <article id="sv">
     <h1>Om sidan</h1>
 
@@ -109,7 +129,9 @@ a:hover { text-decoration: underline; }
       <p>© 2026. Nothing on this site is financial advice. Point values can change without notice — always verify directly with SAS before making a big purchase.</p>
     </div>
   </article>
+</div>
 
+<div class="sas-container">
   <footer class="sas-footer">
     <div>
       <span id="footer-unaffiliated-sv">Oberoende sida, inte ansluten till SAS eller EuroBonus.</span>
@@ -126,37 +148,86 @@ a:hover { text-decoration: underline; }
 </div>
 
 <script>
-  (function() {
-    var sv = document.getElementById('sv');
-    var en = document.getElementById('en');
-    var fSv = document.getElementById('footer-unaffiliated-sv');
-    var fEn = document.getElementById('footer-unaffiliated-en');
-    var pSv = document.getElementById('footer-privacy-sv');
-    var pEn = document.getElementById('footer-privacy-en');
-    var toggle = document.getElementById('lang-toggle');
-    var current = 'sv';
-    function apply() {
-      sv.style.display = current === 'sv' ? '' : 'none';
-      en.style.display = current === 'en' ? '' : 'none';
-      fSv.style.display = current === 'sv' ? '' : 'none';
-      fEn.style.display = current === 'en' ? '' : 'none';
-      pSv.style.display = current === 'sv' ? '' : 'none';
-      pEn.style.display = current === 'en' ? '' : 'none';
-      toggle.textContent = current === 'sv' ? 'English' : 'Svenska';
-      document.documentElement.lang = current;
-    }
-    toggle.addEventListener('click', function(e) {
-      e.preventDefault();
-      current = current === 'sv' ? 'en' : 'sv';
-      apply();
-    });
-    try {
-      var stored = localStorage.getItem('sas-theme');
-      if (stored === 'dark' || stored === 'light') {
-        document.documentElement.setAttribute('data-theme', stored);
-      }
-    } catch (e) {}
-  })();
+(function() {
+  var COUNTRIES = [
+    { code: 'SE', local_lang: 'sv', name: 'Sverige', languages: ['sv', 'en'] },
+    { code: 'DK', local_lang: 'da', name: 'Danmark', languages: ['da', 'en'] },
+    { code: 'NO', local_lang: 'nb', name: 'Norge',   languages: ['nb', 'en'] },
+    { code: 'FI', local_lang: 'en', name: 'Suomi',   languages: ['en'] }
+  ];
+
+  // Theme
+  var root = document.documentElement;
+  var toggle = document.getElementById('theme-toggle');
+  function prefersDark() { return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }
+  function isDark() {
+    var t = root.getAttribute('data-theme');
+    if (t === 'dark') return true;
+    if (t === 'light') return false;
+    return prefersDark();
+  }
+  function setToggleLabel() { toggle.textContent = isDark() ? 'Light mode' : 'Dark mode'; }
+  try {
+    var stored = localStorage.getItem('sas-theme');
+    if (stored === 'dark' || stored === 'light') root.setAttribute('data-theme', stored);
+  } catch (e) {}
+  setToggleLabel();
+  toggle.addEventListener('click', function() {
+    var next = isDark() ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('sas-theme', next); } catch (e) {}
+    setToggleLabel();
+  });
+
+  // Language
+  var sv = document.getElementById('sv');
+  var en = document.getElementById('en');
+  var fSv = document.getElementById('footer-unaffiliated-sv');
+  var fEn = document.getElementById('footer-unaffiliated-en');
+  var pSv = document.getElementById('footer-privacy-sv');
+  var pEn = document.getElementById('footer-privacy-en');
+  var current = 'sv';
+
+  function applyLang() {
+    sv.style.display = current === 'sv' ? '' : 'none';
+    en.style.display = current === 'en' ? '' : 'none';
+    fSv.style.display = current === 'sv' ? '' : 'none';
+    fEn.style.display = current === 'en' ? '' : 'none';
+    pSv.style.display = current === 'sv' ? '' : 'none';
+    pEn.style.display = current === 'en' ? '' : 'none';
+    document.documentElement.lang = current;
+  }
+
+  // Country dropdown — navigates home in that country/language
+  var countrySel = document.getElementById('country-select');
+  COUNTRIES.forEach(function(c) {
+    var o = document.createElement('option');
+    o.value = c.code; o.textContent = c.name;
+    countrySel.appendChild(o);
+  });
+  countrySel.value = 'SE';
+  countrySel.addEventListener('change', function() {
+    var c = COUNTRIES.find(function(x) { return x.code === countrySel.value; });
+    var lang = c ? c.local_lang : 'sv';
+    window.location.href = '/?c=' + countrySel.value + '&l=' + lang;
+  });
+
+  // Language dropdown — swaps text on this page (only sv/en supported)
+  var langSel = document.getElementById('language-select');
+  ['sv', 'en'].forEach(function(l) {
+    var o = document.createElement('option');
+    o.value = l;
+    o.textContent = l === 'sv' ? 'Svenska' : 'English';
+    langSel.appendChild(o);
+  });
+  langSel.value = 'sv';
+  langSel.addEventListener('change', function() {
+    current = langSel.value;
+    applyLang();
+  });
+
+  applyLang();
+})();
 </script>
 
 <!-- Cloudflare Web Analytics -->
