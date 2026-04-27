@@ -1,1 +1,98 @@
-[]
+[
+  {
+    "ended": "2026-04-27",
+    "name": "Beautycos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896309-dadd-714f-8f53-274cc4f14d01"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "BetterFeast",
+    "points_campaign": 5000,
+    "points_channel": 1000,
+    "started": "2026-04-24",
+    "uuid": "01896310-2e87-724b-8e38-231cdf71b372"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Dyson",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896310-bb05-734c-87c7-a0d8eadfe399"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Euroflorist",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896308-d5a1-70c8-84eb-a07e4bcd0d2c"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Gina Tricot",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "0189630a-28d0-70b3-bbe0-1867fcea0f9d"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Homeroom",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "0189630c-993e-7061-bb1a-d41d2272a9bf"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "InkClub",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-04-24",
+    "uuid": "01896308-9acc-7096-9b2a-e74389673a4b"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Lenovo",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-04-24",
+    "uuid": "01896311-859b-70f9-876a-a52c61ec5e5a"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Magasin",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896310-cff7-730e-a0e8-c319ca656c74"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Oakley",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "019d0b3a-53d6-73e2-9bb6-1136e90eaa28"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Outnorth",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896307-cb70-7078-96e6-9379b454803c"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Philips Hue",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "018ee1d2-896a-729f-932c-e9664dc0c907"
+  }
+]

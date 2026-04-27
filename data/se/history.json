@@ -1,1 +1,218 @@
-[]
+[
+  {
+    "ended": "2026-04-27",
+    "name": "Beautycos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896309-dadd-714f-8f53-274cc4f14d01"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "BetterFeast",
+    "points_campaign": 5000,
+    "points_channel": 1000,
+    "started": "2026-04-24",
+    "uuid": "01896310-2e87-724b-8e38-231cdf71b372"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Björn Borg",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-04-24",
+    "uuid": "01896308-503c-73a5-9ec8-382fd13dc580"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Bodystore",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896307-a48e-7282-a8f3-2508750f0b14"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Cocopanda",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-04-24",
+    "uuid": "0189630c-1fb9-718e-bd87-f0cd7433e8c5"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Designtorget",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "0189630c-6a02-7059-a1f6-518e48aa33e9"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Dyson",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896310-bb05-734c-87c7-a0d8eadfe399"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "EuroFlorist",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896308-d5a1-70c8-84eb-a07e4bcd0d2c"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Gina Tricot",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "0189630a-28d0-70b3-bbe0-1867fcea0f9d"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Golvpoolen",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-04-24",
+    "uuid": "0189630a-eb8f-7075-b244-c68e0c6e1e8a"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Homeroom",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "0189630c-993e-7061-bb1a-d41d2272a9bf"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Hudoteket",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-04-24",
+    "uuid": "01896309-aa2d-71e5-9c48-248f03c79b6f"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "InkClub",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896308-9acc-7096-9b2a-e74389673a4b"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "KICKS",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-04-24",
+    "uuid": "01932f75-1211-7244-b60c-0fe79fd03b46"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Kjell & Company",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-04-24",
+    "uuid": "0189630d-b8f2-71cc-9d1f-3070ccc4c33a"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Kockums Jernverk",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-04-24",
+    "uuid": "01961ab7-0954-7171-851c-584c6c6052e7"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Lenovo",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-04-24",
+    "uuid": "01896311-859b-70f9-876a-a52c61ec5e5a"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Mölndal Energi",
+    "points_campaign": 5000,
+    "points_channel": 1000,
+    "started": "2026-04-24",
+    "uuid": "0192e751-0293-718b-ab91-d9ceaf7fcb1e"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Oakley",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "019d0b3a-53d6-73e2-9bb6-1136e90eaa28"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Outnorth",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896307-cb70-7078-96e6-9379b454803c"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Philips Hue",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "018ee1d2-896a-729f-932c-e9664dc0c907"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Polarn O. Pyret",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-04-24",
+    "uuid": "0189630a-4f00-71b4-b13a-6a93082439a9"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Singular Society",
+    "points_campaign": 5000,
+    "points_channel": 1000,
+    "started": "2026-04-24",
+    "uuid": "019ad964-5fce-7380-ba91-5c4007d5ebbd"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Synoptik",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-04-24",
+    "uuid": "01896312-0e40-70d5-ac09-6efad095edc9"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Telinet",
+    "points_campaign": 8000,
+    "points_channel": 1600,
+    "started": "2026-04-24",
+    "uuid": "018e5102-89f1-70d3-b184-bfb0de1ae948"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Träningspartner",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-04-24",
+    "uuid": "01896309-e045-7007-a420-f96ef113a52e"
+  },
+  {
+    "ended": "2026-04-27",
+    "name": "Webhallen",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-04-24",
+    "uuid": "01896308-04c2-718c-bf92-8d593bc940be"
+  }
+]
