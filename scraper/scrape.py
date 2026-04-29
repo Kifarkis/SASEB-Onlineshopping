@@ -1032,6 +1032,10 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{{"token": "{cf_token}"}}'></script>
 <!-- End Cloudflare Web Analytics -->
 
+<!-- GoatCounter -->
+<script data-goatcounter="https://eurobonus.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- End GoatCounter -->
+
 </body>
 </html>
 """
