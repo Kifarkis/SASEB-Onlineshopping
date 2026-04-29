@@ -94,5 +94,21 @@
     "points_channel": 10,
     "started": "2026-04-24",
     "uuid": "018ee1d2-896a-729f-932c-e9664dc0c907"
+  },
+  {
+    "ended": "2026-04-29",
+    "name": "Ellos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "0189630a-d108-712a-8856-644fdd60eedb"
+  },
+  {
+    "ended": "2026-04-29",
+    "name": "LEGO",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896310-5de4-71af-9cfa-190c9eebec97"
   }
 ]
