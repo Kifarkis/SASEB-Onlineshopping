@@ -7551,17 +7551,22 @@
     "uuid": "01932560-06e4-7378-846c-17fc077c77eb"
   },
   "01932f75-1211-7244-b60c-0fe79fd03b46": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "2026-05-03",
+      "points_campaign": 50,
+      "points_channel": 10,
+      "started": "2026-05-01"
+    },
     "all_time_high_date": "2026-04-24",
     "all_time_high_points": 75,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "campaign_ends_human": "om 1 dag",
+    "campaign_ends_human_en": "in 1 day",
     "category_id": null,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 25,
-    "current_points_campaign": 0,
-    "current_points_channel": 5,
+    "current_points_campaign": 50,
+    "current_points_channel": 10,
     "description": "<div>KICKS är Nordens ledande skönhetskedja och erbjuder ett helhetskoncept inom makeup, doft, hudvård och hårvård.<br><br><strong>Väligen notera:</strong> Du tjänar bara poäng på köp online och inte i deras fysiska butiker.</div>",
     "first_seen": "2026-04-24",
     "last_seen": "2026-05-01",
