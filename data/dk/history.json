@@ -110,5 +110,45 @@
     "points_channel": 10,
     "started": "2026-04-24",
     "uuid": "01896310-5de4-71af-9cfa-190c9eebec97"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "CA A-kasse",
+    "points_campaign": 5000,
+    "points_channel": 1000,
+    "started": "2026-04-24",
+    "uuid": "01961a6d-c7d7-712f-aa28-6f8fee6da492"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Husqvarna",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "019d713b-929f-7136-98ba-83fb547332ef"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Norlys",
+    "points_campaign": 4000,
+    "points_channel": 800,
+    "started": "2026-04-24",
+    "uuid": "01896311-fc34-708f-a8fb-b1300521dcb4"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Saxo Premium",
+    "points_campaign": 1000,
+    "points_channel": 200,
+    "started": "2026-04-24",
+    "uuid": "01967b86-7869-7008-b00b-fbfc7b989001"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "VitaePro",
+    "points_campaign": 5000,
+    "points_channel": 1000,
+    "started": "2026-04-24",
+    "uuid": "0189630d-1649-7204-bea4-2cb52d72ef26"
   }
 ]

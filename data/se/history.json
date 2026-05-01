@@ -247,5 +247,117 @@
     "points_channel": 600,
     "started": "2026-04-24",
     "uuid": "019dafb9-e034-7101-acb5-862c125d8cf3"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "A Retro Tale",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-04-24",
+    "uuid": "019716f7-b841-708c-94f7-aa0db57db557"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Albrekts Guld",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "0189630b-85b9-7042-9563-61fe0949c835"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Bottle Hero",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "019a112d-87ab-730e-9bb7-101330a28267"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Däckskiftarna",
+    "points_campaign": 1000,
+    "points_channel": 200,
+    "started": "2026-04-24",
+    "uuid": "018abc11-dd9c-72e6-ac04-2cf60a11996c"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Husqvarna",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "019d713b-929f-7136-98ba-83fb547332ef"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Länna Möbler",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "01896312-5ad6-728c-816e-b50fd3b1f767"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Lindskrog parkering Arlanda",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-04-24",
+    "uuid": "0199710b-f1ca-707f-b9b0-6e55f41c1f81"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Mister Spex",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "019c66ff-c8b9-72a7-98ff-ad425e4cd33b"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Nordic Spectra",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-04-24",
+    "uuid": "0189630d-c86d-7327-9a2d-942f470fde4a"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Nordiska Kompaniet",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-04-24",
+    "uuid": "019bc659-063f-7135-b5e6-2b3c841e9626"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Readly",
+    "points_campaign": 750,
+    "points_channel": 150,
+    "started": "2026-04-24",
+    "uuid": "019bc664-90ed-7386-a14b-4ee847a35168"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Svenska Gummihuset",
+    "points_campaign": 1000,
+    "points_channel": 200,
+    "started": "2026-04-24",
+    "uuid": "0189630d-cf20-7172-9143-c46a1a6970e6"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Trendcarpet",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-04-24",
+    "uuid": "0197c10c-695d-734a-80cb-afa6b257734f"
+  },
+  {
+    "ended": "2026-05-01",
+    "name": "Weibulls",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-04-24",
+    "uuid": "019db4fa-41e2-73ff-b5d3-7c9ab69de23d"
   }
 ]
