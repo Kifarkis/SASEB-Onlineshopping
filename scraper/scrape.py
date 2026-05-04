@@ -415,6 +415,10 @@ _HTML_TEMPLATE = r"""<!DOCTYPE html>
 <html lang="sv">
 <head>
 <meta charset="utf-8">
+<meta name="description" content="Översikt över aktuella SAS EuroBonus Shopping-kampanjer i Sverige, Danmark, Norge och Finland. Hitta butiker med extra poäng och bonusar — uppdateras var sjätte timme.">
+<meta property="og:title" content="EuroBonus Shopping — aktuella kampanjer">
+<meta property="og:description" content="Översikt över aktuella SAS EuroBonus Shopping-kampanjer i Norden. Hitta butiker med extra poäng — uppdateras var sjätte timme.">
+<meta property="og:type" content="website">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>EuroBonus Shopping</title>
@@ -422,7 +426,7 @@ _HTML_TEMPLATE = r"""<!DOCTYPE html>
 :root {{
   --bg: #faf9f7; --surface: #ffffff;
   --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.16);
-  --text: #1a1a1a; --text-muted: #6b6b6b; --text-faint: #9a9a9a;
+  --text: #1a1a1a; --text-muted: #595959; --text-faint: #9a9a9a;
   --accent: #1f6feb; --accent-bg: rgba(31, 111, 235, 0.08);
   --warn: #b85c00;
   --shadow-sticky: 0 4px 12px rgba(0, 0, 0, 0.06);
@@ -430,7 +434,7 @@ _HTML_TEMPLATE = r"""<!DOCTYPE html>
 html[data-theme="dark"] {{
   --bg: #0f0f10; --surface: #1a1a1c;
   --border: rgba(255, 255, 255, 0.08); --border-strong: rgba(255, 255, 255, 0.18);
-  --text: #ededed; --text-muted: #a0a0a0; --text-faint: #666666;
+  --text: #ededed; --text-muted: #b3b3b3; --text-faint: #666666;
   --accent: #6ea8ff; --accent-bg: rgba(110, 168, 255, 0.14);
   --warn: #f0a66c;
   --shadow-sticky: 0 4px 16px rgba(0, 0, 0, 0.4);
@@ -583,10 +587,13 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
   </div>
 </div>
 
-<div class="sas-container">
+<main class="sas-container">
   <div class="sas-jumper" id="jumper"></div>
   <div class="sas-grid" id="shop-grid"></div>
   <div class="sas-empty sas-hidden" id="empty-state"></div>
+</main>
+
+<div class="sas-container">
   <footer class="sas-footer">
     <div><span id="footer-unaffiliated"></span></div>
     <div class="sas-footer-right">
