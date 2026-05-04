@@ -427,7 +427,7 @@ _HTML_TEMPLATE = r"""<!DOCTYPE html>
   --bg: #faf9f7; --surface: #ffffff;
   --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.16);
   --text: #1a1a1a; --text-muted: #595959; --text-faint: #707070;
-  --accent: #1f6feb; --accent-bg: rgba(31, 111, 235, 0.08);
+  --accent: #1858c7; --accent-bg: rgba(24, 88, 199, 0.08);
   --warn: #b85c00;
   --shadow-sticky: 0 4px 12px rgba(0, 0, 0, 0.06);
 }}
