@@ -18,5 +18,12 @@ jobs:
       - name: Install dependencies
         run: pip install requests
 
-      - name: Run everyday scraper (test only — no file writes)
+      - name: Run everyday scraper
         run: python scraper/scrape_everyday.py
+
+      - name: Upload data as artifact for inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: everyday-data
+          path: data/everyday/
+          retention-days: 7
