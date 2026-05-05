@@ -181,6 +181,11 @@ def clean_website(value: str | None) -> str:
 
 
 def transform_shop(raw: dict) -> dict | None:
+    _w = raw.get("website")
+    if _w and "[" in str(_w):
+        m = MARKDOWN_LINK_RE.search(str(_w).strip())
+        print(f"DEBUG {raw.get('name_slug','?')} raw={_w!r} match={bool(m)} groups={m.groups() if m else None}", flush=True)
+
     country_id = raw.get("country_id")
     country_code = COUNTRY_MAP.get(country_id)
     if not country_code:
