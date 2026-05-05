@@ -162,7 +162,7 @@ def parse_float(value) -> float | None:
         return None
 
 
-MARKDOWN_LINK_RE = re.compile(r"^\[([^\]]+)\]\(([^)]+)\)$")
+MARKDOWN_LINK_RE = re.compile(r"\[([^\]]+)\]\((https?://[^)\s]+|www\.[^)\s]+)\)")
 
 
 def clean_website(value: str | None) -> str:
@@ -174,7 +174,7 @@ def clean_website(value: str | None) -> str:
     if not value:
         return ""
     text = value.strip()
-    match = MARKDOWN_LINK_RE.match(text)
+    match = MARKDOWN_LINK_RE.search(text)
     if match:
         return match.group(2).strip()
     return text
