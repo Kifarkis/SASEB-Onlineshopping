@@ -1,0 +1,68 @@
+{
+  "country": "fo",
+  "updated": "2026-05-05T08:43:48.414372+00:00",
+  "shop_count": 2,
+  "shops": [
+    {
+      "uuid": "hotel-brandan",
+      "name": "Hotel Brandan",
+      "country": "fo",
+      "city": "Tórshavn",
+      "postcode": "100",
+      "address": "Áarvegur 8",
+      "lat": 62.00989719999999,
+      "lng": -6.7707444,
+      "mode": "onsite",
+      "category_id": 1,
+      "points_per_100": 50,
+      "currency": "DKK",
+      "website": "www.hotelbrandan.fo",
+      "phone": "+298309200",
+      "email": "rm@hotelbrandan.fo",
+      "description": "Hotel Brandan is a green four-star superior hotel. It is located in the heart of Gundadalur only a few minutes’walk from Tórshavn’s town square, main shopping centre and the national football stadium and sports centre. The hotel has 124 rooms and 4 meeting rooms, in addition to saunas, a fitness suite, hot tubs and 130 parking spaces. Our 124 eco-friendly double rooms range from 18 m² to 38 m². All our rooms have coffeemakers, flat-screen TVs with Chromecast and luxurious beds and stylish furniture. Renowned Faroese artist Edward Fuglø has decorated every room with his unique piece ‘Landmark’. A visit to Hotel Brandan is about more than world-class service, it is also a unique art experience. The striking pieces in bold colours created by Edward Fuglø for Hotel Brandan are an integral part of the hotel’s concept.",
+      "cards_accepted": [
+        "MC",
+        "VISA"
+      ],
+      "has_fixed_reward": false,
+      "coming_soon": false,
+      "has_campaign": false,
+      "campaign_title": null,
+      "campaign_description": null,
+      "created_at": "2022-05-04 12:18:18",
+      "first_seen": "2026-05-05",
+      "status": "active"
+    },
+    {
+      "uuid": "hotel-hafnia",
+      "name": "Hotel Hafnia",
+      "country": "fo",
+      "city": "Tórshavn",
+      "postcode": "100",
+      "address": "Áarvegur 8",
+      "lat": 62.00989719999999,
+      "lng": -6.7707444,
+      "mode": "onsite",
+      "category_id": 1,
+      "points_per_100": 50,
+      "currency": "DKK",
+      "website": "www.hafnia.fo",
+      "phone": "+298313233",
+      "email": "rm@hotelbrandan.fo",
+      "description": "In the mid-twentieth century Christian Restorff started building a new hotel in Thorshavn. The hotel opened in 1951 and was named \"Hafnia\". The following decades the hotel expanded drastically, and as time went Hotel Hafnia became the biggest hotel in the Faroe Islands. At Hotel Hafnia we are always ready to accommodate our guests. Our reception is open 24/7. The chefs in our restaurant are trained professionals, and they love challenging themselves by cooking new food every day - from scratch of course. We also throw parties and arrange dinners in our event rooms. At Café Kaspar we offer good coffee, drinks, and light meals in a modern but cozy setting. It is possible to order take away from Café Kaspar and Restaurant Hafnia as well.",
+      "cards_accepted": [
+        "MC",
+        "VISA",
+        "AMEX"
+      ],
+      "has_fixed_reward": false,
+      "coming_soon": false,
+      "has_campaign": false,
+      "campaign_title": null,
+      "campaign_description": null,
+      "created_at": "2022-05-04 12:13:25",
+      "first_seen": "2026-05-05",
+      "status": "active"
+    }
+  ]
+}
