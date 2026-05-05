@@ -44,8 +44,27 @@ DESC_ON_HANDLER = re.compile(r'\son\w+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)', re.I
 DESC_JS_HREF = re.compile(r'href\s*=\s*("javascript:[^"]*"|\'javascript:[^\']*\')', re.IGNORECASE)
 
 POINTS_PREFIX_PATTERNS = [
-    re.compile(r"^Earn\s+\d+\s+(?:EuroBonus\s+)?(?:Bonus\s+)?points?\s+pr?\.\s+\d+\s+\w+[^.]*\.\s*(?:<br\s*/?>\s*)*", re.IGNORECASE),
-    re.compile(r"^Tjäna\s+\d+\s+(?:EuroBonus\s+)?(?:Bonus)?[Pp]oäng\s+per\s+\d+\s+\w+[^.]*\.\s*(?:<br\s*/?>\s*)*", re.IGNORECASE),
+    # English: "Earn N points per N currency." optionally followed by
+    # "when paying with a linked card." or similar boilerplate sentence.
+    re.compile(
+        r"^Earn\s+\d+\s+(?:EuroBonus\s+)?(?:Bonus\s+)?points?\s+(?:pr|per)\.?\s+\d+\s+\w+\s*\.?"
+        r"(?:\s*(?:when\s+(?:paying|entering)|by\s+paying|if\s+you\s+pay)[^.<]*?\.)?"
+        r"\s*(?:<br\s*/?>\s*)*",
+        re.IGNORECASE,
+    ),
+    # Tail-only fragment: description starts directly with "when paying..."
+    # because the source data has lost the leading "Earn N points..." part.
+    re.compile(
+        r"^when\s+paying\s+with\s+a\s+linked\s+(?:payment\s+)?card\.?\s*(?:<br\s*/?>\s*)*",
+        re.IGNORECASE,
+    ),
+    # Swedish: "Tjäna N poäng per N kr." optionally followed by tail clause.
+    re.compile(
+        r"^Tjäna\s+\d+\s+(?:EuroBonus\s+)?(?:Bonus)?[Pp]oäng\s+per\s+\d+\s+\w+\s*\.?"
+        r"(?:\s*(?:när\s+du\s+betalar|när\s+du\s+anger)[^.<]*?\.)?"
+        r"\s*(?:<br\s*/?>\s*)*",
+        re.IGNORECASE,
+    ),
 ]
 
 
@@ -143,6 +162,24 @@ def parse_float(value) -> float | None:
         return None
 
 
+MARKDOWN_LINK_RE = re.compile(r"^\[([^\]]+)\]\(([^)]+)\)$")
+
+
+def clean_website(value: str | None) -> str:
+    """Unwrap markdown-style links like [www.foo.com](https://www.foo.com).
+
+    Some merchants register their website as a markdown link. Prefer the URL
+    inside the parentheses; fall back to the raw value otherwise.
+    """
+    if not value:
+        return ""
+    text = value.strip()
+    match = MARKDOWN_LINK_RE.match(text)
+    if match:
+        return match.group(2).strip()
+    return text
+
+
 def transform_shop(raw: dict) -> dict | None:
     country_id = raw.get("country_id")
     country_code = COUNTRY_MAP.get(country_id)
@@ -177,7 +214,7 @@ def transform_shop(raw: dict) -> dict | None:
         "category_id": raw.get("primary_category_id"),
         "points_per_100": points_per_100,
         "currency": raw.get("currencies.code"),
-        "website": (raw.get("website") or "").strip(),
+        "website": clean_website(raw.get("website")),
         "phone": (raw.get("phone") or "").strip(),
         "email": (raw.get("email") or "").strip(),
         "description": description,
