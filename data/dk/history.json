@@ -1465,5 +1465,85 @@
     "points_channel": 10,
     "started": "2026-07-14",
     "uuid": "018ee1d2-896a-729f-932c-e9664dc0c907"
+  },
+  {
+    "ended": "2026-07-27",
+    "name": "Adidas",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-20",
+    "uuid": "0189630e-5d7e-709b-a148-a7237fda75ee"
+  },
+  {
+    "ended": "2026-07-27",
+    "name": "Albert",
+    "points_campaign": 1000,
+    "points_channel": 200,
+    "started": "2026-07-20",
+    "uuid": "01896312-874a-732c-a16e-33ad6b422841"
+  },
+  {
+    "ended": "2026-07-27",
+    "name": "BabySam",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-20",
+    "uuid": "0189630c-66c4-7294-80b6-a07402666552"
+  },
+  {
+    "ended": "2026-07-27",
+    "name": "Db Journey",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-20",
+    "uuid": "01896310-78d4-7290-bebb-ae80a7cd6ef1"
+  },
+  {
+    "ended": "2026-07-27",
+    "name": "Euroflorist",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-20",
+    "uuid": "01896308-d5a1-70c8-84eb-a07e4bcd0d2c"
+  },
+  {
+    "ended": "2026-07-27",
+    "name": "Gina Tricot",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-20",
+    "uuid": "0189630a-28d0-70b3-bbe0-1867fcea0f9d"
+  },
+  {
+    "ended": "2026-07-27",
+    "name": "Komplett",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-07-20",
+    "uuid": "01896310-4cf5-73e3-ba30-14f26f67ddb9"
+  },
+  {
+    "ended": "2026-07-27",
+    "name": "Sephora",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-20",
+    "uuid": "0189630c-5cf0-73e4-8bad-757898565730"
+  },
+  {
+    "ended": "2026-07-27",
+    "name": "Shark Ninja",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-20",
+    "uuid": "019e4465-abe2-7069-a495-477ebb1168ba"
+  },
+  {
+    "ended": "2026-07-27",
+    "name": "Watery",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-20",
+    "uuid": "0189630e-696e-72ee-9f35-c16d8e6c5924"
   }
 ]
