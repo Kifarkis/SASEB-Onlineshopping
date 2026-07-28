@@ -4893,17 +4893,22 @@
     "uuid": "018f19a8-0f55-7106-88d2-86549ce57249"
   },
   "018f3367-2401-704c-900c-526d7eecfc51": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "08.08.2026",
+      "points_campaign": 30,
+      "points_channel": 6,
+      "started": "2026-07-28"
+    },
     "all_time_high_date": "2026-06-09",
     "all_time_high_points": 30,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "campaign_ends_human": "om 1 uge",
+    "campaign_ends_human_en": "in 1 week",
     "category_id": 4,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 15,
-    "current_points_campaign": 0,
-    "current_points_channel": 3,
+    "current_points_campaign": 30,
+    "current_points_channel": 6,
     "description": "<div>Velkommen til Samsung Danmark. Oplev et bredt udvalg af innovativ hjemmeelektronik og tekniske produkter, herunder smartphones, tablets, TV'er, og meget mere.</div>",
     "first_seen": "2026-04-24",
     "last_seen": "2026-07-28",
