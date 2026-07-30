@@ -1,7 +1,7 @@
 {
   "country": "no",
-  "updated": "2026-07-29T06:24:27.731799+00:00",
-  "shop_count": 411,
+  "updated": "2026-07-30T06:20:03.110818+00:00",
+  "shop_count": 412,
   "shops": [
     {
       "uuid": "ac-perchs-thehandel",
@@ -9164,6 +9164,36 @@
       "campaign_description": null,
       "created_at": "2023-03-16 13:40:52",
       "first_seen": "2026-05-05",
+      "status": "active"
+    },
+    {
+      "uuid": "opal-gullsmed",
+      "name": "Opal Gullsmed",
+      "country": "no",
+      "city": "Bodø",
+      "postcode": "8006",
+      "address": "Professor Schyttesgate 2a",
+      "lat": 67.283177,
+      "lng": 14.378562,
+      "mode": "onsite",
+      "category_id": 8,
+      "points_per_100": 60,
+      "currency": "NOK",
+      "website": "www.gull.no",
+      "phone": "+4740104090",
+      "email": "katrin@gull.no",
+      "description": "For more than 100 years, Opal Gullsmed has been a trusted destination for fine jewelry and watches in the heart of Bodø. As a fourth-generation family-owned jeweler, they combine exceptional craftsmanship with personal service and a carefully curated selection of renowned international brands alongside unique Norwegian designs.<br><br>Whether you're searching for the perfect gift, timeless jewelry, an engagement ring, or something truly bespoke, Opal Gullsmed offers quality, expertise, and lasting elegance for every occasion.",
+      "cards_accepted": [
+        "VISA",
+        "AMEX"
+      ],
+      "has_fixed_reward": false,
+      "coming_soon": false,
+      "has_campaign": false,
+      "campaign_title": null,
+      "campaign_description": null,
+      "created_at": "2026-07-28 07:54:21",
+      "first_seen": "2026-07-30",
       "status": "active"
     },
     {
