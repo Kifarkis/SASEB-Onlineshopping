@@ -1545,5 +1545,53 @@
     "points_channel": 10,
     "started": "2026-07-20",
     "uuid": "0189630e-696e-72ee-9f35-c16d8e6c5924"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "3 Internet",
+    "points_campaign": 5000,
+    "points_channel": 1000,
+    "started": "2026-07-06",
+    "uuid": "01916acc-a2d2-7262-84cd-9b7d1b90e047"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Factor",
+    "points_campaign": 3000,
+    "points_channel": 600,
+    "started": "2026-07-03",
+    "uuid": "01932560-06e4-7378-846c-17fc077c77eb"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Ideal of Sweden",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-07-06",
+    "uuid": "0189630f-4b89-721d-88e7-5b4e2b299f5f"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Jørgsholm",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-07-06",
+    "uuid": "019f3760-cd44-7292-951f-c1833f710916"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Luxplus",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-06",
+    "uuid": "0189630c-36d2-72c5-b0b0-2659a992a722"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Mofibo",
+    "points_campaign": 2000,
+    "points_channel": 400,
+    "started": "2026-07-01",
+    "uuid": "01896309-3382-7064-8492-7a9697ea0367"
   }
 ]

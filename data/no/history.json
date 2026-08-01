@@ -1775,5 +1775,53 @@
     "points_channel": 10,
     "started": "2026-07-20",
     "uuid": "0189630e-696e-72ee-9f35-c16d8e6c5924"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Autodoc",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-06",
+    "uuid": "01896310-e823-72b0-8d74-6b3da56a30e3"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Go Nordic Cruiseline",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-07-06",
+    "uuid": "019ea65a-1842-727b-9ed2-0e4088e7259b"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "ICE",
+    "points_campaign": 2500,
+    "points_channel": 500,
+    "started": "2026-07-06",
+    "uuid": "0189630c-1ac4-7176-9627-433b2c1773b7"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Strim",
+    "points_campaign": 2000,
+    "points_channel": 400,
+    "started": "2026-07-06",
+    "uuid": "018abc11-7a28-71e0-bc8a-9e9617c71d80"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "SWIMS",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-06",
+    "uuid": "01932555-abce-7312-9a6d-1a06f2713634"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Vinlagringskompaniet",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-07-06",
+    "uuid": "018abc11-d276-70ea-b149-50ae4e0bd6bb"
   }
 ]

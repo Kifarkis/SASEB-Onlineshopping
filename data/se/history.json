@@ -3280,5 +3280,109 @@
     "points_channel": 10,
     "started": "2026-07-20",
     "uuid": "0189630e-696e-72ee-9f35-c16d8e6c5924"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Albrekts Guld",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-03",
+    "uuid": "0189630b-85b9-7042-9563-61fe0949c835"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Beijer Byggmaterial",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-03",
+    "uuid": "01896309-f68e-71c7-b004-d82b22e6debb"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Bik Bok",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-17",
+    "uuid": "01896309-6122-73a7-8776-d8d505e679d5"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Dustin Företag",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-07-03",
+    "uuid": "0189630b-a1fd-7133-b07a-084f91874cd8"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Efva Attling",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-07-03",
+    "uuid": "01896308-d3ef-7121-ad09-3d72c77b2715"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Factor",
+    "points_campaign": 3000,
+    "points_channel": 600,
+    "started": "2026-07-03",
+    "uuid": "01932560-06e4-7378-846c-17fc077c77eb"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Flygbussarna",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-07-07",
+    "uuid": "01896312-6607-711b-a79c-23479d58722a"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Luxplus",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-06",
+    "uuid": "0189630c-36d2-72c5-b0b0-2659a992a722"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Mekonomen",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-07",
+    "uuid": "018ec72b-d288-7262-acbe-3b258b4b7862"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "MyMOWO",
+    "points_campaign": 500,
+    "points_channel": 100,
+    "started": "2026-07-03",
+    "uuid": "019d442e-c0ef-72d4-8983-d2a4b4328029"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Nordiska Galleriet",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-06",
+    "uuid": "01896311-818d-7114-be42-ed67319052a1"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "Trippel",
+    "points_campaign": 500,
+    "points_channel": 100,
+    "started": "2026-07-07",
+    "uuid": "0198eb3d-2cb1-719e-ac4c-9b8eb484a72a"
+  },
+  {
+    "ended": "2026-08-01",
+    "name": "TV4 Play",
+    "points_campaign": 300,
+    "points_channel": 60,
+    "started": "2026-07-09",
+    "uuid": "018abc11-d0cc-728d-8d49-a2b6817b5660"
   }
 ]
