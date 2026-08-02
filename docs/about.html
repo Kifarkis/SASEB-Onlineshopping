@@ -9,20 +9,20 @@
 :root {
   --bg: #faf9f7; --surface: #ffffff;
   --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.16);
-  --text: #1a1a1a; --text-muted: #6b6b6b; --text-faint: #9a9a9a;
-  --accent: #1f6feb;
+  --text: #1a1a1a; --text-muted: #595959; --text-faint: #707070;
+  --accent: #1858c7;
 }
 html[data-theme="dark"] {
   --bg: #0f0f10; --surface: #1a1a1c;
   --border: rgba(255, 255, 255, 0.08); --border-strong: rgba(255, 255, 255, 0.18);
-  --text: #ededed; --text-muted: #a0a0a0; --text-faint: #666666;
+  --text: #ededed; --text-muted: #b3b3b3; --text-faint: #8a8a8a;
   --accent: #6ea8ff;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0f0f10; --surface: #1a1a1c;
     --border: rgba(255, 255, 255, 0.08); --border-strong: rgba(255, 255, 255, 0.18);
-    --text: #ededed; --text-muted: #a0a0a0; --text-faint: #666666;
+    --text: #ededed; --text-muted: #b3b3b3; --text-faint: #8a8a8a;
     --accent: #6ea8ff;
   }
 }
@@ -83,7 +83,7 @@ a:hover { text-decoration: underline; }
   <article id="sv">
     <h1>Om sidan</h1>
 
-    <p>Det här är en automatisk spårare av kampanjer i SAS EuroBonus Shopping. Sidan hämtar data var sjätte timme och visar vilka butiker som har aktiva kampanjer just nu, vad som är på väg att ta slut och vilka butiker som försvunnit från utbudet.</p>
+    <p>Det här är en automatisk spårare för SAS EuroBonus. Sidan har tre flikar. <strong>Online</strong> visar butiker med aktiva kampanjer i EuroBonus Shopping, vad som är på väg att ta slut och vilka butiker som försvunnit. <strong>I butik</strong> visar restauranger och butiker där du tjänar poäng när du betalar med ett kopplat kort. <strong>Shoppen</strong> visar presentkort och Månadens deals från EuroBonus Shop.</p>
 
     <h2>Vem är jag?</h2>
     <p>Hej, jag heter David. Jag byggde det här för mig själv för att jag är trött på att missa bra kampanjer. Tänkte att fler kanske har nytta av det.</p>
@@ -92,13 +92,18 @@ a:hover { text-decoration: underline; }
     <p><strong>Nej.</strong> Sidan är inte ansluten till, godkänd av eller sponsrad av SAS eller EuroBonus. Den är ett oberoende hobbyprojekt som använder offentligt tillgänglig data.</p>
 
     <h2>Varifrån kommer datan?</h2>
-    <p>Butiker och kampanjer hämtas automatiskt var sjätte timme från EuroBonus Shopping-plattformens publika backend. Historiken (när en kampanj startade, vilka butiker som försvunnit) räknas ut av den här sidan över tid.</p>
+    <p>Alla tre flikarna hämtar data automatiskt från EuroBonus publika sidor. Online uppdateras var sjätte timme, I butik en gång om dagen och Shoppen en gång i veckan. Historiken, alltså när en kampanj startade och vilka butiker som försvunnit, räknas ut av den här sidan över tid.</p>
 
-    <h2>Fungerar det för alla länder?</h2>
-    <p>Sidan stödjer Sverige, Danmark, Norge och Finland. Byt land och språk uppe i hörnet. Finland finns bara på engelska tills vidare.</p>
+    <h2>Vilka länder finns med?</h2>
+    <p>Det skiljer sig mellan flikarna eftersom SAS utbud ser olika ut. Online finns för Sverige, Danmark, Norge och Finland. I butik har samma länder plus Färöarna. Shoppen finns för Sverige, Danmark och Norge, samt en EUR-katalog för övriga länder, men inga presentkort där. Byt land och språk uppe i hörnet. Finland finns bara på engelska tills vidare.</p>
+
+    <h2>En sak om presentkorten</h2>
+    <p>Presentkort säljs i flera valörer, och valörerna ligger bakom inloggning hos SAS. Därför visas intjäningen som ett maxvärde, "tjäna upp till X poäng", och inte som poäng per hundralapp. På Månadens deals och på ett fåtal presentkort med fast valör visas den exakta siffran.</p>
 
     <h2>Kontakt</h2>
     <p>Har du hittat en bugg, har ett förslag eller bara vill säga hej? Mejla <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a>.</p>
+
+    <p>Shoppen-fliken kom till efter ett tips från en användare. Har du en idé, hör gärna av dig.</p>
 
     <div class="footer-note">
       <p>© 2026. Inget på sidan är finansiell rådgivning. Poängvärden kan ändras utan förvarning — kontrollera alltid direkt på SAS om du tänker göra ett stort köp.</p>
@@ -108,7 +113,7 @@ a:hover { text-decoration: underline; }
   <article id="en" style="display: none;">
     <h1>About</h1>
 
-    <p>This is an automated tracker for SAS EuroBonus Shopping campaigns. The site pulls data every six hours and shows which shops currently have active campaigns, which ones are ending soon, and which shops have disappeared from the catalog.</p>
+    <p>This is an automated tracker for SAS EuroBonus. The site has three tabs. <strong>Online</strong> shows shops with active campaigns in EuroBonus Shopping, which ones are ending soon, and which shops have disappeared. <strong>In store</strong> shows restaurants and shops where you earn points when paying with a linked card. <strong>Shop</strong> shows gift cards and Deals of the Month from the EuroBonus Shop.</p>
 
     <h2>Who made this?</h2>
     <p>Hi, I'm David. I built this for myself because I kept missing good campaigns. Figured others might find it useful too.</p>
@@ -117,13 +122,18 @@ a:hover { text-decoration: underline; }
     <p><strong>No.</strong> This site is not affiliated with, endorsed by, or sponsored by SAS or EuroBonus. It's an independent hobby project using publicly available data.</p>
 
     <h2>Where does the data come from?</h2>
-    <p>Shops and campaigns are fetched automatically every six hours from the EuroBonus Shopping platform's public backend. Historical data (when a campaign started, which shops have disappeared) is computed by this site over time.</p>
+    <p>All three tabs fetch data automatically from EuroBonus public pages. Online updates every six hours, In store once a day, and Shop once a week. Historical data, meaning when a campaign started and which shops have disappeared, is computed by this site over time.</p>
 
     <h2>Which countries?</h2>
-    <p>The site supports Sweden, Denmark, Norway, and Finland. Switch country and language in the top-right corner. Finland is English-only for now.</p>
+    <p>It differs between the tabs because the SAS offering is not the same everywhere. Online covers Sweden, Denmark, Norway, and Finland. In store has the same countries plus the Faroe Islands. Shop covers Sweden, Denmark, and Norway, plus a EUR catalogue for other countries, though with no gift cards there. Switch country and language in the top-right corner. Finland is English-only for now.</p>
+
+    <h2>One note on gift cards</h2>
+    <p>Gift cards are sold in several denominations, and the denominations sit behind a SAS login. Earning is therefore shown as a maximum, "earn up to X points", rather than as points per 100. On Deals of the Month, and on the few gift cards with a fixed denomination, the exact figure is shown.</p>
 
     <h2>Contact</h2>
     <p>Found a bug, got a suggestion, or just want to say hi? Email <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a>.</p>
+
+    <p>The Shop tab was built after a tip from a user. If you have an idea, get in touch.</p>
 
     <div class="footer-note">
       <p>© 2026. Nothing on this site is financial advice. Point values can change without notice — always verify directly with SAS before making a big purchase.</p>
