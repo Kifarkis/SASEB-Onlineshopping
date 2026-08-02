@@ -9,20 +9,20 @@
 :root {
   --bg: #faf9f7; --surface: #ffffff;
   --border: rgba(0, 0, 0, 0.08); --border-strong: rgba(0, 0, 0, 0.16);
-  --text: #1a1a1a; --text-muted: #6b6b6b; --text-faint: #9a9a9a;
-  --accent: #1f6feb;
+  --text: #1a1a1a; --text-muted: #595959; --text-faint: #707070;
+  --accent: #1858c7;
 }
 html[data-theme="dark"] {
   --bg: #0f0f10; --surface: #1a1a1c;
   --border: rgba(255, 255, 255, 0.08); --border-strong: rgba(255, 255, 255, 0.18);
-  --text: #ededed; --text-muted: #a0a0a0; --text-faint: #666666;
+  --text: #ededed; --text-muted: #b3b3b3; --text-faint: #8a8a8a;
   --accent: #6ea8ff;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0f0f10; --surface: #1a1a1c;
     --border: rgba(255, 255, 255, 0.08); --border-strong: rgba(255, 255, 255, 0.18);
-    --text: #ededed; --text-muted: #a0a0a0; --text-faint: #666666;
+    --text: #ededed; --text-muted: #b3b3b3; --text-faint: #8a8a8a;
     --accent: #6ea8ff;
   }
 }
@@ -89,6 +89,9 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; 
     <h2>Vad lagras i din webbläsare?</h2>
     <p>Bara en sak: vilket tema du valt (mörkt eller ljust). Det sparas lokalt med <code>localStorage</code>. Inget annat sparas.</p>
 
+    <h2>Plats</h2>
+    <p>På fliken I butik finns en knapp som heter Nära mig. Trycker du på den frågar webbläsaren om lov att dela din position, och sorterar sedan ställena efter avstånd. Positionen används bara i din webbläsare för att räkna ut avstånden. Den skickas inte till mig, den sparas inte och den lämnar aldrig din enhet. Trycker du inte på knappen frågas du aldrig.</p>
+
     <h2>Cookies</h2>
     <p>Inga cookies används.</p>
 
@@ -106,13 +109,17 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; 
     <p>Om du mejlar <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a> hanteras din e-post bara för att svara dig. Den säljs inte, delas inte och används inte till något annat.</p>
 
     <h2>Extern data</h2>
-    <p>Själva butiksdatan hämtas från <code>onlineshopping.loyaltykey.com</code>. Klickar du på en butik skickas du vidare till SAS EuroBonus webbsida, som har sin egen integritetspolicy.</p>
+    <p>Butiks- och produktdatan hämtas automatiskt från tre källor: <code>onlineshopping.loyaltykey.com</code> för Online, <code>eb-member-portal-api.loyaltfacts.com</code> för I butik och <code>saseurobonusshop.com</code> för Shoppen. Den hämtningen sker på en server, inte i din webbläsare.</p>
+
+    <p>Bilder på butiker och produkter laddas däremot direkt från SAS servrar när du tittar på sidan. Det betyder att din IP-adress syns för dem, precis som när du besöker vilken webbplats som helst.</p>
+
+    <p>Klickar du vidare på en butik, en produkt eller en vägbeskrivning lämnar du den här sidan. Länkarna går till SAS EuroBonus, till butikens egen webbplats eller till Google Maps, och de har alla sina egna integritetspolicyer.</p>
 
     <h2>Ändringar</h2>
     <p>Om policyn ändras uppdateras den här sidan.</p>
 
     <div class="footer-note">
-      <p>Senast uppdaterad: april 2026. Kontakt: <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a></p>
+      <p>Senast uppdaterad: augusti 2026. Kontakt: <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a></p>
     </div>
   </article>
 
@@ -123,6 +130,9 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; 
 
     <h2>What's stored in your browser?</h2>
     <p>One thing: your chosen theme (dark or light). Saved locally with <code>localStorage</code>. Nothing else is stored.</p>
+
+    <h2>Location</h2>
+    <p>The In store tab has a button called Near me. Pressing it makes your browser ask permission to share your location, and the places are then sorted by distance. The location is used only inside your browser to work out those distances. It is not sent to me, it is not stored, and it never leaves your device. If you don't press the button, you are never asked.</p>
 
     <h2>Cookies</h2>
     <p>None.</p>
@@ -141,13 +151,17 @@ code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; 
     <p>If you email <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a>, your email is used only to reply to you. Not sold, not shared, not used for anything else.</p>
 
     <h2>External data</h2>
-    <p>The shop data itself is fetched from <code>onlineshopping.loyaltykey.com</code>. Clicking a shop sends you to SAS EuroBonus's website, which has its own privacy policy.</p>
+    <p>Shop and product data is fetched automatically from three sources: <code>onlineshopping.loyaltykey.com</code> for Online, <code>eb-member-portal-api.loyaltfacts.com</code> for In store, and <code>saseurobonusshop.com</code> for Shop. That fetching happens on a server, not in your browser.</p>
+
+    <p>Shop and product images, however, load directly from the SAS servers while you view the page. That means your IP address is visible to them, the same as when you visit any website.</p>
+
+    <p>Clicking through to a shop, a product, or directions takes you off this site. Those links go to SAS EuroBonus, to the merchant's own website, or to Google Maps, and each has its own privacy policy.</p>
 
     <h2>Changes</h2>
     <p>If this policy changes, this page gets updated.</p>
 
     <div class="footer-note">
-      <p>Last updated: April 2026. Contact: <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a></p>
+      <p>Last updated: August 2026. Contact: <a href="mailto:eurobonus@chiq.se">eurobonus@chiq.se</a></p>
     </div>
   </article>
 </div>
