@@ -165,8 +165,30 @@ def parse_tile(tile, region: str, collection: str) -> dict | None:
     }
 
 
-def parse_listing(html: str, region: str, collection: str) -> tuple[list[dict], int]:
-    """Return (items, last_page) for one listing page."""
+# Product-count header, e.g. "Visar 150 produkter i PRESENTKORT" (sv),
+# "Viser 37 produkter" (da/nb), "Showing 142 products" (en).
+PRODUCT_COUNT_RE = re.compile(
+    r"(?:visar|viser|showing)\s+(\d+)\s+(?:produkter|products)",
+    re.IGNORECASE,
+)
+
+# Marker shown when a region has no gift cards and only a region picker is
+# rendered, e.g. the EUR storefront: "Looking for gift cards?" /
+# "Currently we do not offer Gift Cards in your region."
+NOT_AVAILABLE_RE = re.compile(
+    r"do not offer|looking for gift cards|erbjuder (?:vi )?inte|tilbyder vi ikke",
+    re.IGNORECASE,
+)
+
+
+def parse_listing(html: str, region: str, collection: str) -> tuple[list[dict], int, dict]:
+    """Return (items, last_page, meta) for one listing page.
+
+    meta carries signals that let the caller tell an empty-by-design page
+    (a region with no products) apart from a parsing failure:
+      - product_count: int|None  — the "Visar N produkter" header value
+      - not_available: bool       — a "we don't offer this here" marker
+    """
     soup = BeautifulSoup(html, "html.parser")
 
     items = []
@@ -181,7 +203,14 @@ def parse_listing(html: str, region: str, collection: str) -> tuple[list[dict], 
         if label.isdigit():
             last_page = max(last_page, int(label))
 
-    return items, last_page
+    page_text = soup.get_text(" ", strip=True)
+    count_match = PRODUCT_COUNT_RE.search(page_text)
+    meta = {
+        "product_count": int(count_match.group(1)) if count_match else None,
+        "not_available": bool(NOT_AVAILABLE_RE.search(page_text)),
+    }
+
+    return items, last_page, meta
 
 
 def fetch(url: str, session: requests.Session) -> str:
@@ -190,21 +219,34 @@ def fetch(url: str, session: requests.Session) -> str:
     return resp.text
 
 
-def scrape_collection(region: str, collection: str, session: requests.Session) -> list[dict]:
+def scrape_collection(region: str, collection: str, session: requests.Session) -> tuple[list[dict], bool]:
+    """Scrape one collection. Returns (items, empty_by_design).
+
+    empty_by_design is True when the first page legitimately has no products
+    (a region that doesn't carry this collection), so the caller can treat
+    it as success rather than a parse failure.
+    """
     segment, _currency = REGIONS[region]
     path = COLLECTIONS[collection]
     base = f"{BASE_URL}/{segment}/{path}"
 
     print(f"  {region}/{collection}: page 1", flush=True)
     html = fetch(base, session)
-    items, last_page = parse_listing(html, region, collection)
+    items, last_page, meta = parse_listing(html, region, collection)
     last_page = min(last_page, MAX_PAGES)
+
+    # No tiles on page 1 — decide whether that's legitimate or a break.
+    if not items:
+        empty_by_design = meta["not_available"] or meta["product_count"] == 0
+        if empty_by_design:
+            print(f"  {region}/{collection}: none offered in this region", flush=True)
+        return [], empty_by_design
 
     for page in range(2, last_page + 1):
         time.sleep(PAGE_DELAY)
         print(f"  {region}/{collection}: page {page}/{last_page}", flush=True)
         page_html = fetch(f"{base}?page={page}", session)
-        page_items, _ = parse_listing(page_html, region, collection)
+        page_items, _, _ = parse_listing(page_html, region, collection)
         if not page_items:
             break
         items.extend(page_items)
@@ -219,7 +261,7 @@ def scrape_collection(region: str, collection: str, session: requests.Session) -
         deduped.append(item)
 
     print(f"  {region}/{collection}: {len(deduped)} items", flush=True)
-    return deduped
+    return deduped, False
 
 
 def merge_with_existing(region: str, collection: str, fresh: list[dict]) -> list[dict]:
@@ -298,13 +340,16 @@ def main() -> None:
     for region in REGIONS:
         for collection in COLLECTIONS:
             try:
-                fresh = scrape_collection(region, collection, session)
+                fresh, empty_by_design = scrape_collection(region, collection, session)
             except Exception as e:
                 print(f"  FAILED {region}/{collection}: {e}", flush=True)
                 failures.append(f"{region}/{collection}")
                 continue
 
-            if not fresh:
+            if not fresh and not empty_by_design:
+                # Zero items but the page didn't say "none here" — treat as a
+                # parse break (e.g. markup changed) rather than silently
+                # wiping the collection.
                 print(f"  FAILED {region}/{collection}: parsed zero items", flush=True)
                 failures.append(f"{region}/{collection}")
                 continue
