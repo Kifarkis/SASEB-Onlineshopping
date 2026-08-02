@@ -1,10 +1,18 @@
-name: Scrape shop (manual test)
+name: Scrape shop
 
 on:
+  schedule:
+    # Weekly, Monday 05:10 UTC. Deals of the Month rotate monthly and the
+    # gift card lineup changes slowly, so daily would be wasted requests.
+    # Offset from the other scrapers so runs don't overlap.
+    - cron: "10 5 * * 1"
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
-  test-fetch:
+  scrape:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repo
@@ -21,9 +29,14 @@ jobs:
       - name: Run shop scraper
         run: python scraper/scrape_shop.py
 
-      - name: Upload data as artifact for inspection
-        uses: actions/upload-artifact@v4
-        with:
-          name: shop-data
-          path: data/shop/
-          retention-days: 7
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/shop
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update shop data"
+            git push
+          fi
