@@ -1796,15 +1796,24 @@ html[data-theme="dark"] .sas-modal-thumb {{ background: #f2f2f2; }}
     return '';
   }}
 
-  function shopCardHTML(item) {{
+  // Images above the fold are the LCP candidate. Lazy-loading them defers the
+  // request until after layout runs, which measurably delays LCP on mobile.
+  // Load the first row eagerly with high priority, lazy for everything after.
+  var SHOP_EAGER_IMAGES = 4;
+
+  function shopCardHTML(item, idx) {{
     var div = document.createElement('div');
     var isGone = item.status === 'gone';
     div.className = 'sas-card sas-card-shop' + (isGone ? ' sas-card-gone' : '');
     div.dataset.uuid = item.uuid;
     div.dataset.letter = shopLetter(item.name);
 
+    var eager = idx < SHOP_EAGER_IMAGES;
+    var imgAttrs = eager
+      ? 'loading="eager" fetchpriority="high" decoding="async"'
+      : 'loading="lazy" decoding="async"';
     var thumb = item.img
-      ? '<div class="sas-shop-thumb"><img src="' + escapeHtml(SHOP_IMG_PREFIX + item.img) + '" alt="" loading="lazy"></div>'
+      ? '<div class="sas-shop-thumb"><img src="' + escapeHtml(SHOP_IMG_PREFIX + item.img) + '" alt="" ' + imgAttrs + '></div>'
       : '<div class="sas-shop-thumb"></div>';
 
     var earn = shopEarnLabel(item);
@@ -1929,7 +1938,7 @@ html[data-theme="dark"] .sas-modal-thumb {{ background: #f2f2f2; }}
     }}
 
     var frag = document.createDocumentFragment();
-    filtered.forEach(function(s) {{ frag.appendChild(shopCardHTML(s)); }});
+    filtered.forEach(function(s, i) {{ frag.appendChild(shopCardHTML(s, i)); }});
     grid.appendChild(frag);
 
     renderShopJumper(filtered);
