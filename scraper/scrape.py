@@ -37,6 +37,28 @@ EVERYDAY_CATEGORIES = {
     12: {"sv": "Annat",                  "da": "Anden",                "nb": "Annet",                "en": "Other"},
 }
 
+# Shop tab country list. The webshop has no Finnish storefront; instead it has
+# an "Other (EUR)" catalogue served from the /en/ path. Gift cards are not
+# offered there at all (deals are), which the scraper records as an empty
+# collection rather than a failure.
+SHOP_COUNTRIES = [
+    {"code": "SE", "local_lang": "sv", "name": "Sverige", "languages": ["sv", "en"]},
+    {"code": "DK", "local_lang": "da", "name": "Danmark", "languages": ["da", "en"]},
+    {"code": "NO", "local_lang": "nb", "name": "Norge",   "languages": ["nb", "en"]},
+    {"code": "EU", "local_lang": "en", "name": "Other (EUR)", "languages": ["en"]},
+]
+
+# Frontend country code -> directory written by scrape_shop.py.
+SHOP_DIR_FOR_CODE = {"SE": "se", "DK": "dk", "NO": "no", "EU": "en"}
+
+# Product URLs and images share long constant prefixes. Strip them here and
+# rebuild in JS so the embedded payload doesn't repeat ~140 bytes per item.
+SHOP_URL_PREFIX = "https://www.saseurobonusshop.com/"
+SHOP_IMG_PREFIX = (
+    "https://www.saseurobonusshop.com/media/catalog/product/cache/2/image/"
+    "509x509/9df78eab33525d08d6e5fb8d27136e95/"
+)
+
 API_BASE = "https://onlineshopping.loyaltykey.com/api/v1"
 SHOPS_URL = API_BASE + "/shops?filter[channel]=SAS&filter[language]={lang}&filter[country]={country}&filter[amount]=5000"
 CATEGORIES_URL = API_BASE + "/shops/categories?filter[language]={lang}"
@@ -44,6 +66,7 @@ CATEGORIES_URL = API_BASE + "/shops/categories?filter[language]={lang}"
 REPO_ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = REPO_ROOT / "data"
 EVERYDAY_DATA_DIR = REPO_ROOT / "data" / "everyday"
+SHOP_DATA_DIR = REPO_ROOT / "data" / "shop"
 HTML_FILE = REPO_ROOT / "docs" / "index.html"
 
 CLOUDFLARE_TOKEN = "c0d97a34f9524bd18f638693155d6704"
@@ -88,6 +111,21 @@ STRINGS = {
         "near_unsupported": "Din webbläsare stöder inte platsdelning.",
         "sort_az_everyday": "A–Ö", "sort_za_everyday": "Ö–A",
         "sort_points_everyday": "Mest poäng", "sort_distance_everyday": "Närmast först",
+        "tab_shop": "Shoppen",
+        "meta_template_shop": "{items} produkter · {giftcards} presentkort · {deals} deals · uppdaterad {ts}",
+        "filter_giftcards": "Presentkort", "filter_deals": "Månadens deals",
+        "search_placeholder_shop": "Sök produkt eller varumärke…",
+        "no_shops_shop": "Inga produkter matchar.",
+        "no_gone_shop": "Inga borttagna produkter ännu.",
+        "sort_points_asc": "Billigast i poäng", "sort_points_desc": "Dyrast i poäng",
+        "shop_or": "eller", "shop_earn_up_to": "Tjäna upp till", "shop_earn_rate": "Tjäna",
+        "shop_points_unit": "poäng", "shop_per_100": "p / 100 kr",
+        "modal_open_shop": "Öppna i EuroBonus Shop",
+        "modal_points_price": "Pris i poäng", "modal_cash_price": "Pris i pengar",
+        "modal_max_earn": "Max intjäning", "modal_earn_rate": "Intjäning",
+        "modal_first_seen": "Sedd sedan", "modal_lowest": "Lägsta pris hittills",
+        "shop_disclaimer": "Priser och intjäning hämtas från SAS EuroBonus Shop. Presentkort säljs i flera valörer — intjäningen visas som ett maxvärde eftersom valörerna kräver inloggning.",
+        "shop_login_note": "Kräver inloggning på SAS EuroBonus Shop för köp.",
     },
     "en": {
         "title": "EuroBonus Shopping",
@@ -128,6 +166,21 @@ STRINGS = {
         "near_unsupported": "Your browser does not support location sharing.",
         "sort_az_everyday": "A–Z", "sort_za_everyday": "Z–A",
         "sort_points_everyday": "Most points", "sort_distance_everyday": "Nearest first",
+        "tab_shop": "Shop",
+        "meta_template_shop": "{items} products · {giftcards} gift cards · {deals} deals · updated {ts}",
+        "filter_giftcards": "Gift cards", "filter_deals": "Deals of the month",
+        "search_placeholder_shop": "Search product or brand…",
+        "no_shops_shop": "No products match.",
+        "no_gone_shop": "No removed products yet.",
+        "sort_points_asc": "Cheapest in points", "sort_points_desc": "Most points",
+        "shop_or": "or", "shop_earn_up_to": "Earn up to", "shop_earn_rate": "Earn",
+        "shop_points_unit": "points", "shop_per_100": "p / 100",
+        "modal_open_shop": "Open in EuroBonus Shop",
+        "modal_points_price": "Price in points", "modal_cash_price": "Price in cash",
+        "modal_max_earn": "Max earning", "modal_earn_rate": "Earning",
+        "modal_first_seen": "Seen since", "modal_lowest": "Lowest price so far",
+        "shop_disclaimer": "Prices and earning are taken from the SAS EuroBonus Shop. Gift cards come in several denominations — earning is shown as a maximum because the denominations require a login.",
+        "shop_login_note": "Requires a SAS EuroBonus Shop login to purchase.",
     },
     "da": {
         "title": "EuroBonus Shopping",
@@ -168,6 +221,21 @@ STRINGS = {
         "near_unsupported": "Din browser understøtter ikke placeringsdeling.",
         "sort_az_everyday": "A–Å", "sort_za_everyday": "Å–A",
         "sort_points_everyday": "Flest point", "sort_distance_everyday": "Nærmest først",
+        "tab_shop": "Shoppen",
+        "meta_template_shop": "{items} produkter · {giftcards} gavekort · {deals} deals · opdateret {ts}",
+        "filter_giftcards": "Gavekort", "filter_deals": "Månedens deals",
+        "search_placeholder_shop": "Søg produkt eller mærke…",
+        "no_shops_shop": "Ingen produkter matcher.",
+        "no_gone_shop": "Ingen fjernede produkter endnu.",
+        "sort_points_asc": "Billigst i point", "sort_points_desc": "Dyrest i point",
+        "shop_or": "eller", "shop_earn_up_to": "Optjen op til", "shop_earn_rate": "Optjen",
+        "shop_points_unit": "point", "shop_per_100": "p / 100 kr",
+        "modal_open_shop": "Åbn i EuroBonus Shop",
+        "modal_points_price": "Pris i point", "modal_cash_price": "Pris i penge",
+        "modal_max_earn": "Maks. optjening", "modal_earn_rate": "Optjening",
+        "modal_first_seen": "Set siden", "modal_lowest": "Laveste pris hidtil",
+        "shop_disclaimer": "Priser og optjening hentes fra SAS EuroBonus Shop. Gavekort sælges i flere valører — optjeningen vises som en maksimumværdi, fordi valørerne kræver login.",
+        "shop_login_note": "Kræver login på SAS EuroBonus Shop for at købe.",
     },
     "nb": {
         "title": "EuroBonus Shopping",
@@ -208,6 +276,21 @@ STRINGS = {
         "near_unsupported": "Nettleseren din støtter ikke posisjonsdeling.",
         "sort_az_everyday": "A–Å", "sort_za_everyday": "Å–A",
         "sort_points_everyday": "Flest poeng", "sort_distance_everyday": "Nærmest først",
+        "tab_shop": "Shoppen",
+        "meta_template_shop": "{items} produkter · {giftcards} gavekort · {deals} deals · oppdatert {ts}",
+        "filter_giftcards": "Gavekort", "filter_deals": "Månedens deals",
+        "search_placeholder_shop": "Søk produkt eller merke…",
+        "no_shops_shop": "Ingen produkter matcher.",
+        "no_gone_shop": "Ingen fjernede produkter ennå.",
+        "sort_points_asc": "Billigst i poeng", "sort_points_desc": "Dyrest i poeng",
+        "shop_or": "eller", "shop_earn_up_to": "Tjen opp til", "shop_earn_rate": "Tjen",
+        "shop_points_unit": "poeng", "shop_per_100": "p / 100 kr",
+        "modal_open_shop": "Åpne i EuroBonus Shop",
+        "modal_points_price": "Pris i poeng", "modal_cash_price": "Pris i penger",
+        "modal_max_earn": "Maks. opptjening", "modal_earn_rate": "Opptjening",
+        "modal_first_seen": "Sett siden", "modal_lowest": "Laveste pris hittil",
+        "shop_disclaimer": "Priser og opptjening hentes fra SAS EuroBonus Shop. Gavekort selges i flere valører — opptjeningen vises som en maksverdi fordi valørene krever innlogging.",
+        "shop_login_note": "Krever innlogging på SAS EuroBonus Shop for kjøp.",
     },
 }
 
@@ -574,7 +657,78 @@ def prepare_everyday_dataset(country_code):
     }
 
 
-def render_html(online_datasets, everyday_datasets):
+# === Shop data layer ===
+# Reads per-region JSON produced by scrape_shop.py. Two collections per region
+# (giftcards, deals) are merged into a single list carrying a `coll` field, so
+# the frontend can filter with chips rather than juggling two datasets.
+
+
+def load_shop_collection(country_code, collection):
+    directory = SHOP_DIR_FOR_CODE.get(country_code, country_code.lower())
+    path = SHOP_DATA_DIR / directory / f"{collection}.json"
+    if not path.exists():
+        return {"items": [], "updated": None}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {"items": [], "updated": None}
+
+
+def _strip_prefix(value, prefix):
+    v = (value or "").strip()
+    if v.startswith(prefix):
+        return v[len(prefix):]
+    return v
+
+
+def prepare_shop_dataset(country_code):
+    items = []
+    updated = None
+    currency = ""
+    counts = {"giftcards": 0, "deals": 0}
+
+    for collection in ("giftcards", "deals"):
+        raw = load_shop_collection(country_code, collection)
+        if raw.get("updated"):
+            # Both collections are written in the same run; either timestamp
+            # is representative, so keep the later one.
+            if updated is None or raw["updated"] > updated:
+                updated = raw["updated"]
+        currency = raw.get("currency") or currency
+
+        for it in raw.get("items", []):
+            status = it.get("status") or "active"
+            if status == "active":
+                counts[collection] += 1
+            items.append({
+                "uuid": it.get("uuid"),
+                "name": it.get("name") or "",
+                "brand": it.get("brand") or "",
+                "coll": collection,
+                "path": _strip_prefix(it.get("url"), SHOP_URL_PREFIX),
+                "img": _strip_prefix(it.get("image"), SHOP_IMG_PREFIX),
+                "points": it.get("points_price"),
+                "cash": it.get("cash_price"),
+                "unit": it.get("cash_unit") or "",
+                "max_earn": it.get("max_earn_points"),
+                "rate": it.get("points_per_100"),
+                "low": it.get("lowest_points_price"),
+                "first_seen": it.get("first_seen"),
+                "status": status,
+                "gone_since": it.get("gone_since"),
+            })
+
+    items.sort(key=lambda x: (x["name"] or "").lower())
+    return {
+        "shops": items,
+        "giftcard_count": counts["giftcards"],
+        "deal_count": counts["deals"],
+        "currency": currency,
+        "updated": updated,
+    }
+
+
+def render_html(online_datasets, everyday_datasets, shop_datasets):
     """Generate the full single-page HTML with both datasets embedded.
 
     Pre-renders content for the default country/language directly into the
@@ -628,16 +782,21 @@ def render_html(online_datasets, everyday_datasets):
     payload = {
         "datasets": json.dumps(online_datasets, ensure_ascii=False),
         "everyday_datasets": json.dumps(everyday_datasets, ensure_ascii=False),
+        "shop_datasets": json.dumps(shop_datasets, ensure_ascii=False),
         "strings": json.dumps(STRINGS, ensure_ascii=False),
         "countries": json.dumps(COUNTRIES, ensure_ascii=False),
         "everyday_countries": json.dumps(EVERYDAY_COUNTRIES, ensure_ascii=False),
+        "shop_countries": json.dumps(SHOP_COUNTRIES, ensure_ascii=False),
         "everyday_categories": json.dumps(EVERYDAY_CATEGORIES, ensure_ascii=False),
+        "shop_url_prefix": SHOP_URL_PREFIX,
+        "shop_img_prefix": SHOP_IMG_PREFIX,
         "default_country": default_country,
         "default_lang": default_lang,
         "default_jumper": jumper_letters,
         "default_meta_text": meta_text,
         "default_tab_online": sv["tab_online"],
         "default_tab_everyday": sv["tab_everyday"],
+        "default_tab_shop": sv["tab_shop"],
         "default_search_placeholder": sv["search_placeholder"],
         "cf_token": CLOUDFLARE_TOKEN,
     }
@@ -816,6 +975,23 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
 .sas-modal-secondary {{ flex: 1; background: transparent; color: var(--text); padding: 13px; border: 0.5px solid var(--border-strong); border-radius: 10px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; text-align: center; font-family: inherit; }}
 .sas-modal-secondary:hover {{ background: var(--accent-bg); color: var(--accent); border-color: var(--accent); }}
 
+/* === Shop tab === */
+.sas-tab-pill {{ min-width: 210px; }}
+.sas-card-shop {{ min-height: 260px; gap: 10px; }}
+.sas-shop-thumb {{ width: 100%; aspect-ratio: 1 / 1; border-radius: 10px; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }}
+html[data-theme="dark"] .sas-shop-thumb {{ background: #f2f2f2; }}
+.sas-shop-thumb img {{ width: 100%; height: 100%; object-fit: contain; padding: 8px; }}
+.sas-card-shop .sas-card-name {{ white-space: normal; padding-right: 0; font-size: 15px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }}
+.sas-shop-brand {{ font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); min-height: 14px; }}
+.sas-shop-price-row {{ display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }}
+.sas-shop-points {{ font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 20px; font-weight: 500; letter-spacing: -0.02em; line-height: 1; }}
+.sas-shop-cash {{ font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--text-faint); }}
+.sas-shop-earn {{ display: inline-block; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px; padding: 2px 8px; background: var(--accent-bg); color: var(--accent); border-radius: 999px; }}
+.sas-shop-drop {{ font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 11px; color: var(--warn); }}
+.sas-modal-thumb {{ width: 100%; max-height: 220px; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 12px; margin-bottom: 16px; overflow: hidden; }}
+html[data-theme="dark"] .sas-modal-thumb {{ background: #f2f2f2; }}
+.sas-modal-thumb img {{ max-width: 100%; max-height: 220px; object-fit: contain; padding: 12px; }}
+
 @media (max-width: 640px) {{
   body {{ padding: 0 0 48px; }}
   .sas-container {{ padding: 0 14px; }}
@@ -842,6 +1018,7 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
           <div class="sas-tab-pill" role="tablist">
             <button class="sas-tab-btn active" id="tab-online" data-tab="online" role="tab">{default_tab_online}</button>
             <button class="sas-tab-btn" id="tab-everyday" data-tab="everyday" role="tab">{default_tab_everyday}</button>
+            <button class="sas-tab-btn" id="tab-shop" data-tab="shop" role="tab">{default_tab_shop}</button>
           </div>
           <div class="sas-meta" id="meta-text">{default_meta_text}</div>
         </div>
@@ -898,6 +1075,8 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
 <script id="sas-strings" type="application/json">{strings}</script>
 <script id="sas-countries" type="application/json">{countries}</script>
 <script id="sas-everyday-countries" type="application/json">{everyday_countries}</script>
+<script id="sas-shop-data" type="application/json">{shop_datasets}</script>
+<script id="sas-shop-countries" type="application/json">{shop_countries}</script>
 <script id="sas-everyday-categories" type="application/json">{everyday_categories}</script>
 
 <script>
@@ -907,23 +1086,36 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
   var STRINGS = JSON.parse(document.getElementById('sas-strings').textContent);
   var COUNTRIES = JSON.parse(document.getElementById('sas-countries').textContent);
   var EVERYDAY_COUNTRIES = JSON.parse(document.getElementById('sas-everyday-countries').textContent);
+  var SHOP_DATA = JSON.parse(document.getElementById('sas-shop-data').textContent);
+  var SHOP_COUNTRIES = JSON.parse(document.getElementById('sas-shop-countries').textContent);
+  var SHOP_URL_PREFIX = '{shop_url_prefix}';
+  var SHOP_IMG_PREFIX = '{shop_img_prefix}';
   var EVERYDAY_CATEGORIES = JSON.parse(document.getElementById('sas-everyday-categories').textContent);
   var DEFAULT_COUNTRY = '{default_country}';
   var DEFAULT_LANG = '{default_lang}';
 
   var params = new URLSearchParams(window.location.search);
-  var tab = (params.get('t') === 'everyday') ? 'everyday' : 'online';
+  var tabParam = params.get('t');
+  var tab = (tabParam === 'everyday' || tabParam === 'shop') ? tabParam : 'online';
   var country = (params.get('c') || DEFAULT_COUNTRY).toUpperCase();
   var lang = params.get('l') || DEFAULT_LANG;
 
-  function activeCountries() {{ return tab === 'everyday' ? EVERYDAY_COUNTRIES : COUNTRIES; }}
-  function activeData() {{ return tab === 'everyday' ? EVERYDAY_DATA : DATA; }}
+  function activeCountries() {{
+    if (tab === 'everyday') return EVERYDAY_COUNTRIES;
+    if (tab === 'shop') return SHOP_COUNTRIES;
+    return COUNTRIES;
+  }}
+  function activeData() {{
+    if (tab === 'everyday') return EVERYDAY_DATA;
+    if (tab === 'shop') return SHOP_DATA;
+    return DATA;
+  }}
 
   var countryDef = activeCountries().find(function(c) {{ return c.code === country; }}) || activeCountries()[0];
   country = countryDef.code;
   if (countryDef.languages.indexOf(lang) === -1) lang = countryDef.local_lang;
 
-  var state = {{ view: 'all', category: 'all', query: '', sort: 'az', mode: 'all', sortEveryday: 'az', nearMe: false, userPos: null }};
+  var state = {{ view: 'all', category: 'all', query: '', sort: 'az', mode: 'all', sortEveryday: 'az', nearMe: false, userPos: null, shopColl: 'all', sortShop: 'az' }};
   var shopsByUuid = {{}};
 
   var root = document.documentElement;
@@ -1582,14 +1774,262 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
     renderEverydayGrid();
   }}
 
+  // === Shop rendering ===
+  function shopNum(n) {{
+    if (n == null) return '';
+    return String(n).replace(/\B(?=(\d{{3}})+(?!\d))/g, '\u00a0');
+  }}
+
+  function shopEarnLabel(item) {{
+    // An exact rate is only derivable for single-SKU items. Gift cards sold in
+    // several denominations expose a maximum instead, which is not a rate.
+    if (item.rate != null) return t('shop_earn_rate') + ' ' + item.rate + ' ' + t('shop_per_100');
+    if (item.max_earn != null) return t('shop_earn_up_to') + ' ' + shopNum(item.max_earn) + ' ' + t('shop_points_unit');
+    return '';
+  }}
+
+  function shopCardHTML(item) {{
+    var div = document.createElement('div');
+    var isGone = item.status === 'gone';
+    div.className = 'sas-card sas-card-shop' + (isGone ? ' sas-card-gone' : '');
+    div.dataset.uuid = item.uuid;
+    div.dataset.letter = (item.name || '#').charAt(0).toUpperCase();
+
+    var thumb = item.img
+      ? '<div class="sas-shop-thumb"><img src="' + escapeHtml(SHOP_IMG_PREFIX + item.img) + '" alt="" loading="lazy"></div>'
+      : '<div class="sas-shop-thumb"></div>';
+
+    var earn = shopEarnLabel(item);
+    var earnHTML = earn ? '<span class="sas-shop-earn">' + escapeHtml(earn) + '</span>' : '';
+
+    // Only surface a drop when the current price is above the recorded low.
+    var dropHTML = '';
+    if (!isGone && item.low != null && item.points != null && item.points > item.low) {{
+      dropHTML = '<span class="sas-shop-drop">' + escapeHtml(t('modal_lowest')) + ': ' + shopNum(item.low) + '</span>';
+    }}
+
+    var priceHTML = isGone
+      ? '<div class="sas-shop-price-row"><span class="sas-shop-cash">' + escapeHtml(t('gone_since')) + ' ' + escapeHtml(item.gone_since || '') + '</span></div>'
+      : '<div class="sas-shop-price-row"><span class="sas-shop-points">' + shopNum(item.points) + '</span>' +
+        '<span class="sas-shop-cash">' + escapeHtml(t('shop_points_unit')) + '</span></div>' +
+        '<div class="sas-shop-price-row"><span class="sas-shop-cash">' + escapeHtml(t('shop_or')) + ' ' +
+        shopNum(item.cash) + ' ' + escapeHtml(item.unit || '') + '</span></div>';
+
+    div.innerHTML =
+      thumb +
+      '<div class="sas-shop-brand">' + escapeHtml(item.brand || '') + '</div>' +
+      '<div class="sas-card-name">' + escapeHtml(item.name) + '</div>' +
+      priceHTML +
+      (earnHTML || dropHTML ? '<div class="sas-cards-row">' + earnHTML + dropHTML + '</div>' : '');
+    return div;
+  }}
+
+  function openShopModal(item) {{
+    var rows = [];
+    if (item.points != null) {{
+      rows.push('<div class="sas-modal-stat-row"><span>' + escapeHtml(t('modal_points_price')) + '</span><strong>' + shopNum(item.points) + ' ' + escapeHtml(t('shop_points_unit')) + '</strong></div>');
+    }}
+    if (item.cash != null) {{
+      rows.push('<div class="sas-modal-stat-row"><span>' + escapeHtml(t('modal_cash_price')) + '</span><strong>' + shopNum(item.cash) + ' ' + escapeHtml(item.unit || '') + '</strong></div>');
+    }}
+    if (item.rate != null) {{
+      rows.push('<div class="sas-modal-stat-row"><span>' + escapeHtml(t('modal_earn_rate')) + '</span><strong>' + item.rate + ' ' + escapeHtml(t('shop_per_100')) + '</strong></div>');
+    }} else if (item.max_earn != null) {{
+      rows.push('<div class="sas-modal-stat-row"><span>' + escapeHtml(t('modal_max_earn')) + '</span><strong>' + shopNum(item.max_earn) + ' ' + escapeHtml(t('shop_points_unit')) + '</strong></div>');
+    }}
+    if (item.low != null && item.points != null && item.points > item.low) {{
+      rows.push('<div class="sas-modal-stat-row"><span>' + escapeHtml(t('modal_lowest')) + '</span><strong>' + shopNum(item.low) + ' ' + escapeHtml(t('shop_points_unit')) + '</strong></div>');
+    }}
+    if (item.first_seen) {{
+      rows.push('<div class="sas-modal-stat-row"><span>' + escapeHtml(t('modal_first_seen')) + '</span><strong>' + escapeHtml(item.first_seen) + '</strong></div>');
+    }}
+
+    var thumb = item.img
+      ? '<div class="sas-modal-thumb"><img src="' + escapeHtml(SHOP_IMG_PREFIX + item.img) + '" alt=""></div>'
+      : '';
+
+    modalBody.innerHTML =
+      thumb +
+      '<div class="sas-modal-eyebrow">' + escapeHtml(item.brand || '') + '</div>' +
+      '<h2 class="sas-modal-title">' + escapeHtml(item.name) + '</h2>' +
+      '<div class="sas-modal-stats">' + rows.join('') + '</div>' +
+      '<div class="sas-modal-disclaimer">' + escapeHtml(t('shop_disclaimer')) + '<br>' + escapeHtml(t('shop_login_note')) + '</div>';
+
+    var primary = document.getElementById('modal-shop-btn');
+    var secondary = document.getElementById('modal-directions-btn');
+    if (item.path) {{
+      primary.href = SHOP_URL_PREFIX + item.path;
+      primary.textContent = t('modal_open_shop');
+      primary.style.display = '';
+    }} else {{
+      primary.style.display = 'none';
+    }}
+    secondary.style.display = 'none';
+    document.getElementById('modal-close').textContent = t('modal_close');
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }}
+
+  function renderShopGrid() {{
+    var ds = getDataset();
+    var grid = document.getElementById('shop-grid');
+    var emptyState = document.getElementById('empty-state');
+    grid.innerHTML = '';
+
+    document.querySelectorAll('#view-filters .sas-chip').forEach(function(c) {{
+      c.classList.toggle('active', c.dataset.view === state.shopColl);
+    }});
+    document.getElementById('sort-select').disabled = state.shopColl === 'gone';
+
+    var filtered;
+    if (state.shopColl === 'gone') {{
+      filtered = ds.shops.filter(function(s) {{ return s.status === 'gone'; }});
+    }} else {{
+      filtered = ds.shops.filter(function(s) {{
+        if (s.status !== 'active') return false;
+        if (state.shopColl !== 'all' && s.coll !== state.shopColl) return false;
+        return true;
+      }});
+    }}
+
+    if (state.query) {{
+      filtered = filtered.filter(function(s) {{
+        return ((s.name || '') + ' ' + (s.brand || '')).toLowerCase().indexOf(state.query) !== -1;
+      }});
+    }}
+
+    if (state.shopColl === 'gone') {{
+      filtered.sort(function(a, b) {{ return (b.gone_since || '').localeCompare(a.gone_since || ''); }});
+    }} else if (state.sortShop === 'za') {{
+      filtered.sort(function(a, b) {{ return (b.name || '').localeCompare(a.name || '', lang); }});
+    }} else if (state.sortShop === 'points_asc') {{
+      filtered.sort(function(a, b) {{ return (a.points || 0) - (b.points || 0); }});
+    }} else if (state.sortShop === 'points_desc') {{
+      filtered.sort(function(a, b) {{ return (b.points || 0) - (a.points || 0); }});
+    }} else if (state.sortShop === 'recent') {{
+      filtered.sort(function(a, b) {{ return (b.first_seen || '').localeCompare(a.first_seen || ''); }});
+    }} else {{
+      filtered.sort(function(a, b) {{ return (a.name || '').localeCompare(b.name || '', lang); }});
+    }}
+
+    if (!filtered.length) {{
+      emptyState.classList.remove('sas-hidden');
+      emptyState.textContent = state.shopColl === 'gone' ? t('no_gone_shop') : t('no_shops_shop');
+    }} else {{
+      emptyState.classList.add('sas-hidden');
+    }}
+
+    var frag = document.createDocumentFragment();
+    filtered.forEach(function(s) {{ frag.appendChild(shopCardHTML(s)); }});
+    grid.appendChild(frag);
+
+    renderShopJumper(filtered);
+  }}
+
+  function renderShopJumper(items) {{
+    var jumper = document.getElementById('jumper');
+    jumper.innerHTML = '';
+    if (!items.length) return;
+    if (state.shopColl === 'gone') return;
+    if (state.sortShop !== 'az' && state.sortShop !== 'za') return;
+
+    var letters = {{}};
+    items.forEach(function(s) {{
+      var ltr = (s.name || '#').charAt(0).toUpperCase();
+      if (/[A-ZÅÄÖÆØ0-9]/.test(ltr)) letters[ltr] = true;
+    }});
+    var sorted = Object.keys(letters).sort();
+    if (state.sortShop === 'za') sorted.reverse();
+
+    sorted.forEach(function(ltr) {{
+      var s = document.createElement('span');
+      s.className = 'sas-jumper-letter';
+      s.dataset.letter = ltr;
+      s.textContent = ltr;
+      s.addEventListener('click', function() {{
+        document.querySelectorAll('#jumper .sas-jumper-letter').forEach(function(x) {{ x.classList.remove('active'); }});
+        s.classList.add('active');
+        var cards = document.querySelectorAll('#shop-grid .sas-card');
+        for (var i = 0; i < cards.length; i++) {{
+          if ((cards[i].dataset.letter || '').toUpperCase() === ltr) {{
+            cards[i].scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+            break;
+          }}
+        }}
+      }});
+      jumper.appendChild(s);
+    }});
+  }}
+
+  function renderShop() {{
+    var ds = getDataset();
+    document.documentElement.lang = lang;
+    document.getElementById('title-text').textContent = t('title');
+    setToggleLabel();
+
+    shopsByUuid = {{}};
+    ds.shops.forEach(function(s) {{ shopsByUuid[s.uuid] = s; }});
+
+    var activeCount = ds.shops.filter(function(s) {{ return s.status === 'active'; }}).length;
+    var goneCount = ds.shops.length - activeCount;
+
+    document.getElementById('meta-text').textContent = t('meta_template_shop')
+      .replace('{{items}}', activeCount)
+      .replace('{{giftcards}}', ds.giftcard_count || 0)
+      .replace('{{deals}}', ds.deal_count || 0)
+      .replace('{{ts}}', fmtTs(ds.updated));
+    document.getElementById('search-box').placeholder = t('search_placeholder_shop');
+    document.getElementById('footer-unaffiliated').textContent = t('footer_unaffiliated');
+    document.getElementById('footer-about').textContent = t('footer_about');
+    document.getElementById('footer-privacy').textContent = t('footer_privacy');
+
+    document.getElementById('category-select').style.display = 'none';
+
+    var sortSel = document.getElementById('sort-select');
+    sortSel.style.display = '';
+    sortSel.innerHTML = '';
+    [
+      ['az', 'sort_az'], ['za', 'sort_za'],
+      ['points_asc', 'sort_points_asc'], ['points_desc', 'sort_points_desc'],
+      ['recent', 'sort_recent'],
+    ].forEach(function(pair) {{
+      var o = document.createElement('option');
+      o.value = pair[0]; o.textContent = t(pair[1]);
+      sortSel.appendChild(o);
+    }});
+    sortSel.value = state.sortShop;
+
+    var viewFilters = document.getElementById('view-filters');
+    viewFilters.innerHTML = '';
+    var chips = [
+      ['all', t('filter_all')],
+      ['giftcards', t('filter_giftcards') + ' (' + (ds.giftcard_count || 0) + ')'],
+      ['deals', t('filter_deals') + ' (' + (ds.deal_count || 0) + ')'],
+    ];
+    if (goneCount) chips.push(['gone', t('filter_gone') + ' (' + goneCount + ')']);
+    chips.forEach(function(pair) {{
+      var b = document.createElement('button');
+      b.className = 'sas-chip' + (state.shopColl === pair[0] ? ' active' : '');
+      b.dataset.view = pair[0];
+      b.textContent = pair[1];
+      b.addEventListener('click', function() {{ state.shopColl = pair[0]; renderShopGrid(); }});
+      viewFilters.appendChild(b);
+    }});
+
+    renderShopGrid();
+  }}
+
   function render() {{
     // Update tab pill state every render
     document.getElementById('tab-online').classList.toggle('active', tab === 'online');
     document.getElementById('tab-everyday').classList.toggle('active', tab === 'everyday');
+    document.getElementById('tab-shop').classList.toggle('active', tab === 'shop');
     document.getElementById('tab-online').textContent = t('tab_online');
     document.getElementById('tab-everyday').textContent = t('tab_everyday');
+    document.getElementById('tab-shop').textContent = t('tab_shop');
 
     if (tab === 'everyday') {{ renderEveryday(); return; }}
+    if (tab === 'shop') {{ renderShop(); return; }}
 
     // Restore online-only controls if user came back from everyday
     document.getElementById('sort-select').style.display = '';
@@ -1676,9 +2116,11 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
       return;
     }}
     var card = e.target.closest('.sas-card[data-uuid]');
-    if (card && !card.classList.contains('sas-card-gone')) {{
+    if (card) {{
       var sh = shopsByUuid[card.dataset.uuid];
       if (!sh) return;
+      if (tab === 'shop') {{ openShopModal(sh); return; }}
+      if (card.classList.contains('sas-card-gone')) return;
       if (tab === 'everyday') openEverydayModal(sh);
       else openModal(sh);
     }}
@@ -1720,7 +2162,7 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
     var url = new URL(window.location);
     url.searchParams.set('c', country);
     url.searchParams.set('l', lang);
-    if (tab === 'everyday') url.searchParams.set('t', 'everyday');
+    if (tab === 'everyday' || tab === 'shop') url.searchParams.set('t', tab);
     else url.searchParams.delete('t');
     window.history.replaceState({{}}, '', url);
   }}
@@ -1735,6 +2177,8 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
     state.query = '';
     state.sort = 'az';
     state.sortEveryday = 'az';
+    state.shopColl = 'all';
+    state.sortShop = 'az';
     state.nearMe = false;
     state.userPos = null;
     hideNearError();
@@ -1748,6 +2192,7 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
   }}
   document.getElementById('tab-online').addEventListener('click', function() {{ switchTab('online'); }});
   document.getElementById('tab-everyday').addEventListener('click', function() {{ switchTab('everyday'); }});
+  document.getElementById('tab-shop').addEventListener('click', function() {{ switchTab('shop'); }});
 
   countrySel.addEventListener('change', function() {{
     country = countrySel.value;
@@ -1773,12 +2218,16 @@ html[data-theme="dark"] .sas-logo-wrap {{ background: #9ca3af; }}
   document.getElementById('search-box').addEventListener('input', function(e) {{
     state.query = e.target.value.trim().toLowerCase();
     if (tab === 'everyday') renderEverydayGrid();
+    else if (tab === 'shop') renderShopGrid();
     else renderGrid();
   }});
   document.getElementById('sort-select').addEventListener('change', function(e) {{
     if (tab === 'everyday') {{
       state.sortEveryday = e.target.value;
       renderEverydayGrid();
+    }} else if (tab === 'shop') {{
+      state.sortShop = e.target.value;
+      renderShopGrid();
     }} else {{
       state.sort = e.target.value;
       renderGrid();
@@ -1868,6 +2317,17 @@ def main():
     everyday_total = sum(len(d["shops"]) for d in everyday_datasets.values())
     print(f"\nLoaded everyday data: {everyday_total} shops across {len(everyday_datasets)} countries")
 
+    # Load shop datasets (scraped + saved weekly by scrape_shop.py).
+    shop_datasets = {}
+    for country in SHOP_COUNTRIES:
+        code = country["code"]
+        shop_datasets[code] = prepare_shop_dataset(code)
+    shop_total = sum(
+        sum(1 for i in d["shops"] if i.get("status") == "active")
+        for d in shop_datasets.values()
+    )
+    print(f"Loaded shop data: {shop_total} active items across {len(shop_datasets)} regions")
+
     if "SE" not in datasets:
         print(
             "  Default country SE missing after fetch failures; "
@@ -1877,8 +2337,8 @@ def main():
         sys.exit(1)
 
     HTML_FILE.parent.mkdir(parents=True, exist_ok=True)
-    HTML_FILE.write_text(render_html(datasets, everyday_datasets), encoding="utf-8")
-    print(f"\nWrote {HTML_FILE} with {len(datasets)} online + {len(everyday_datasets)} everyday country datasets")
+    HTML_FILE.write_text(render_html(datasets, everyday_datasets, shop_datasets), encoding="utf-8")
+    print(f"\nWrote {HTML_FILE} with {len(datasets)} online + {len(everyday_datasets)} everyday + {len(shop_datasets)} shop country datasets")
 
     if not all_succeeded:
         sys.exit(1)
