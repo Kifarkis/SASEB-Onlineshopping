@@ -1,0 +1,29 @@
+name: Scrape shop (manual test)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Run shop scraper
+        run: python scraper/scrape_shop.py
+
+      - name: Upload data as artifact for inspection
+        uses: actions/upload-artifact@v4
+        with:
+          name: shop-data
+          path: data/shop/
+          retention-days: 7
