@@ -983,6 +983,7 @@ html[data-theme="dark"] .sas-shop-thumb {{ background: #f2f2f2; }}
 .sas-shop-thumb img {{ width: 100%; height: 100%; object-fit: contain; padding: 8px; }}
 .sas-card-shop .sas-card-name {{ white-space: normal; padding-right: 0; font-size: 15px; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }}
 .sas-shop-brand {{ font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); min-height: 14px; }}
+.sas-shop-foot {{ margin-top: auto; display: flex; flex-direction: column; gap: 4px; }}
 .sas-shop-price-row {{ display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }}
 .sas-shop-points {{ font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 20px; font-weight: 500; letter-spacing: -0.02em; line-height: 1; }}
 .sas-shop-cash {{ font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 12px; color: var(--text-faint); }}
@@ -1780,6 +1781,13 @@ html[data-theme="dark"] .sas-modal-thumb {{ background: #f2f2f2; }}
     return String(n).replace(/\B(?=(\d{{3}})+(?!\d))/g, '\u00a0');
   }}
 
+  // Names beginning with a digit ("2-pack Handdukar") all bucket under '#'
+  // rather than each digit getting its own jumper entry before A.
+  function shopLetter(name) {{
+    var c = (name || '#').charAt(0).toUpperCase();
+    return /[0-9]/.test(c) ? '#' : c;
+  }}
+
   function shopEarnLabel(item) {{
     // An exact rate is only derivable for single-SKU items. Gift cards sold in
     // several denominations expose a maximum instead, which is not a rate.
@@ -1793,7 +1801,7 @@ html[data-theme="dark"] .sas-modal-thumb {{ background: #f2f2f2; }}
     var isGone = item.status === 'gone';
     div.className = 'sas-card sas-card-shop' + (isGone ? ' sas-card-gone' : '');
     div.dataset.uuid = item.uuid;
-    div.dataset.letter = (item.name || '#').charAt(0).toUpperCase();
+    div.dataset.letter = shopLetter(item.name);
 
     var thumb = item.img
       ? '<div class="sas-shop-thumb"><img src="' + escapeHtml(SHOP_IMG_PREFIX + item.img) + '" alt="" loading="lazy"></div>'
@@ -1819,8 +1827,9 @@ html[data-theme="dark"] .sas-modal-thumb {{ background: #f2f2f2; }}
       thumb +
       '<div class="sas-shop-brand">' + escapeHtml(item.brand || '') + '</div>' +
       '<div class="sas-card-name">' + escapeHtml(item.name) + '</div>' +
-      priceHTML +
-      (earnHTML || dropHTML ? '<div class="sas-cards-row">' + earnHTML + dropHTML + '</div>' : '');
+      '<div class="sas-shop-foot">' + priceHTML +
+      (earnHTML || dropHTML ? '<div class="sas-cards-row">' + earnHTML + dropHTML + '</div>' : '') +
+      '</div>';
     return div;
   }}
 
@@ -1935,8 +1944,8 @@ html[data-theme="dark"] .sas-modal-thumb {{ background: #f2f2f2; }}
 
     var letters = {{}};
     items.forEach(function(s) {{
-      var ltr = (s.name || '#').charAt(0).toUpperCase();
-      if (/[A-ZÅÄÖÆØ0-9]/.test(ltr)) letters[ltr] = true;
+      var ltr = shopLetter(s.name);
+      if (/[A-ZÅÄÖÆØ#]/.test(ltr)) letters[ltr] = true;
     }});
     var sorted = Object.keys(letters).sort();
     if (state.sortShop === 'za') sorted.reverse();
