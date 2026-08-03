@@ -2,7 +2,7 @@
   "region": "se",
   "collection": "giftcards",
   "currency": "SEK",
-  "updated": "2026-08-02T11:17:02.474242+00:00",
+  "updated": "2026-08-03T08:38:30.291166+00:00",
   "item_count": 150,
   "items": [
     {
@@ -2855,9 +2855,9 @@
       "points_price": 3220,
       "cash_price": 100.0,
       "cash_unit": "kr",
-      "accrual_points": 150,
+      "accrual_points": 100,
       "accrual_is_max": true,
-      "max_earn_points": 150,
+      "max_earn_points": 100,
       "points_per_100": null,
       "ore_per_point": 3.106,
       "first_seen": "2026-08-02",
