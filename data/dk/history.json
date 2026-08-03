@@ -1593,5 +1593,61 @@
     "points_channel": 400,
     "started": "2026-07-01",
     "uuid": "01896309-3382-7064-8492-7a9697ea0367"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Agoda",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-07-27",
+    "uuid": "018e3812-d948-725c-b796-8c3e17bf12d4"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "BetterFeast",
+    "points_campaign": 4000,
+    "points_channel": 800,
+    "started": "2026-07-27",
+    "uuid": "01896310-2e87-724b-8e38-231cdf71b372"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Björn Borg",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "01896308-503c-73a5-9ec8-382fd13dc580"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Ellos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "0189630a-d108-712a-8856-644fdd60eedb"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Gents",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "0189630d-2220-726e-b99d-9a1e16f855da"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Outnorth",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "01896307-cb70-7078-96e6-9379b454803c"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Smartbox",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "0195adec-bd11-720f-9e61-63f30d372750"
   }
 ]

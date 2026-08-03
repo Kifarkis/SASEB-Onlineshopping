@@ -3384,5 +3384,189 @@
     "points_channel": 60,
     "started": "2026-07-09",
     "uuid": "018abc11-d0cc-728d-8d49-a2b6817b5660"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Agoda",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-07-27",
+    "uuid": "018e3812-d948-725c-b796-8c3e17bf12d4"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Agood Company",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-07-27",
+    "uuid": "01896311-c762-72e7-8110-9489cd35dfb2"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Björn Borg",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "01896308-503c-73a5-9ec8-382fd13dc580"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "BookBeat",
+    "points_campaign": 1000,
+    "points_channel": 200,
+    "started": "2026-07-27",
+    "uuid": "0189630d-af8b-717b-b0cb-1f385bd015f5"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Bookie",
+    "points_campaign": 1500,
+    "points_channel": 300,
+    "started": "2026-07-27",
+    "uuid": "01896310-cafc-73dc-ad64-15f5336218a2"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Cocopanda",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "0189630c-1fb9-718e-bd87-f0cd7433e8c5"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "E.ON",
+    "points_campaign": 8000,
+    "points_channel": 1600,
+    "started": "2026-07-27",
+    "uuid": "019c1e6d-75f2-70c5-b79f-99971e427f75"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Ellos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "0189630a-d108-712a-8856-644fdd60eedb"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "ELON",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-07-27",
+    "uuid": "0189630d-2d48-7330-b48c-4658f8ebb237"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Evify",
+    "points_campaign": 3000,
+    "points_channel": 600,
+    "started": "2026-07-27",
+    "uuid": "01896312-b0fa-70cc-9292-50e7504899f2"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Gents",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "0189630d-2220-726e-b99d-9a1e16f855da"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "HelloFresh",
+    "points_campaign": 3000,
+    "points_channel": 600,
+    "started": "2026-07-27",
+    "uuid": "0189630e-0077-7365-979b-baa2f08a1bc7"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "HP Online Store",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-07-27",
+    "uuid": "01896307-c470-7051-bef2-606292482eae"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Hudoteket",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-07-27",
+    "uuid": "01896309-aa2d-71e5-9c48-248f03c79b6f"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Hulténs",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "0189630a-c6f7-7291-8c71-3010f6b9bab2"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "InkClub",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-07-27",
+    "uuid": "01896308-9acc-7096-9b2a-e74389673a4b"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Kjell & Company",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-07-27",
+    "uuid": "0189630d-b8f2-71cc-9d1f-3070ccc4c33a"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "MELIMELI",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-07-27",
+    "uuid": "019242b2-dd1b-7245-aa07-a6a671eb9271"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Outnorth",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "01896307-cb70-7078-96e6-9379b454803c"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Parfym.se",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-07-27",
+    "uuid": "01896308-8756-70e3-b42a-66850f7b1673"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Petson djurförsäkring",
+    "points_campaign": 4000,
+    "points_channel": 800,
+    "started": "2026-07-27",
+    "uuid": "0192ddc6-4608-72b2-8929-5403ce7b51ad"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "Smartbox",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "0195adec-bd11-720f-9e61-63f30d372750"
+  },
+  {
+    "ended": "2026-08-03",
+    "name": "VetZoo",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-07-27",
+    "uuid": "01896309-eb6b-71bc-b887-5602e27dd701"
   }
 ]
