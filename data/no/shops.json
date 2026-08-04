@@ -3718,11 +3718,12 @@
     "current_points_channel": 5,
     "description": "<p>Viking Outdoor Footwear er et varemerke med lange tradisjoner. Vi streber etter innovasjon i alle ledd mens vi jobber for å tilby den beste teknologien tilgjengelig til våre kunder. Uansett om det er sko til barnehage eller tursko, vil vi stå mot vær og terreng ved å tilby våre slitesterke og innovative sko i årene som kommer. Viking ble etablert i 1920 og er et av Norges eldste varemerker.</p>",
     "first_seen": "2026-04-24",
+    "gone_since": "2026-08-04",
     "last_seen": "2026-08-04",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/Viking_footwear-1689584269.jpg",
     "name": "Viking Footwear",
     "slug": "viking-footwear",
-    "status": "active",
+    "status": "gone",
     "uuid": "01896311-f8a9-73a3-8d80-002e5ddc2d18"
   },
   "01896312-2e1b-73b3-ac23-db4b5803a8ad": {
