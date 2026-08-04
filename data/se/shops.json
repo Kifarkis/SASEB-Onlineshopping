@@ -10114,5 +10114,31 @@
     "slug": "didriksons",
     "status": "active",
     "uuid": "019fcccd-7981-73f3-bcce-4925466241ab"
+  },
+  "019fcd29-9ce6-7071-9fba-2e9c939d55fb": {
+    "active_campaign": {
+      "ends_date": "2026-08-16",
+      "points_campaign": 100,
+      "points_channel": 20,
+      "started": "2026-08-04"
+    },
+    "all_time_high_date": "2026-08-04",
+    "all_time_high_points": 100,
+    "campaign_ends_human": "om 1 vecka",
+    "campaign_ends_human_en": "in 1 week",
+    "category_id": 8,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 50,
+    "current_points_campaign": 100,
+    "current_points_channel": 20,
+    "description": "<div>GLOWiD är en ledande svensk återförsäljare av noggrant utvald koreansk hudvård och K-beauty. Sortimentet omfattar effektiva, skonsamma och cruelty-free produkter från välkända varumärken för alla hudtyper. Här hittar du serum, rengöring, krämer och solskydd som hjälper dig att uppnå en återfuktad, jämn och strålande hud.</div>",
+    "first_seen": "2026-08-04",
+    "last_seen": "2026-08-04",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/GHYbXOO2p7lbEYp0hY9X1bOrRf8qAOSOMszmlHbV.png",
+    "name": "GLOWiD",
+    "slug": "glowid",
+    "status": "active",
+    "uuid": "019fcd29-9ce6-7071-9fba-2e9c939d55fb"
   }
 }

@@ -3229,17 +3229,22 @@
     "uuid": "0189630f-9e85-716d-a295-27d961296df7"
   },
   "0189630f-a5eb-73e6-9be7-41a7fb921f47": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "09.08.2026",
+      "points_campaign": 75,
+      "points_channel": 15,
+      "started": "2026-08-04"
+    },
     "all_time_high_date": "2026-04-24",
     "all_time_high_points": 75,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "campaign_ends_human": "om 4 dage",
+    "campaign_ends_human_en": "in 4 days",
     "category_id": 8,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 25,
-    "current_points_campaign": 0,
-    "current_points_channel": 5,
+    "current_points_campaign": 75,
+    "current_points_channel": 15,
     "description": "<p>Helsegrossisten sælger kosttilskud, vitaminer, mineraler, cremer, makeup, olier, fødevarer og alt andet godt inden for helsekost. Vi har exceptionel god service, hurtig levering og skarpe priser. Vi ønsker at vækste kraftigt. Vi har eksisteret siden 1999.</p>",
     "first_seen": "2026-04-24",
     "last_seen": "2026-08-04",
