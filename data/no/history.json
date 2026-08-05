@@ -1871,5 +1871,13 @@
     "points_channel": 15,
     "started": "2026-07-27",
     "uuid": "01896308-8756-70e3-b42a-66850f7b1673"
+  },
+  {
+    "ended": "2026-08-05",
+    "name": "SAMSUNG",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-07-28",
+    "uuid": "018f3367-2401-704c-900c-526d7eecfc51"
   }
 ]

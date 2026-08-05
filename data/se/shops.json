@@ -7165,22 +7165,17 @@
     "uuid": "018f1a02-02aa-7168-a462-2d6b693ab45c"
   },
   "018f3367-2401-704c-900c-526d7eecfc51": {
-    "active_campaign": {
-      "ends_date": "2026-08-08",
-      "points_campaign": 30,
-      "points_channel": 6,
-      "started": "2026-07-28"
-    },
+    "active_campaign": null,
     "all_time_high_date": "2026-06-09",
     "all_time_high_points": 30,
-    "campaign_ends_human": "om 2 dagar",
-    "campaign_ends_human_en": "in 2 days",
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
     "category_id": 4,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 15,
-    "current_points_campaign": 30,
-    "current_points_channel": 6,
+    "current_points_campaign": 0,
+    "current_points_channel": 3,
     "description": "<div>Välkommen till Samsung Sverige. Upptäck ett brett utbud av innovativ hemelektronik och teknikprodukter, inklusive smartphones, surfplattor, TV-apparater och mycket mer.&nbsp;<br><br>Som eurobonusmedlem får du tillgång till ett slutet universum hos Samsung där du kan hitta produkter med upp till 30 % rabatt året runt.<br><br>Priserna du ser är redan rabatterade och optimerade för dig som medlem och kan därför inte kombineras med erbjudanden från andra Samsung-plattformar.</div>",
     "first_seen": "2026-04-24",
     "last_seen": "2026-08-05",
