@@ -1778,16 +1778,21 @@
     "uuid": "0189630a-b22f-7137-9f61-fd561b8b2ef5"
   },
   "0189630a-b3f1-7132-b07f-16beb096de9f": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "2026-08-16",
+      "points_campaign": 50,
+      "points_channel": 10,
+      "started": "2026-08-05"
+    },
     "all_time_high_date": "2026-04-24",
     "all_time_high_points": 50,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "campaign_ends_human": "om 1 vecka",
+    "campaign_ends_human_en": "in 1 week",
     "category_id": 1,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 50,
-    "current_points_campaign": 0,
+    "current_points_campaign": 50,
     "current_points_channel": 10,
     "description": "<p>Hunkemöller är Europas största varumärke då det gäller underkläder. Butiken har ett enorm sortiment av BH:ar, underkläder, simkläder osv. Med elva butiker och en fräsch, Svensk, webbshop växer Hunkemöller hela tiden i Sverige.</p>",
     "first_seen": "2026-04-24",
