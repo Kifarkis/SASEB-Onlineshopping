@@ -10135,5 +10135,26 @@
     "slug": "glowid",
     "status": "active",
     "uuid": "019fcd29-9ce6-7071-9fba-2e9c939d55fb"
+  },
+  "019fd1f2-5004-733c-a626-096b7de81b2a": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-05",
+    "all_time_high_points": 25,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 9,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 25,
+    "current_points_campaign": 0,
+    "current_points_channel": 5,
+    "description": "<div>Snowdays erbjuder skidresor till populära destinationer i Alperna och Skandinavien med fokus på prisvärda paket och minnesvärda upplevelser. Resorna inkluderar bekväma transportalternativ, boende och möjlighet att boka liftkort samt skiduthyrning. Snowdays passar familjer, grupper och entusiaster som söker en smidig och välplanerad skidsemester.</div>",
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/NJMpv79L9k9JQ06FmNPaGL64Tu35s8sJIaPt4XvL.png",
+    "name": "Snowdays",
+    "slug": "snowdays",
+    "status": "active",
+    "uuid": "019fd1f2-5004-733c-a626-096b7de81b2a"
   }
 }

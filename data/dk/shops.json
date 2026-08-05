@@ -5070,6 +5070,27 @@
     "status": "active",
     "uuid": "01920f14-0f6c-7379-a96c-5e16e022892f"
   },
+  "0192dd9e-dd06-7289-9591-6d065b667294": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-05",
+    "all_time_high_points": 50,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 4,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 50,
+    "current_points_campaign": 0,
+    "current_points_channel": 10,
+    "description": "<div>iHero er en dansk webshop med et bredt udvalg af gadgets, elektronik og praktiske produkter til hjem, bil og fritid. Sortimentet omfatter blandt andet dashcams, overvågningskameraer, projektorer, robotstøvsugere, nødradioer, powerbanks og smarte hverdagsløsninger med fokus på kvalitet, hurtig levering fra Danmark og personlig kundeservice.</div>",
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/xPNj1lffGcVmXZfYb3hKQSSk4hd9TDh5Go9mbcND.jpg",
+    "name": "iHero",
+    "slug": "ihero",
+    "status": "active",
+    "uuid": "0192dd9e-dd06-7289-9591-6d065b667294"
+  },
   "0192e872-2c1c-719e-b17a-40069c2aef26": {
     "active_campaign": {
       "ends_date": "09.08.2026",
@@ -5693,6 +5714,27 @@
     "status": "active",
     "uuid": "019961ed-79cf-7064-a32c-f2061360b61b"
   },
+  "01998033-1f30-73cc-b240-b265ed686494": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-05",
+    "all_time_high_points": 25,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 3,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 25,
+    "current_points_campaign": 0,
+    "current_points_channel": 5,
+    "description": "<div>Legeakademiet.dk er Danmarks førende webshop for legetøj, der styrker børns udvikling gennem leg. Sortimentet er nøje udvalgt af fagfolk og spænder fra motorisk og sansemotorisk legetøj til kreative og naturvidenskabelige aktiviteter for børn i alle aldre.&nbsp;</div>",
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/x41ZYSV672NUz6h9JLewWEXAsVvJIcZ2PyEaO2bG.png",
+    "name": "Legeakademiet",
+    "slug": "legeakademiet",
+    "status": "active",
+    "uuid": "01998033-1f30-73cc-b240-b265ed686494"
+  },
   "0199b943-21ab-70fd-9417-c4e79b1b4446": {
     "active_campaign": null,
     "all_time_high_date": "2026-04-24",
@@ -6220,5 +6262,26 @@
     "slug": "glowie",
     "status": "active",
     "uuid": "019fd0ef-5139-71ef-b06b-b8d021e2505f"
+  },
+  "019fd1f2-5004-733c-a626-096b7de81b2a": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-05",
+    "all_time_high_points": 25,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 9,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 25,
+    "current_points_campaign": 0,
+    "current_points_channel": 5,
+    "description": "<div>Snowdays arrangerer skirejser til populære destinationer i Alperne og Skandinavien med fokus på gode oplevelser, fællesskab og attraktive priser. Rejserne omfatter transport, indkvartering og mulighed for liftkort samt skileje, og henvender sig til både familier, grupper, unge og erfarne skiløbere, der ønsker en komplet skiferieoplevelse.</div>",
+    "first_seen": "2026-08-05",
+    "last_seen": "2026-08-05",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/yeeQkxTFlegw1qWzyh9auVNAHNLiDya06taLlTII.png",
+    "name": "Snowdays",
+    "slug": "snowdays",
+    "status": "active",
+    "uuid": "019fd1f2-5004-733c-a626-096b7de81b2a"
   }
 }
