@@ -4261,8 +4261,8 @@
     },
     "all_time_high_date": "2026-06-09",
     "all_time_high_points": 30,
-    "campaign_ends_human": "om 9 timer",
-    "campaign_ends_human_en": "in 9 hours",
+    "campaign_ends_human": "om 3 timer",
+    "campaign_ends_human_en": "in 3 hours",
     "category_id": 4,
     "commission_type": "variable",
     "currency": "%",
@@ -5459,5 +5459,26 @@
     "slug": "babybanden",
     "status": "active",
     "uuid": "019fb246-096a-73ea-826f-90c50a2c9402"
+  },
+  "019fdc53-27e8-718c-96ec-7a21ea0cc9f2": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-07",
+    "all_time_high_points": 2500,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 12,
+    "commission_type": "fixed",
+    "currency": "NOK",
+    "current_points": 2500,
+    "current_points_campaign": 0,
+    "current_points_channel": 500,
+    "description": "<div>Trøndermobil tilbyder fleksible mobilabonnementer med Telenors landsdækkende 5G-net, fri tale, SMS og MMS, data rollover, WiFi-tale og ingen binding. Med fokus på lave priser, lokal kundeservice og inkluderet datasikkerhed får både private og familier en enkel, stabil og prisvenlig mobilløsning til hverdagen.&nbsp;<br><br><br></div><h1>Vilkår for denne partneren</h1><div>Denne kampanjen kan bare brukes en gang per Eurobonus-medlem, og gjelder kun nye kunder. Du må være kunde i minst 3 måneder for å tjene poeng.</div>",
+    "first_seen": "2026-08-07",
+    "last_seen": "2026-08-07",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/HafYwuXAc7A9r3mx1WosG7aiBSLgtMvZYi27jfsQ.png",
+    "name": "Trøndermobil",
+    "slug": "trondermobil",
+    "status": "active",
+    "uuid": "019fdc53-27e8-718c-96ec-7a21ea0cc9f2"
   }
 }
