@@ -3739,7 +3739,7 @@
     "current_points": 25,
     "current_points_campaign": 0,
     "current_points_channel": 5,
-    "description": "<p>Hvis du ikke allerede har stiftet bekendtskab med Dyson, kan vi kun anbefale, at du gør det. Vi er svært begejstrede for det engelske Dyson, der leverer støvsugere, stylingprodukter og meget andet. Her får du ikke bare en klassisk støvsuger. I stedet kan du glæde dig over innovativ teknologi, der tager brugeroplevelsen til helt nye højder.</p>",
+    "description": "<div>Hvis du ikke allerede har stiftet bekendtskab med Dyson, kan vi kun anbefale, at du gør det. Vi er svært begejstrede for det engelske Dyson, der leverer støvsugere, stylingprodukter og meget andet. Her får du ikke bare en klassisk støvsuger. I stedet kan du glæde dig over innovativ teknologi, der tager brugeroplevelsen til helt nye højder.<br><br></div><h1>Betingelser for denne partner</h1><div>Du kan ikke optjene point på tilbehør og reservedele.</div>",
     "first_seen": "2026-04-24",
     "last_seen": "2026-08-07",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/Dyson-1689584188.jpg",
@@ -4903,17 +4903,22 @@
     "uuid": "018f19a8-0f55-7106-88d2-86549ce57249"
   },
   "018f3367-2401-704c-900c-526d7eecfc51": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "08.08.2026",
+      "points_campaign": 30,
+      "points_channel": 6,
+      "started": "2026-08-07"
+    },
     "all_time_high_date": "2026-06-09",
     "all_time_high_points": 30,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "campaign_ends_human": "om 9 timer",
+    "campaign_ends_human_en": "in 9 hours",
     "category_id": 4,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 15,
-    "current_points_campaign": 0,
-    "current_points_channel": 3,
+    "current_points_campaign": 30,
+    "current_points_channel": 6,
     "description": "<div>Velkommen til Samsung Danmark. Oplev et bredt udvalg af innovativ hjemmeelektronik og tekniske produkter, herunder smartphones, tablets, TV'er, og meget mere.</div>",
     "first_seen": "2026-04-24",
     "last_seen": "2026-08-07",
@@ -6283,5 +6288,26 @@
     "slug": "snowdays",
     "status": "active",
     "uuid": "019fd1f2-5004-733c-a626-096b7de81b2a"
+  },
+  "019fdc12-f891-739e-a517-b6e44251da41": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-07",
+    "all_time_high_points": 50,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 6,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 50,
+    "current_points_campaign": 0,
+    "current_points_channel": 10,
+    "description": "<div>Anew Sleep tilbyder innovative søvnprodukter med fokus på bedre søvn og øget velvære. Sortimentet omfatter tyngdedyner, køledyner, justerbare hovedpuder, sovemasker og andre søvnoptimerende produkter, der hjælper med at reducere uro, forbedre komforten og skabe optimale rammer for en rolig og restituerende nattesøvn</div>",
+    "first_seen": "2026-08-07",
+    "last_seen": "2026-08-07",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/v6tmv4zvyEhQeaiHwRS54LITtt0lScNuMWlo9abE.png",
+    "name": "Anew Sleep",
+    "slug": "anew-sleep",
+    "status": "active",
+    "uuid": "019fdc12-f891-739e-a517-b6e44251da41"
   }
 }
