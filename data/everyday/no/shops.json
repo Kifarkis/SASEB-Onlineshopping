@@ -1,6 +1,6 @@
 {
   "country": "no",
-  "updated": "2026-08-07T05:28:10.376834+00:00",
+  "updated": "2026-08-08T04:47:12.976260+00:00",
   "shop_count": 412,
   "shops": [
     {
@@ -9184,6 +9184,7 @@
       "email": "katrin@gull.no",
       "description": "For more than 100 years, Opal Gullsmed has been a trusted destination for fine jewelry and watches in the heart of Bodø. As a fourth-generation family-owned jeweler, they combine exceptional craftsmanship with personal service and a carefully curated selection of renowned international brands alongside unique Norwegian designs.<br><br>Whether you're searching for the perfect gift, timeless jewelry, an engagement ring, or something truly bespoke, Opal Gullsmed offers quality, expertise, and lasting elegance for every occasion.",
       "cards_accepted": [
+        "MC",
         "VISA",
         "AMEX"
       ],
