@@ -3584,5 +3584,229 @@
     "points_channel": 6,
     "started": "2026-08-07",
     "uuid": "018f3367-2401-704c-900c-526d7eecfc51"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Agood Company",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-03",
+    "uuid": "01896311-c762-72e7-8110-9489cd35dfb2"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Apoteket",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630b-9850-7399-84a6-b1b735256b79"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Cocopanda",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630c-1fb9-718e-bd87-f0cd7433e8c5"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "COS",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630e-0bd3-72c2-a84d-9bc1f40f4a70"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "CS Megastore",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-08-03",
+    "uuid": "0189630e-21d9-70b4-9f7a-92a6704964ac"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Db Journey",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "01896310-78d4-7290-bebb-ae80a7cd6ef1"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "E-Wheels",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "01896310-1e04-7083-b83b-6a19deed1cf1"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Evify",
+    "points_campaign": 3000,
+    "points_channel": 600,
+    "started": "2026-08-03",
+    "uuid": "01896312-b0fa-70cc-9292-50e7504899f2"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "GANT",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "01896312-beb2-7051-a0a1-ff2121e0dee9"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Golvpoolen",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-03",
+    "uuid": "0189630a-eb8f-7075-b244-c68e0c6e1e8a"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "HelloFresh",
+    "points_campaign": 3000,
+    "points_channel": 600,
+    "started": "2026-08-03",
+    "uuid": "0189630e-0077-7365-979b-baa2f08a1bc7"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Helly Hansen",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "018d5538-6322-73d4-bba1-fead8cf1eb29"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Holdit",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-03",
+    "uuid": "01896310-de2d-7039-a4f2-7938c62656a5"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Hudoteket",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "01896309-aa2d-71e5-9c48-248f03c79b6f"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Hulténs",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630a-c6f7-7291-8c71-3010f6b9bab2"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "InkClub",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-03",
+    "uuid": "01896308-9acc-7096-9b2a-e74389673a4b"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "MELIMELI",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-08-03",
+    "uuid": "019242b2-dd1b-7245-aa07-a6a671eb9271"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Memira",
+    "points_campaign": 2000,
+    "points_channel": 400,
+    "started": "2026-08-03",
+    "uuid": "01896310-a12c-72d3-94cf-a00f63cc73ed"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Miss Hosting",
+    "points_campaign": 3000,
+    "points_channel": 600,
+    "started": "2026-08-03",
+    "uuid": "019dafb9-e034-7101-acb5-862c125d8cf3"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Mister Spex",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "019c66ff-c8b9-72a7-98ff-ad425e4cd33b"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "mResell",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630e-db60-7339-96d9-da34b97523c4"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Nordiska Galleriet",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "01896311-818d-7114-be42-ed67319052a1"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "RAINS",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630e-e559-73fb-8554-d9a161d6ff4e"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "RevolutionRace",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "019a5e2b-866b-702d-b295-e28101b5ba41"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Singular Society",
+    "points_campaign": 5000,
+    "points_channel": 1000,
+    "started": "2026-08-03",
+    "uuid": "019ad964-5fce-7380-ba91-5c4007d5ebbd"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Smartbox",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0195adec-bd11-720f-9e61-63f30d372750"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Telinet",
+    "points_campaign": 8000,
+    "points_channel": 1600,
+    "started": "2026-08-03",
+    "uuid": "018e5102-89f1-70d3-b184-bfb0de1ae948"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Vinkylen",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "018abc11-d276-70ea-b149-50ae4e0bd6bb"
   }
 ]

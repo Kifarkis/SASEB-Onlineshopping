@@ -1887,5 +1887,125 @@
     "points_channel": 6,
     "started": "2026-08-07",
     "uuid": "018f3367-2401-704c-900c-526d7eecfc51"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Babybanden",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "019fb246-096a-73ea-826f-90c50a2c9402"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "CAIA Cosmetics",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "019b939e-7e05-71c0-a5c6-2fb15815f053"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "COS",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630e-0bd3-72c2-a84d-9bc1f40f4a70"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "CS Megastore",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-08-03",
+    "uuid": "0189630e-21d9-70b4-9f7a-92a6704964ac"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Db Journey",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "01896310-78d4-7290-bebb-ae80a7cd6ef1"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "E-Wheels",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "01896310-1e04-7083-b83b-6a19deed1cf1"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Farmasiet",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630e-f90a-731d-84b2-1094d26349be"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Holdit",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-03",
+    "uuid": "01896310-de2d-7039-a4f2-7938c62656a5"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "InkClub",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-03",
+    "uuid": "01896308-9acc-7096-9b2a-e74389673a4b"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Makeup Mekka",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0197a72c-6e7d-7200-b949-a127880137d2"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Memira",
+    "points_campaign": 2000,
+    "points_channel": 400,
+    "started": "2026-08-03",
+    "uuid": "01896310-a12c-72d3-94cf-a00f63cc73ed"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Norli",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630a-a084-73fb-a865-8fda2d897a29"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "PlussMobil",
+    "points_campaign": 4000,
+    "points_channel": 800,
+    "started": "2026-08-03",
+    "uuid": "01896310-a654-73e1-a4f7-591156fc522f"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Rains",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630e-e559-73fb-8554-d9a161d6ff4e"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Vakre Vene",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "019be5ba-a3a8-7123-9165-fc4aa24f2604"
   }
 ]

@@ -1665,5 +1665,101 @@
     "points_channel": 6,
     "started": "2026-08-07",
     "uuid": "018f3367-2401-704c-900c-526d7eecfc51"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Apopro",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0192e872-2c1c-719e-b17a-40069c2aef26"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "BetterFeast",
+    "points_campaign": 4000,
+    "points_channel": 800,
+    "started": "2026-08-03",
+    "uuid": "01896310-2e87-724b-8e38-231cdf71b372"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "COS",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630e-0bd3-72c2-a84d-9bc1f40f4a70"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "CS Megastore",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-08-03",
+    "uuid": "0189630e-21d9-70b4-9f7a-92a6704964ac"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Disneyland Paris",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-03",
+    "uuid": "01896308-31bb-71d4-a2af-72cc58523665"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "E-Wheels",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "01896310-1e04-7083-b83b-6a19deed1cf1"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "GANT",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "01896312-beb2-7051-a0a1-ff2121e0dee9"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Helsegrossisten",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-08-04",
+    "uuid": "0189630f-a5eb-73e6-9be7-41a7fb921f47"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Holdit",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-03",
+    "uuid": "01896310-de2d-7039-a4f2-7938c62656a5"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Nicehair",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "01896311-cd52-7367-8aae-0c4b46a3188e"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Rains",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630e-e559-73fb-8554-d9a161d6ff4e"
+  },
+  {
+    "ended": "2026-08-10",
+    "name": "Smartbox",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0195adec-bd11-720f-9e61-63f30d372750"
   }
 ]
