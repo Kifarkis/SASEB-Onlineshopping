@@ -6254,5 +6254,26 @@
     "slug": "anew-sleep",
     "status": "active",
     "uuid": "019fdc12-f891-739e-a517-b6e44251da41"
+  },
+  "019fea6e-841b-7383-b42a-13bbf0a68222": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-10",
+    "all_time_high_points": 50,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 6,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 50,
+    "current_points_campaign": 0,
+    "current_points_channel": 10,
+    "description": "<div>Blue Moon er en dansk webshop med fokus på god søvn, komfort og nordisk design. Sortimentet omfatter futoner, madrasser, senge, sovesofaer, daybeds, dyner, puder og sengetilbehør fra populære brands som Karup Design, Innovation Living og DanSleep. Blue Moon tilbyder både funktionelle løsninger og stilfulde produkter til soveværelset og hjemmet.</div>",
+    "first_seen": "2026-08-10",
+    "last_seen": "2026-08-10",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/tWBz2njRCw15oVNrFyaUVFJSBqSTaPVUlRkVzvg2.png",
+    "name": "Blue Moon",
+    "slug": "blue-moon",
+    "status": "active",
+    "uuid": "019fea6e-841b-7383-b42a-13bbf0a68222"
   }
 }
