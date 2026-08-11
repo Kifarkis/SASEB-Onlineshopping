@@ -5362,17 +5362,22 @@
     "uuid": "01966793-deeb-724b-beba-5e3b0ca9a36b"
   },
   "01967b86-7869-7008-b00b-fbfc7b989001": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "23.08.2026",
+      "points_campaign": 1000,
+      "points_channel": 200,
+      "started": "2026-08-11"
+    },
     "all_time_high_date": "2026-04-24",
     "all_time_high_points": 1000,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "campaign_ends_human": "om 1 uge",
+    "campaign_ends_human_en": "in 1 week",
     "category_id": 50,
     "commission_type": "fixed",
     "currency": "DKK",
     "current_points": 500,
-    "current_points_campaign": 0,
-    "current_points_channel": 100,
+    "current_points_campaign": 1000,
+    "current_points_channel": 200,
     "description": "<div>Saxo Premium er for dig elsker lydbøger og podcasts. Du kan endda dele medlemskabet med en, du holder af, og købe fysiske bøger til medlemspris. Du kan streame lydbøger 10 timer pr. måned, har fri adgang til podcasts og fri fragt på bøger.<br><br>Som EuroBonus-medlem kan du prøve Saxo Premium 1 måned helt gratis og stadig optjene point.<br><br></div><div><strong>Bemærk venligst:</strong> Denne kampagne kan kun bruges en gang pr. kunde og gælder kun nye danske kunder.</div>",
     "first_seen": "2026-04-24",
     "last_seen": "2026-08-11",
