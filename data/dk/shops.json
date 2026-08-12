@@ -3397,17 +3397,22 @@
     "uuid": "01896310-074d-70b0-8b7f-473629b1c9f9"
   },
   "01896310-13a3-7209-99fa-b9b39702de45": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "23.08.2026",
+      "points_campaign": 50,
+      "points_channel": 10,
+      "started": "2026-08-12"
+    },
     "all_time_high_date": "2026-05-11",
     "all_time_high_points": 50,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "campaign_ends_human": "om 1 uge",
+    "campaign_ends_human_en": "in 1 week",
     "category_id": 1,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 25,
-    "current_points_campaign": 0,
-    "current_points_channel": 5,
+    "current_points_campaign": 50,
+    "current_points_channel": 10,
     "description": "<div>Hos HUGO BOSS står kunden i fokus. Gennem lidenskab, kvalitet og personlighed er HUGO BOSS blevet et mærke med genkendelsesværdi. BOSS er herved mærket med alsidighed til en afvekslende hverdag. HUGO er mærket med en blanding af moderne snit og stærke casual påvirkninger for et ukonventionelt look.</div><div><br></div><div><strong>Bemærk venligst: </strong>Der udbetales ikke ved køb via HUGO BOSS app</div>",
     "first_seen": "2026-04-24",
     "last_seen": "2026-08-12",

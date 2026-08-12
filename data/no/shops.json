@@ -4569,16 +4569,21 @@
     "uuid": "019600d5-86e0-7351-87cd-959d2f332973"
   },
   "019600e6-28a1-717b-aa0b-efdf752d8702": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "23.08.2026",
+      "points_campaign": 50,
+      "points_channel": 10,
+      "started": "2026-08-12"
+    },
     "all_time_high_date": "2026-04-24",
     "all_time_high_points": 50,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "campaign_ends_human": "om 1 uke",
+    "campaign_ends_human_en": "in 1 week",
     "category_id": 8,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 50,
-    "current_points_campaign": 0,
+    "current_points_campaign": 50,
     "current_points_channel": 10,
     "description": "<div>L'Occitane er et fransk kosmetikk og hudpleiemerke kjent for sine produkter basert på naturlige ingredienser, ofte inspirert av tradisjonene fra Provence, Frankrike. Merket fokuserer på bærekraft, håndlagde produkter og skjønnheten som finnes i naturen. De tilbyr et bredt utvalg av produkter, inkludert hudpleie, hårpleie og parfymer.</div>",
     "first_seen": "2026-04-24",
