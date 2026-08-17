@@ -2007,5 +2007,101 @@
     "points_channel": 10,
     "started": "2026-08-03",
     "uuid": "019be5ba-a3a8-7123-9165-fc4aa24f2604"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Acer",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-10",
+    "uuid": "01896310-f77f-72c9-9b07-830ad79ad27f"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Bookbeat",
+    "points_campaign": 1000,
+    "points_channel": 200,
+    "started": "2026-08-11",
+    "uuid": "0189630d-af8b-717b-b0cb-1f385bd015f5"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "E-Wheels",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-10",
+    "uuid": "01896310-1e04-7083-b83b-6a19deed1cf1"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Farmasiet",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "0189630e-f90a-731d-84b2-1094d26349be"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Farnell",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-10",
+    "uuid": "0189630e-3572-7186-9686-3ccd8ac6130b"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Interflora",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "018abc10-e2a1-7029-a2d1-0df7f582fd1c"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Lindex",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "0189630a-9780-71c1-a269-e72cab65f2a4"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Outnorth",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "01896307-cb70-7078-96e6-9379b454803c"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Philips Hue",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "018ee1d2-896a-729f-932c-e9664dc0c907"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Proteinfabrikken",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-30",
+    "uuid": "019c66f8-8151-7274-bf0b-ddf7bca7de59"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Under Armour",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "0189630a-c0fe-73f3-8174-eaf25c05c750"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Vakre Vene",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "019be5ba-a3a8-7123-9165-fc4aa24f2604"
   }
 ]

@@ -1761,5 +1761,109 @@
     "points_channel": 10,
     "started": "2026-08-03",
     "uuid": "0195adec-bd11-720f-9e61-63f30d372750"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Acer",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-10",
+    "uuid": "01896310-f77f-72c9-9b07-830ad79ad27f"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "BookBeat",
+    "points_campaign": 1000,
+    "points_channel": 200,
+    "started": "2026-08-11",
+    "uuid": "0189630d-af8b-717b-b0cb-1f385bd015f5"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "CS Megastore",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-08-10",
+    "uuid": "0189630e-21d9-70b4-9f7a-92a6704964ac"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Den sidste flaske",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-03",
+    "uuid": "0189630e-9cd3-73ca-b2d1-a6b5fb31abe6"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "E-Wheels",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-10",
+    "uuid": "01896310-1e04-7083-b83b-6a19deed1cf1"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Farnell",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-10",
+    "uuid": "0189630e-3572-7186-9686-3ccd8ac6130b"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Interflora",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "0189630a-26b4-72dd-ac2d-920f3deae927"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Magasin",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "01896310-cff7-730e-a0e8-c319ca656c74"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Matas",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-10",
+    "uuid": "019c9982-a557-7050-963f-ed75c89bc565"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Outnorth",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "01896307-cb70-7078-96e6-9379b454803c"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Philips Hue",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "018ee1d2-896a-729f-932c-e9664dc0c907"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Royal Design",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-07-27",
+    "uuid": "01896307-a666-701a-8245-ad7183712454"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Under Armour",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "0189630a-c0fe-73f3-8174-eaf25c05c750"
   }
 ]

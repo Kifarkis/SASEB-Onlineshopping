@@ -3808,5 +3808,189 @@
     "points_channel": 10,
     "started": "2026-08-03",
     "uuid": "018abc11-d276-70ea-b149-50ae4e0bd6bb"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Acer",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-10",
+    "uuid": "01896310-f77f-72c9-9b07-830ad79ad27f"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "BabySam",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "0189630c-66c4-7294-80b6-a07402666552"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "BookBeat",
+    "points_campaign": 1000,
+    "points_channel": 200,
+    "started": "2026-08-11",
+    "uuid": "0189630d-af8b-717b-b0cb-1f385bd015f5"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Bottle Hero",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-04",
+    "uuid": "019a112d-87ab-730e-9bb7-101330a28267"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Dagens Industri",
+    "points_campaign": 750,
+    "points_channel": 150,
+    "started": "2026-08-10",
+    "uuid": "0189630c-352a-734f-8d20-f3f041c6ab64"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "E-Wheels",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-10",
+    "uuid": "01896310-1e04-7083-b83b-6a19deed1cf1"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Farnell",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-10",
+    "uuid": "0189630e-3572-7186-9686-3ccd8ac6130b"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "GLOWiD",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-04",
+    "uuid": "019fcd29-9ce6-7071-9fba-2e9c939d55fb"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Hunkemöller",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-05",
+    "uuid": "0189630a-b3f1-7132-b07f-16beb096de9f"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Interflora",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "018abc10-e2a1-7029-a2d1-0df7f582fd1c"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Lampemesteren",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "01896308-b758-703a-8f2a-7d8ab49b690e"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Länna Möbler",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "01896312-5ad6-728c-816e-b50fd3b1f767"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Lindex",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "0189630a-9780-71c1-a269-e72cab65f2a4"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Mölndal Energi",
+    "points_campaign": 4000,
+    "points_channel": 800,
+    "started": "2026-08-10",
+    "uuid": "0192e751-0293-718b-ab91-d9ceaf7fcb1e"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Nordic Spectra",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "0189630d-c86d-7327-9a2d-942f470fde4a"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Nordiska Kompaniet",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-11",
+    "uuid": "019bc659-063f-7135-b5e6-2b3c841e9626"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Outnorth",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "01896307-cb70-7078-96e6-9379b454803c"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Philips Hue",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "018ee1d2-896a-729f-932c-e9664dc0c907"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "RevolutionRace",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "019a5e2b-866b-702d-b295-e28101b5ba41"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Safira",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-08-03",
+    "uuid": "0192958a-3d0c-73f6-8808-283b59ffe62b"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Singular Society",
+    "points_campaign": 5000,
+    "points_channel": 1000,
+    "started": "2026-08-10",
+    "uuid": "019ad964-5fce-7380-ba91-5c4007d5ebbd"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Telinet",
+    "points_campaign": 8000,
+    "points_channel": 1600,
+    "started": "2026-08-10",
+    "uuid": "018e5102-89f1-70d3-b184-bfb0de1ae948"
+  },
+  {
+    "ended": "2026-08-17",
+    "name": "Under Armour",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-10",
+    "uuid": "0189630a-c0fe-73f3-8174-eaf25c05c750"
   }
 ]
