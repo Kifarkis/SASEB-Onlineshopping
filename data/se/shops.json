@@ -4850,17 +4850,22 @@
     "uuid": "01896310-4098-71ea-955d-4eab162d6c81"
   },
   "01896310-479e-7230-82a7-eb0ca01eaf71": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "2026-08-30",
+      "points_campaign": 50,
+      "points_channel": 10,
+      "started": "2026-08-17"
+    },
     "all_time_high_date": "2026-05-13",
     "all_time_high_points": 50,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "campaign_ends_human": "om 1 vecka",
+    "campaign_ends_human_en": "in 1 week",
     "category_id": 9,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 25,
-    "current_points_campaign": 0,
-    "current_points_channel": 5,
+    "current_points_campaign": 50,
+    "current_points_channel": 10,
     "description": "<p>NordicaGolf tillverkar och säljer prisvärda golfklubbor som håller högsta kvalitet, för både herrar och damer. Vår viktigaste uppgift är att våra golfklubbor ska ge dig rätt förutsättningar oavsett vilken nivå du spelar på. Våra klubbor är framtagna för att göra din dag på golfbanan roligare.&nbsp;</p>",
     "first_seen": "2026-04-24",
     "last_seen": "2026-08-17",
