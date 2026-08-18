@@ -4905,11 +4905,12 @@
     "current_points_channel": 5,
     "description": "<div>Her finder du et kæmpe udvalg af kvalitetsmøbler bestående af mere end 10.000 varenumre. Således er du nærmest garanteret at finde noget der passer perfekt til netop din indretning.</div>",
     "first_seen": "2026-04-24",
+    "gone_since": "2026-08-18",
     "last_seen": "2026-08-18",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/S5DaNbp5Sky2g47gzfbw1kVRPknsbrvYKvvkO5j1.jpg",
     "name": "Møbelsalg",
     "slug": "mobelsalg",
-    "status": "active",
+    "status": "gone",
     "uuid": "018f19a8-0f55-7106-88d2-86549ce57249"
   },
   "018f3367-2401-704c-900c-526d7eecfc51": {
