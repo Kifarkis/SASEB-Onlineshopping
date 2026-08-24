@@ -1865,5 +1865,125 @@
     "points_channel": 10,
     "started": "2026-08-10",
     "uuid": "0189630a-c0fe-73f3-8174-eaf25c05c750"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Adidas",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "0189630e-5d7e-709b-a148-a7237fda75ee"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Bodystore",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "01896307-a48e-7282-a8f3-2508750f0b14"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "CDON.COM",
+    "points_campaign": 200,
+    "points_channel": 40,
+    "started": "2026-08-17",
+    "uuid": "01896307-9887-73f5-9de4-b4d03486a38e"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Euroflorist",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "01896308-d5a1-70c8-84eb-a07e4bcd0d2c"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Ewii",
+    "points_campaign": 3000,
+    "points_channel": 600,
+    "started": "2026-08-07",
+    "uuid": "018caabe-91fe-71c5-ae25-f8455fa39c8d"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Hiper",
+    "points_campaign": 4000,
+    "points_channel": 800,
+    "started": "2026-08-10",
+    "uuid": "0189630b-928d-72ed-abed-3920407b316d"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "HUGO BOSS",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-12",
+    "uuid": "01896310-13a3-7209-99fa-b9b39702de45"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "LEGO",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "01896310-5de4-71af-9cfa-190c9eebec97"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Lenovo",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-08-17",
+    "uuid": "01896311-859b-70f9-876a-a52c61ec5e5a"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Lensway",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "01896307-db4b-7046-b660-cca58f3d53f2"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Lloyd shoes",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-08-17",
+    "uuid": "018abc11-bf2f-7341-a9fe-46704d307460"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "NordVPN",
+    "points_campaign": 300,
+    "points_channel": 60,
+    "started": "2026-08-10",
+    "uuid": "0189630e-2ae5-7184-adab-1a84e70c6254"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Saxo Premium",
+    "points_campaign": 1000,
+    "points_channel": 200,
+    "started": "2026-08-11",
+    "uuid": "01967b86-7869-7008-b00b-fbfc7b989001"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Sephora",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "0189630c-5cf0-73e4-8bad-757898565730"
+  },
+  {
+    "ended": "2026-08-24",
+    "name": "Shark Ninja",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "019e4465-abe2-7069-a495-477ebb1168ba"
   }
 ]
