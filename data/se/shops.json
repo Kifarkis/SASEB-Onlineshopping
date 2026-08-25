@@ -10275,5 +10275,26 @@
     "slug": "mulberry",
     "status": "active",
     "uuid": "019fea7f-5064-716a-a6fc-b1c734643089"
+  },
+  "01a03912-eef1-71ec-886b-3915314acf5f": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-25",
+    "all_time_high_points": 25,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 8,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 25,
+    "current_points_campaign": 0,
+    "current_points_channel": 5,
+    "description": "<div>Xlash är ett svenskt skönhetsvarumärke med fokus på ögonfransar, ögonbryn och hudvård. Sortimentet omfattar bland annat bästsäljande ögonfransserum, ögonbrynsserum, mascara, ögongel och ansiktsmasker. Xlash kombinerar effektiva formuleringar med fokus på synliga resultat och erbjuder skönhetsprodukter för längre fransar, fylligare bryn och en mer strålande hud.&nbsp;</div>",
+    "first_seen": "2026-08-25",
+    "last_seen": "2026-08-25",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/ub6PYoBk1OUqpmWk33MuEzyqNgw1kO51PLmAFJO2.png",
+    "name": "Xlash",
+    "slug": "xlash",
+    "status": "active",
+    "uuid": "01a03912-eef1-71ec-886b-3915314acf5f"
   }
 }
