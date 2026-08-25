@@ -2247,5 +2247,13 @@
     "points_channel": 300,
     "started": "2026-08-03",
     "uuid": "0189630b-fef3-70b3-953f-1b0c8875ef34"
+  },
+  {
+    "ended": "2026-08-25",
+    "name": "HelloFresh",
+    "points_campaign": 6000,
+    "points_channel": 1200,
+    "started": "2026-08-15",
+    "uuid": "0189630e-0077-7365-979b-baa2f08a1bc7"
   }
 ]
