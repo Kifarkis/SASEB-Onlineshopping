@@ -856,11 +856,12 @@
     "current_points_channel": 2,
     "description": "<p>Dustin&nbsp;is the leading e-commerce portal for IT products. On Dustin&nbsp;companies can buy everything within IT: PCs, printers and scanners, audio and video, telephone and navigation, software, server and storage, office equipment and furniture.</p>",
     "first_seen": "2026-04-24",
+    "gone_since": "2026-08-25",
     "last_seen": "2026-08-25",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/Dustin-1689583855.jpg",
     "name": "Dustin",
     "slug": "dustin-1",
-    "status": "active",
+    "status": "gone",
     "uuid": "0189630b-a1fd-7133-b07a-084f91874cd8"
   },
   "0189630b-afbe-72d2-b39b-47abed99aa1a": {
