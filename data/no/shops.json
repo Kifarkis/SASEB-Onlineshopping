@@ -5501,5 +5501,26 @@
     "slug": "mulberry",
     "status": "active",
     "uuid": "019fea7f-5064-716a-a6fc-b1c734643089"
+  },
+  "01a03912-eef1-71ec-886b-3915314acf5f": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-26",
+    "all_time_high_points": 25,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 8,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 25,
+    "current_points_campaign": 0,
+    "current_points_channel": 5,
+    "description": "<div>Xlash er et svensk skjønnhetsmerke med fokus på øyevipper, øyenbryn og hudpleie. Sortimentet inkluderer blant annet populære vippeserum, øyenbrynsserum, mascara, øyegel og ansiktsmasker. Xlash kombinerer effektive formuleringer med fokus på synlige resultater og tilbyr skjønnhetsprodukter utviklet for lengre vipper, fyldigere bryn og en sunnere, mer strålende hud.</div>",
+    "first_seen": "2026-08-26",
+    "last_seen": "2026-08-26",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/7rtzNlf1VhWknaodlo8skrdhGIvIylengYmVYugU.png",
+    "name": "Xlash",
+    "slug": "xlash",
+    "status": "active",
+    "uuid": "01a03912-eef1-71ec-886b-3915314acf5f"
   }
 }
