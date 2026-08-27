@@ -10296,5 +10296,26 @@
     "slug": "xlash",
     "status": "active",
     "uuid": "01a03912-eef1-71ec-886b-3915314acf5f"
+  },
+  "01a04319-8c3e-70f1-80fb-7c2cdc036ea8": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-27",
+    "all_time_high_points": 25,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 6,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 25,
+    "current_points_campaign": 0,
+    "current_points_channel": 5,
+    "description": "<div>ONYX Cookware erbjuder innovativa köksprodukter med fokus på funktionalitet, hållbarhet och modern matlagning. Sortimentet omfattar bland annat hybridstekpannor, grytor, stekpanneset, ZERO-serien, airfryers och köksredskap. ONYX:s hybridprodukter kombinerar rostfritt stål med keramisk non-stick och är utvecklade för att ge jämn värmefördelning och en smidig matlagningsupplevelse.</div>",
+    "first_seen": "2026-08-27",
+    "last_seen": "2026-08-27",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/hC061ugpuNbxgW4VBgyNdHxrNRC0GDcUXoRvJGvw.png",
+    "name": "Onyx Cookware",
+    "slug": "onyx-cookware",
+    "status": "active",
+    "uuid": "01a04319-8c3e-70f1-80fb-7c2cdc036ea8"
   }
 }

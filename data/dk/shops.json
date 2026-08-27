@@ -5173,6 +5173,27 @@
     "status": "active",
     "uuid": "0193b5ff-d29e-718e-bc43-02f2e0de6732"
   },
+  "0193d8d2-be96-7365-9c26-27df6caefa71": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-27",
+    "all_time_high_points": 50,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 1,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 50,
+    "current_points_campaign": 0,
+    "current_points_channel": 10,
+    "description": "<div>Copenhagen Cartel designer tidløst, bæredygtigt tøj til kvinder, der lever dynamiske og holistiske liv. Inspireret af havets styrke og skønhed skaber de produkter, der kombinerer komfort, kvalitet og elegance. Perfekt til alt fra yoga og eventyr til strandlivet – altid med fokus på at gøre en forskel for planeten.</div>",
+    "first_seen": "2026-08-27",
+    "last_seen": "2026-08-27",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/IfW4V0XXQxzgoYLYNSVRC3jSTeljM6E4wsvJ76Sn.png",
+    "name": "Cartel Copenhagen",
+    "slug": "cartel-copenhagen",
+    "status": "active",
+    "uuid": "0193d8d2-be96-7365-9c26-27df6caefa71"
+  },
   "01947398-11de-7335-9cb6-dd340f9e023b": {
     "active_campaign": null,
     "all_time_high_date": "2026-04-24",
@@ -5214,6 +5235,27 @@
     "slug": "viaplay",
     "status": "active",
     "uuid": "01956bd4-a4d5-70ac-99e7-c2a0802d4519"
+  },
+  "019589bc-d0c1-7254-afb0-c05dcc594613": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-27",
+    "all_time_high_points": 20,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 45,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 20,
+    "current_points_campaign": 0,
+    "current_points_channel": 4,
+    "description": "<div>Sisi Copenhagen er et dansk smykkefirma med fokus på tidløse og klassiske smykker i ægte materialer. Sortimentet omfatter blandt andet øreringe, halskæder, ringe og armbånd i sterlingsølv, forgyldt sølv og massivt guld samt smykker med perler, ædelsten og lab-grown diamanter. Find moderne smykker til både hverdag og særlige anledninger.<br><br></div>",
+    "first_seen": "2026-08-27",
+    "last_seen": "2026-08-27",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/DhrSoNFxX3INFF0yhhMw6s2gKrbWKoGrLu4efTDb.png",
+    "name": "Sisi Copenhagen",
+    "slug": "sisi-copenhagen",
+    "status": "active",
+    "uuid": "019589bc-d0c1-7254-afb0-c05dcc594613"
   },
   "0195adec-bd11-720f-9e61-63f30d372750": {
     "active_campaign": null,
@@ -6417,5 +6459,26 @@
     "slug": "proff-turf",
     "status": "active",
     "uuid": "019feb78-9ffb-71c0-b0ca-906f4a2ba0ad"
+  },
+  "01a04319-8c3e-70f1-80fb-7c2cdc036ea8": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-08-27",
+    "all_time_high_points": 25,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 6,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 25,
+    "current_points_campaign": 0,
+    "current_points_channel": 5,
+    "description": "<div>ONYX Cookware udvikler innovativt køkkenudstyr, der kombinerer moderne teknologi, funktionalitet og holdbarhed. Sortimentet omfatter blandt andet hybrid non-stick pander og gryder, ZERO-serien, airfryers, kombiovne, stegetermometre og køkkenredskaber. ONYX Cookware sælger direkte til forbrugeren online og tilbyder køkkenudstyr designet til både hverdagsmadlavning og gastronomiske ambitioner.</div>",
+    "first_seen": "2026-08-27",
+    "last_seen": "2026-08-27",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/dTbXmewrUAgXhVeeXs48FM5NVkLtXEepOdigPbMZ.png",
+    "name": "Onyx Cookware",
+    "slug": "onyx-cookware",
+    "status": "active",
+    "uuid": "01a04319-8c3e-70f1-80fb-7c2cdc036ea8"
   }
 }
