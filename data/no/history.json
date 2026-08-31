@@ -2383,5 +2383,21 @@
     "points_channel": 10,
     "started": "2026-08-24",
     "uuid": "0189630f-1164-724e-add9-82aae07ee93f"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "CAIA Cosmetics",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-13",
+    "uuid": "019b939e-7e05-71c0-a5c6-2fb15815f053"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Maxulin",
+    "points_campaign": 1500,
+    "points_channel": 300,
+    "started": "2026-08-20",
+    "uuid": "019662cf-bd3a-73ba-840e-37bb81369e8e"
   }
 ]

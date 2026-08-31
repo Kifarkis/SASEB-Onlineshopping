@@ -4528,5 +4528,13 @@
     "points_channel": 10,
     "started": "2026-08-24",
     "uuid": "01896312-b5e6-7274-8e4a-7eb11e4ab5a9"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Lindskrog parkering Arlanda",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-08-12",
+    "uuid": "0199710b-f1ca-707f-b9b0-6e55f41c1f81"
   }
 ]
