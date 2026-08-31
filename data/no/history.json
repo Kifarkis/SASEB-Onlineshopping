@@ -2255,5 +2255,133 @@
     "points_channel": 1200,
     "started": "2026-08-15",
     "uuid": "0189630e-0077-7365-979b-baa2f08a1bc7"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Autodoc",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "01896310-e823-72b0-8d74-6b3da56a30e3"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Bilxtra",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "019600d5-86e0-7351-87cd-959d2f332973"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Björn Borg",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-24",
+    "uuid": "01896308-503c-73a5-9ec8-382fd13dc580"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Bubbleroom",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-24",
+    "uuid": "01896309-b8ae-7129-9039-516c2dbedf13"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Dyson",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-24",
+    "uuid": "01896310-bb05-734c-87c7-a0d8eadfe399"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Farmasiet",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-24",
+    "uuid": "0189630e-f90a-731d-84b2-1094d26349be"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Foto.no",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-08-17",
+    "uuid": "019f1dc6-1a6f-712c-9f9d-8b832b053cc4"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Gents",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-24",
+    "uuid": "0189630d-2220-726e-b99d-9a1e16f855da"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Gina Tricot",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-24",
+    "uuid": "0189630a-28d0-70b3-bbe0-1867fcea0f9d"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "KICKS",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-24",
+    "uuid": "01932f75-1211-7244-b60c-0fe79fd03b46"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Outnorth",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-24",
+    "uuid": "01896307-cb70-7078-96e6-9379b454803c"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Parfym.no",
+    "points_campaign": 75,
+    "points_channel": 15,
+    "started": "2026-08-24",
+    "uuid": "01896308-8756-70e3-b42a-66850f7b1673"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Pilgrim",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "0196b513-2638-7036-83ce-676479acc9ff"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Readly",
+    "points_campaign": 500,
+    "points_channel": 100,
+    "started": "2026-08-17",
+    "uuid": "019bc664-90ed-7386-a14b-4ee847a35168"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "Siemens Home",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-17",
+    "uuid": "0199c3f9-87a4-73df-9412-b69270133dab"
+  },
+  {
+    "ended": "2026-08-31",
+    "name": "WEEKDAY",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-24",
+    "uuid": "0189630f-1164-724e-add9-82aae07ee93f"
   }
 ]
