@@ -1097,11 +1097,12 @@
     "current_points_channel": 20,
     "description": "<p>Norton ger det bästa skyddet på internet: antivirusprogram samt spyware- och brandväggsskydd för PC och Mac. Besök&nbsp;Norton Sverige&nbsp;nu.</p>",
     "first_seen": "2026-04-24",
+    "gone_since": "2026-09-01",
     "last_seen": "2026-09-01",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/Norton_by_Symantec-1689583721.jpg",
     "name": "Norton by Symantec",
     "slug": "norton-by-symantec",
-    "status": "active",
+    "status": "gone",
     "uuid": "01896309-9c8d-708e-8df9-bdaffc9bd349"
   },
   "01896309-aa2d-71e5-9c48-248f03c79b6f": {
@@ -4442,11 +4443,12 @@
     "current_points_channel": 50,
     "description": "<p>Välkommen til Dplay - Discovery Networks Swedens streamingtjänst. Discovery Networks Sweden är ett TV-hus med ett brett sprektrum av kanaler, spännande program och färgstarke och populära profiler. Här samlar vi det bästa innehållet från några av Sveriges - och världens - största tv-kanaler, bland annat Kanal 5, Kanal 11, TLC, Discovery Channel och Eurosport. Det betyder innehåll i världsklass, allt ifrån hisnande underhållning till gripande dokumentärer.&nbsp;</p><p><br></p><p>Välj själv om du vill titta gratis eller skaffa ett Premium-konto där du kan titta på alla våra kanaler utan reklam och dessutom se serier som är helt exklusiva för Dplay. Självklart utan bindningstid.</p><p><br></p><p><br></p><p><strong>Vänligen notera:</strong>&nbsp;Du&nbsp;tjänar&nbsp;endast&nbsp;poäng om&nbsp;du är ny&nbsp;kund och endast för ditt första köp.<br></p>",
     "first_seen": "2026-04-24",
+    "gone_since": "2026-09-01",
     "last_seen": "2026-09-01",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/Dplay.se-1689584110.jpg",
     "name": "Dplay",
     "slug": "dplay.se",
-    "status": "active",
+    "status": "gone",
     "uuid": "0189630f-8c89-7109-bea2-5145da18fd5e"
   },
   "0189630f-a7ca-7334-bcb3-728962dfbd72": {

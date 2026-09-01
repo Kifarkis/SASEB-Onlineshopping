@@ -456,11 +456,12 @@
     "current_points_channel": 22,
     "description": "<p>Norton&nbsp;provides award-winning antivirus and security software for your PC, Mac, and mobile devices. Get&nbsp;Norton&nbsp;software and enjoy a peace of mind.</p>",
     "first_seen": "2026-04-24",
+    "gone_since": "2026-09-01",
     "last_seen": "2026-09-01",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/Norton_by_Symantec-1689583723.jpg",
     "name": "Norton by Symantec",
     "slug": "norton-by-symantec",
-    "status": "active",
+    "status": "gone",
     "uuid": "01896309-9c8d-708e-8df9-bdaffc9bd349"
   },
   "01896309-ad5b-71dc-9331-2174fd92a9f1": {

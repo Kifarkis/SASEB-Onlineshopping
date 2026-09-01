@@ -865,11 +865,12 @@
     "current_points_channel": 20,
     "description": "<p>Symantecs&nbsp;Norton&nbsp;har hva du trenger for å beskytte din datamaskin, fra kjernesikkerhet som firewall og backup, til anti phising og anti spam løsninger.</p>",
     "first_seen": "2026-04-24",
+    "gone_since": "2026-09-01",
     "last_seen": "2026-09-01",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/Norton_by_Symantec-1689583722.jpg",
     "name": "Norton by Symantec",
     "slug": "norton-by-symantec",
-    "status": "active",
+    "status": "gone",
     "uuid": "01896309-9c8d-708e-8df9-bdaffc9bd349"
   },
   "01896309-a6d3-70f0-b920-314a0de651aa": {
