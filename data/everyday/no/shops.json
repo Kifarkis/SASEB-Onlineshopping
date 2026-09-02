@@ -1,7 +1,7 @@
 {
   "country": "no",
-  "updated": "2026-09-01T09:01:14.758610+00:00",
-  "shop_count": 411,
+  "updated": "2026-09-02T08:14:28.732096+00:00",
+  "shop_count": 412,
   "shops": [
     {
       "uuid": "ac-perchs-thehandel",
@@ -10414,6 +10414,33 @@
       "campaign_description": null,
       "created_at": "2020-07-31 12:36:10",
       "first_seen": "2026-05-05",
+      "status": "active"
+    },
+    {
+      "uuid": "rituals-norway",
+      "name": "Rituals Norway",
+      "country": "no",
+      "city": ".",
+      "postcode": ".",
+      "address": ".",
+      "lat": null,
+      "lng": null,
+      "mode": "online",
+      "category_id": 8,
+      "points_per_100": 50,
+      "currency": "NOK",
+      "website": "www.rituals.com/no-no/home",
+      "phone": "+47",
+      "email": "susanne.andersson@rituals.com",
+      "description": "You also earn 50 bonus points pr. 100 kr. when registering your EuroBonus number during the checkout process in each Scandinavian Rituals webshop. <br><br>Rituals believe happiness can be found in the smallest of things. But all too often our lives are so busy that we forget to enjoy the moment. Rituals mission is to encourage you to slow down once in a while. Inspired by ancient Eastern traditions and with fragrances created by the finest perfumers, Rituals products help you to transform your daily routines like taking a shower, soaking in a warm bath and lighting a candle into more meaningful Rituals. <br><br>Earned points will be transferred to your EuroBonus account between 3 and 40 days after the purchase depending on the type of merchant. If you return the product, accrued points will be deducted.",
+      "cards_accepted": [],
+      "has_fixed_reward": false,
+      "coming_soon": false,
+      "has_campaign": false,
+      "campaign_title": null,
+      "campaign_description": null,
+      "created_at": "2026-09-02 07:30:11",
+      "first_seen": "2026-09-02",
       "status": "active"
     },
     {
