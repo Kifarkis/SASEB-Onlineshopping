@@ -6527,5 +6527,26 @@
     "slug": "inventarland",
     "status": "active",
     "uuid": "01a0613b-fed0-73a3-962d-d1ebc4c2adc4"
+  },
+  "01a061f3-cf1c-72ff-b6a6-d838f5ed65ed": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-09-02",
+    "all_time_high_points": 25,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 11,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 25,
+    "current_points_campaign": 0,
+    "current_points_channel": 5,
+    "description": "<div>Otto Suenson er et dansk vinhus med et stort udvalg af vin, champagne og spiritus. Find rødvin, hvidvin, rosé, mousserende vin, dessertvin, portvin, økologisk og alkoholfri vin samt whisky, gin og cognac. Sortimentet spænder fra populære vine til eksklusive flasker, nøje udvalgt med fokus på kvalitet og gode smagsoplevelser.</div>",
+    "first_seen": "2026-09-02",
+    "last_seen": "2026-09-02",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/6novN3gWkBQ3PsPgANLJCTb8f4JFd1z9yyHQ4ART.png",
+    "name": "Otto Suenson",
+    "slug": "otto-suenson",
+    "status": "active",
+    "uuid": "01a061f3-cf1c-72ff-b6a6-d838f5ed65ed"
   }
 }
