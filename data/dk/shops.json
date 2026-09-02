@@ -6506,5 +6506,26 @@
     "slug": "onyx-cookware",
     "status": "active",
     "uuid": "01a04319-8c3e-70f1-80fb-7c2cdc036ea8"
+  },
+  "01a0613b-fed0-73a3-962d-d1ebc4c2adc4": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-09-02",
+    "all_time_high_points": 25,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 6,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 25,
+    "current_points_campaign": 0,
+    "current_points_channel": 5,
+    "description": "<div>Inventarland tilbyder et stort udvalg af kontormøbler, lagerinventar og løsninger til professionel indretning. Find blandt andet skriveborde, hæve-sænkeborde, kontorstole, reoler, skabe, mødeborde, skærmvægge og lagerreoler. Sortimentet kombinerer funktionalitet, kvalitet og attraktive priser til både virksomheder, kontorer, lager, værksteder og hjemmekontorer.&nbsp;</div>",
+    "first_seen": "2026-09-02",
+    "last_seen": "2026-09-02",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/DfLp2BxVGfoT3lqG4LbUWEA1NawfFU5H8UvfpHno.png",
+    "name": "Inventarland",
+    "slug": "inventarland",
+    "status": "active",
+    "uuid": "01a0613b-fed0-73a3-962d-d1ebc4c2adc4"
   }
 }

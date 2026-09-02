@@ -5536,5 +5536,26 @@
     "slug": "calstop",
     "status": "active",
     "uuid": "01a04336-ca3e-71d5-b2f0-057119b7ac92"
+  },
+  "01a06151-88c0-71f9-b828-a3dee7388d69": {
+    "active_campaign": null,
+    "all_time_high_date": "2026-09-02",
+    "all_time_high_points": 25,
+    "campaign_ends_human": null,
+    "campaign_ends_human_en": null,
+    "category_id": 1,
+    "commission_type": "variable",
+    "currency": "%",
+    "current_points": 25,
+    "current_points_campaign": 0,
+    "current_points_channel": 5,
+    "description": "<div>FLOYD er en norsk nettbutikk for dameklær med et bredt utvalg av kjoler, bukser, topper, bluser, jakker, strikkeplagg, sko og accessories. Finn klær til både hverdag, jobb og fest fra FLOYD og kjente merkevarer. Med fokus på feminin stil, gode passformer og aktuelle trender gjør FLOYD det enkelt å oppdatere garderoben.</div>",
+    "first_seen": "2026-09-02",
+    "last_seen": "2026-09-02",
+    "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/B5zcPDU9WiYgtNplJWnheTKCGq25Vd2qDdkqGXBL.png",
+    "name": "Floyd",
+    "slug": "floyd",
+    "status": "active",
+    "uuid": "01a06151-88c0-71f9-b828-a3dee7388d69"
   }
 }
