@@ -2646,17 +2646,22 @@
     "uuid": "0189630e-e559-73fb-8554-d9a161d6ff4e"
   },
   "0189630e-f90a-731d-84b2-1094d26349be": {
-    "active_campaign": null,
+    "active_campaign": {
+      "ends_date": "06.09.2026",
+      "points_campaign": 50,
+      "points_channel": 10,
+      "started": "2026-09-03"
+    },
     "all_time_high_date": "2026-04-27",
     "all_time_high_points": 50,
-    "campaign_ends_human": null,
-    "campaign_ends_human_en": null,
+    "campaign_ends_human": "om 2 dager",
+    "campaign_ends_human_en": "om 2 dager",
     "category_id": 8,
     "commission_type": "variable",
     "currency": "%",
     "current_points": 25,
-    "current_points_campaign": 0,
-    "current_points_channel": 5,
+    "current_points_campaign": 50,
+    "current_points_channel": 10,
     "description": "<div>Farmasiet er Norges største nettapotek og er i stor vekst. Det skyldes at flere kunder foretrekker enkelheten med å handle på nett, sammen med diskresjonen det gir. I tillegg er ofte prisene vesentlig lavere på nett. Nettapoteket selger både reseptbelagte og reseptfrie legemidler, i tillegg til andre apoteksprodukter som solkrem og kosttilskudd. Farmasiet.no tilbyr også gratis veiledning til sine kunder anonymt på chat, i tillegg til på e-post og telefon.<br><br><br></div><h1>Vilkår for denne partneren</h1><div>Du tjener ikke poeng på medisin og reseptbelagte produkter.</div>",
     "first_seen": "2026-04-24",
     "last_seen": "2026-09-03",
