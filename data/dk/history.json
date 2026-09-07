@@ -2049,5 +2049,61 @@
     "points_channel": 10,
     "started": "2026-08-24",
     "uuid": "0189630f-1164-724e-add9-82aae07ee93f"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Beautycos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01896309-dadd-714f-8f53-274cc4f14d01"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Ellos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "0189630a-d108-712a-8856-644fdd60eedb"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Euroflorist",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01896308-d5a1-70c8-84eb-a07e4bcd0d2c"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Ideal of Sweden",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-31",
+    "uuid": "0189630f-4b89-721d-88e7-5b4e2b299f5f"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "InkClub",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-31",
+    "uuid": "01896308-9acc-7096-9b2a-e74389673a4b"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Magasin",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01896310-cff7-730e-a0e8-c319ca656c74"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Matas",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-31",
+    "uuid": "019c9982-a557-7050-963f-ed75c89bc565"
   }
 ]

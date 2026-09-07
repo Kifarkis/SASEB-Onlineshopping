@@ -2399,5 +2399,69 @@
     "points_channel": 300,
     "started": "2026-08-20",
     "uuid": "019662cf-bd3a-73ba-840e-37bb81369e8e"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Beautycos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01896309-dadd-714f-8f53-274cc4f14d01"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Db Journey",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01896310-78d4-7290-bebb-ae80a7cd6ef1"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Ellos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "0189630a-d108-712a-8856-644fdd60eedb"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Euroflorist",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01896308-d5a1-70c8-84eb-a07e4bcd0d2c"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Farmasiet",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-09-03",
+    "uuid": "0189630e-f90a-731d-84b2-1094d26349be"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Ideal of Sweden",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-31",
+    "uuid": "0189630f-4b89-721d-88e7-5b4e2b299f5f"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "InkClub",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-31",
+    "uuid": "01896308-9acc-7096-9b2a-e74389673a4b"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "KICKS",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01932f75-1211-7244-b60c-0fe79fd03b46"
   }
 ]

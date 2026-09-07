@@ -4536,5 +4536,173 @@
     "points_channel": 15,
     "started": "2026-08-12",
     "uuid": "0199710b-f1ca-707f-b9b0-6e55f41c1f81"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Beautycos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01896309-dadd-714f-8f53-274cc4f14d01"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Beijer Byggmaterial",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-09-01",
+    "uuid": "01896309-f68e-71c7-b004-d82b22e6debb"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Cocopanda",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "0189630c-1fb9-718e-bd87-f0cd7433e8c5"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Db Journey",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01896310-78d4-7290-bebb-ae80a7cd6ef1"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "DOZ Apotek",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-09-01",
+    "uuid": "01896312-af56-71df-8a59-3473636a16d1"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Ellos",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "0189630a-d108-712a-8856-644fdd60eedb"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "ELON",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-08-31",
+    "uuid": "0189630d-2d48-7330-b48c-4658f8ebb237"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "EuroFlorist",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01896308-d5a1-70c8-84eb-a07e4bcd0d2c"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Evify",
+    "points_campaign": 2500,
+    "points_channel": 500,
+    "started": "2026-08-31",
+    "uuid": "01896312-b0fa-70cc-9292-50e7504899f2"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Factor",
+    "points_campaign": 4000,
+    "points_channel": 800,
+    "started": "2026-08-31",
+    "uuid": "01932560-06e4-7378-846c-17fc077c77eb"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Golvpoolen",
+    "points_campaign": 30,
+    "points_channel": 6,
+    "started": "2026-08-31",
+    "uuid": "0189630a-eb8f-7075-b244-c68e0c6e1e8a"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Hudoteket",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01896309-aa2d-71e5-9c48-248f03c79b6f"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Ideal of Sweden",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-31",
+    "uuid": "0189630f-4b89-721d-88e7-5b4e2b299f5f"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "InkClub",
+    "points_campaign": 100,
+    "points_channel": 20,
+    "started": "2026-08-31",
+    "uuid": "01896308-9acc-7096-9b2a-e74389673a4b"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "KICKS",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "01932f75-1211-7244-b60c-0fe79fd03b46"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Kjell & Company",
+    "points_campaign": 20,
+    "points_channel": 4,
+    "started": "2026-08-31",
+    "uuid": "0189630d-b8f2-71cc-9d1f-3070ccc4c33a"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Lounge by Zalando",
+    "points_campaign": 50,
+    "points_channel": 10,
+    "started": "2026-09-01",
+    "uuid": "018abc11-7ec7-73a0-bb3a-428c1b239d7d"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "MyMOWO",
+    "points_campaign": 500,
+    "points_channel": 100,
+    "started": "2026-08-31",
+    "uuid": "019d442e-c0ef-72d4-8983-d2a4b4328029"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Singular Society",
+    "points_campaign": 5000,
+    "points_channel": 1000,
+    "started": "2026-08-31",
+    "uuid": "019ad964-5fce-7380-ba91-5c4007d5ebbd"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Telinet",
+    "points_campaign": 8000,
+    "points_channel": 1600,
+    "started": "2026-08-31",
+    "uuid": "018e5102-89f1-70d3-b184-bfb0de1ae948"
+  },
+  {
+    "ended": "2026-09-07",
+    "name": "Vinkylen",
+    "points_campaign": 49,
+    "points_channel": 10,
+    "started": "2026-08-31",
+    "uuid": "018abc11-d276-70ea-b149-50ae4e0bd6bb"
   }
 ]
