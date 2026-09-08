@@ -364,11 +364,12 @@
     "current_points_channel": 5,
     "description": "<div>Med flere hundre tusen kunder er vi i dag en av Nord-Europas største forhandlere av skjønnhetsprodukter. Hos oss finner du skjønnhetsprodukter til virkelig gode priser. Vi har et bredt utvalg med over 200 eksklusive merker innen parfyme, hårprodukter, hudpleie og sminke.</div>",
     "first_seen": "2026-04-24",
+    "gone_since": "2026-09-08",
     "last_seen": "2026-09-08",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/K3Mey0TETjc4CHJcD5kZYbXDFyI0trx3B2XQfGVk.png",
     "name": "Parfym.no",
     "slug": "parfymno",
-    "status": "active",
+    "status": "gone",
     "uuid": "01896308-8756-70e3-b42a-66850f7b1673"
   },
   "01896308-9574-7200-98c1-2eb995cc8de0": {

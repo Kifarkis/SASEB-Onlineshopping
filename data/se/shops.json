@@ -529,11 +529,12 @@
     "current_points_channel": 5,
     "description": "<p>Hos Parfym.se&nbsp;hittar du skönhetsprodukter från över 100 varumärken inom parfym, makeup, hår och hudvård upp till 50% under rekommenderade priser.</p>",
     "first_seen": "2026-04-24",
+    "gone_since": "2026-09-08",
     "last_seen": "2026-09-08",
     "logo": "https://storage.onlineshopping.loyaltykey.com/storage/app/public/shops/images/mR2IPWKty06VUNELDgyY3xXUHnJE3KlXZwcOV4ta.png",
     "name": "Parfym.se",
     "slug": "parfym",
-    "status": "active",
+    "status": "gone",
     "uuid": "01896308-8756-70e3-b42a-66850f7b1673"
   },
   "01896308-9039-7038-9636-e81e01693162": {
